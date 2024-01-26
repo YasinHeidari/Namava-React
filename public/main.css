@@ -1,0 +1,156 @@
+:root{
+    --active-color: #6eb8ff;
+    --white-color: #ffffff;
+    --light-white-font: #ccc;
+    --lighter-white-font:#aaa;
+    --green-bgc:#99c14d;
+    --grey-bgc:#ffffff33;
+    --grey-color-font:#aaaaaa;
+    --body-bgc:#121212;
+    --light-black: #222327;
+    --footer-download-link-bgc:#37383e;
+    --footer-bgc-black:#1A1A1A;
+    --footer-media-blue:#005fb4;
+    --heroSection-active-color:#1993ff;
+    --heroSection-dark-bgc:rgba(255, 255, 255, 0.2);
+}
+.insetBoxshadow{
+    box-shadow: rgb(18, 18, 18) 0 -5px 5px inset;
+}
+/*heroSection start*/
+.heroSection{
+    padding-bottom: 2rem;
+}
+
+.heroSection .heroSectionSlides .heroSectionSlide .heroSectionSlideInfo .heroSectionSlideTitleLink{
+    height: fit-content;
+}
+.heroSection .heroSectionSlides .heroSectionSlide .heroSectionSlideInfo .heroSectionSlideTitleLink .heroSectionSlideImgTitle{
+    max-width: 25vw;
+    max-height: 10vw;
+}
+.heroSection .heroSectionSlides .heroSectionSlide .heroSectionSlideInfo .heroSectionSlideContentText a:first-child:hover {
+    color: var(--white-color);
+    background-color:var(--heroSection-active-color);
+}
+.heroSection .heroSectionSlides .heroSectionSlide .heroSectionSlideInfo .heroSectionSlideContentText a:first-child:hover svg{
+    fill: var(--white-color);
+}
+.heroSection .heroSectionSlides .heroSectionSlide .heroSectionSlideInfo .heroSectionSlideContentText a:nth-child(2):hover {
+    color: var(--white-color);
+    background-color:var(--lighter-white-font);
+}
+
+.heroSection .heroSectionSlides .heroSectionSlideNavigationBtns {
+    bottom: 17%;
+    left: 3%;
+}
+.heroSection .heroSectionSlides .heroSectionSlideNavigationBtns button{
+    background: transparent;
+    border: none;
+}
+.heroSection .heroSectionSlides .heroSectionSlideNavigationBtns .heroSectionSlideNavigationBtnLeft{
+    transform: rotate(180deg);
+}
+/*hero section end */
+
+/*main sliders start*/
+.body{
+    margin: -4rem 0 100px 0;
+}
+.directorContainer .directorImage{
+    max-width: 190px;
+}
+
+.movieSliderMenu h3:after{
+    content: "مشاهده همه"url("../images/menuArrow.svg");
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.movieSliderSpecialItem{
+    width:180px ;
+    height: auto;
+}
+a .darkMovieCover{
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9));
+    opacity: 0;
+    transition: opacity .3s ease ;
+    height: 315.25px;
+    padding: 0 1rem 1rem 0;
+}
+a:hover .darkMovieCover{
+    opacity: 1;
+}
+@media only screen and (max-width: 576px){
+    .heroSection{
+        height: 75vh;
+    }
+    .heroSection .heroSectionSlides .heroSectionSlide .heroSectionPardisImg {
+        width: 160px;
+        max-width: 100%;
+        left: 20vh;
+        bottom: 14vh;
+    }
+    .heroSection .heroSectionSlides .heroSectionSlide .heroSectionPardisImg img{
+        width: 100%;
+    }
+    .heroSection .heroSectionSlides .heroSectionSlide .heroSectionSlideInfo{
+        left: 14vh;
+        bottom: 3vh;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .heroSection{
+        height: 55vh;
+    }
+    .heroSection .heroSectionSlides .heroSectionSlide .heroSectionPardisImg {
+        width: 160px;
+        max-width: 100%;
+        margin: 0 auto;
+        
+    }
+    .heroSection .heroSectionSlides .heroSectionSlide .heroSectionPardisImg img{
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .heroSection .heroSectionSlides .heroSectionSlide .heroSectionPardisImg{
+        left: 3%;
+        bottom: 0;
+    }
+    .heroSection .heroSectionSlides .heroSectionSlide .heroSectionPardisImg img{
+        width: 160px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .heroSection{
+        height: 70vh;
+    }
+    .heroSection .heroSectionSlides .heroSectionSlide .heroSectionPardisImg img{
+        width: 220px;
+    }
+    .heroSection .heroSectionSlides .heroSectionSlide .heroSectionPardisImg{
+        left: 3%;
+        bottom: 33%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .heroSection{
+        height: 100vh;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .heroSection .heroSectionSlides .heroSectionSlide .heroSectionPardisImg{
+        left: 12%;
+        bottom: 30%;
+    }
+    .heroSection .heroSectionSlides .heroSectionSlide .heroSectionPardisImg img{
+        width: 300px;
+    }
+}
