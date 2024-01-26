@@ -90,109 +90,6 @@
     fill: var(--active-color);
 }
 
-/*footer*/
-.footer .footerLinksContainer{
-    background: var(--light-black);
-}
-.footer .footerLinks{
-    height: 40px;
-}
-.footerLink{
-    width: 1%;
-    max-width: 200px;
-    flex-grow: 1;
-    line-height: 40px;
-}
-.footer .footerLink a{
-    color: var(--light-white-font);
-    transition: color .3s ease;
-    -webkit-transition: color .3s ease;
-    -o-transition: color .3s ease;
-    -moz-transition: color .3s ease;
-    -ms-transition: color .3s ease;
-}
-.footer .footerLink a:hover{
-    color: var(--white-color);
-}
-.footer .footerOtherLinksOpen span ,.footer .footerOtherLinksClose span {
-    color: var(--light-white-font);
-    cursor: pointer;
-    transition: color .3s ease;
-    -webkit-transition: color .3s ease;
-    -o-transition: color .3s ease;
-    -moz-transition: color .3s ease;
-    -ms-transition: color .3s ease;
-}
-.footer .footerOtherLinksOpen:hover span , .footer .footerOtherLinksClose:hover span{
-    color: var(--white-color);
-}
-.footer .footerOtherLinksOpen img,.footer .footerOtherLinksClose img{
-    margin-right: 9px;
-}
-.footer .footerOtherLinks{
-    display: none;
-}
-.footer .footerLink .footerArrowDown{
-    transform: rotate(180deg);
-}
-.footer .footerInfo .footerDownload{
-    background: transparent;
-    padding: 15px 24px;
-}
-.footer .footerInfo .footerDownload .footerLogo .blueLogo{
-    padding: 22px 12px;
-    background: linear-gradient(to bottom, rgba(25,147,255,1), rgba(0,95,180,1));
-}
-.footer .footerInfo .footerDownload .footerLogo p{
-    color: var(--white-color);
-}
-.footer .footerInfo .footerDownload .footerDownloadLinks .footerDownloadLink{
-    background: var(--footer-download-link-bgc);
-    padding: 4px;
-}
-.footer .footerInfo .footerDownload .footerDownloadLinks .footerDownloadLink .footerDownloadLinkText span{
-    color: var(--light-white-font);
-}
-.footer .footerInfo .footerDownload .footerDownloadLinks .footerDownloadLink .footerDownloadLinkText p{
-    color: var(--white-color);
-    width: 45px;
-}
-
-
-.footer .footerInfo .footerContent .footerContentText p:first-child {
-    color: var(--white-color);
-    font-weight: bolder;
-}
-.footer .footerInfo .footerContent .footerContentText p:last-child{
-    color: var(--lighter-white-font);
-    line-height: 26px;
-    font-weight: normal;
-
-}
-.footer .footerInfo .footerContent .footerContentNamads a{
-    width: 100px;
-    height: 100px;
-    padding:12px;
-    background-color: var(--light-white-font);
-}
-
-.footer .footerDescription{
-    border-top: 1px solid var(--footer-download-link-bgc);
-    padding: 20px 0;
-}
-.footer .footerDescriptionText{
-    color: var(--grey-color-font);
-}
-.footer .footerDescription .footerDescriptionMedias .footerDescriptionMedia path {
-    transition: fill .3s ease;
-    -webkit-transition: fill .3s ease;
-    -o-transition: fill .3s ease;
-    -moz-transition: fill .3s ease;
-    -ms-transition: fill .3s ease;
-}
-.footer .footerDescription .footerDescriptionMedias .footerDescriptionMedia:hover path {
-    fill:var(--footer-media-blue);
-}
 
 /*media queries*/
 @media only screen and (max-width: 576px){
@@ -212,12 +109,6 @@
     .hamburgerMenu{
         background: transparent;
     }
-    .footer .footerInfo .footerDownload{
-        padding: 0;
-    }
-    .footer .footerInfo .footerDownload .footerLogo .blueLogo {
-        padding: 9px 4px;
-    }
 }
 
 @media only screen and (min-width: 576px) {
@@ -228,9 +119,7 @@
     .signInImg{
         display: inline-block;
     }
-    .signIn{
-        display: none;
-    }
+    
     .sideMenu{
         background: var(--light-black);
         right: -150%;
@@ -239,22 +128,11 @@
         display: block;
         background: transparent;
     }
-    .footer .footerInfo .footerDownload{
-        padding: 0;
-    }
-    .footer .footerInfo .footerDownload .footerLogo .blueLogo {
-        padding: 9px 4px;
-    }
 }
 
 @media only screen and (min-width: 768px) {
     .signInImg{
         display: none;
-    }
-    .footer .footerInfo .footerContent .footerContentNamads a {
-        width: 90px;
-        height: 90px;
-        padding: 10px;
     }
 }
 
@@ -268,8 +146,4 @@
 }
 
 @media only screen and (min-width: 1200px) {
-    .footer .footerInfo .footerDownload {
-        background: var(--light-black);
-        padding: 15px 24px;
-    }
 }

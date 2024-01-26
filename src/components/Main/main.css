@@ -63,7 +63,7 @@
 }
 
 .movieSliderMenu h3:after{
-    content: "مشاهده همه"url("../images/menuArrow.svg");
+    content: "مشاهده همه";
     position: absolute;
     top: 0;
     left: 0;
