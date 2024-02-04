@@ -17,7 +17,7 @@ export default function Header(){
                             <img src={require("../../images/hamburger-menu.svg").default} alt="" />
                         </button>
                     <div className="menu d-lg-flex justify-evenly align-center gap-2 d-xs-none d-sm-none">
-                        <Link className="active" to={"/"}>{/*! dont knowwwwwwwwwww what to do */}
+                        <Link className="active" to={"/"}>{/*each link has to be same and the direction should be at the shit heade */}
                             <p className="font-12 active">خانه</p>
                         </Link>
                         <a href="#">
