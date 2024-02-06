@@ -20,9 +20,9 @@ export default function Header(){
                         <Link className="active" to={"/"}>{/*each link has to be same and the direction should be at the shit heade */}
                             <p className="font-12 active">خانه</p>
                         </Link>
-                        <a href="#">
+                        <Link to={}>
                             <p className="font-12">فیلم ها</p>
-                        </a>
+                        </Link>
                         <a href="#">
                             <p className="font-12">سریال ها</p>
                         </a>
