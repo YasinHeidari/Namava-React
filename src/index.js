@@ -21,7 +21,7 @@ const main = createBrowserRouter([
       element: <MovieList/>,
   },
   {
-      path: "/Movie",
+      path: "/Movie/:id", //check if its correct 
       element: <Movie/>,
   },
   {

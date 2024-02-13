@@ -20,27 +20,27 @@ export default function Header(){
                         <Link className="active" to={"/"}>{/*each link has to be same and the direction should be at the shit heade */}
                             <p className="font-12 active">خانه</p>
                         </Link>
-                        <Link to={}>
+                        <Link to={`/`}>
                             <p className="font-12">فیلم ها</p>
                         </Link>
-                        <a href="#">
+                        <Link to={`/`}>
                             <p className="font-12">سریال ها</p>
-                        </a>
-                        <a href="#">
+                        </Link>
+                        <Link to={`/`}>
                             <p className="font-12">دسته بندی </p>
-                        </a>
-                        <a href="#">
+                        </Link>
+                        <Link to={`/`}>
                             <p className="font-12">تازه ها</p>
-                        </a>
-                        <a href="#">
+                        </Link>
+                        <Link to={`/`}>
                             <p className="font-12">کودکان</p>
-                        </a>
-                        <a href="#">
+                        </Link>
+                        <Link to={`/`}>
                             <p className="font-12">پردیس نماوا</p>
-                        </a>
-                        <a href="#">
+                        </Link>
+                        <Link to={`/`}>
                             <p className="font-12">نماوا مگ</p>
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className="d-flex justify-center align-center gap-2 gap-xs-1">
