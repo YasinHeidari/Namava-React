@@ -1,15 +1,20 @@
-const axios = require('axios');
+import axios from 'axios';
 
-const token = '4fba95dbf46cd77d415830c228c9ef01';
+const apiKey = 'YOUR_API_KEY'; // Replace this with your actual TMDb API key
 
-axios.get('https://api.themoviedb.org/3/movie/', { 
-    headers: {
-      'Authorization': 'Bearer ' + token
-    } 
-  })
-  .then(response => {
-    // Handle success
-  })
-  .catch(error => {
-    // Handle error
-  });
+async function searchMovies(query) {
+    try {
+        const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
+            params: {
+                api_key: apiKey,
+                query: query
+            }
+        });
+
+        
+        console.log('Search results:', response.data.results);
+    } catch (error) {
+        console.error('Error searching movies:', error);
+        throw error;
+    }
+}
