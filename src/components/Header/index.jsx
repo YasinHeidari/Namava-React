@@ -10,9 +10,9 @@ export default function Header(){
         <div className="container">
             <div className="d-flex justify-btw align-center">
                 <div className="d-flex flex-lg-row flex-xs-row-reverse flex-sm-row-reverse justify-center align-center gap-2 gap-xs-1 logo">
-                        <a href="./main.html">
+                        <Link to={`/`}>
                             <img src={require("../../images/namava-logo-white.svg").default} alt="" />
-                        </a>
+                        </Link>
                         <button className="hamburgerMenu d-xs-block sideMenuOpen" >{/*btn*/}
                             <img src={require("../../images/hamburger-menu.svg").default} alt="" />
                         </button>
@@ -20,7 +20,7 @@ export default function Header(){
                         <Link className="active" to={"/"}>{/*each link has to be same and the direction should be at the shit heade */}
                             <p className="font-12 active">خانه</p>
                         </Link>
-                        <Link to={`/`}>
+                        <Link to={`/MovieList`}>
                             <p className="font-12">فیلم ها</p>
                         </Link>
                         <Link to={`/`}>
