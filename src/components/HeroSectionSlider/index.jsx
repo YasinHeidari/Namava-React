@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { axios } from "axios";
 import Loading from "../Loading";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { EffectFade, Navigation } from "swiper/modules";
+import ApiUrlBase from "../../helpers/api";;
 
 export default function HeroSectionSlider(props) {
     const { title, genre_id } = props;
