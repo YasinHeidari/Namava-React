@@ -32,7 +32,7 @@
     flex-grow: 1;
     line-height: 40px;
 }
-.footer .footerLink a{
+.footer .footerLink .footerLinkChild{
     color: var(--light-white-font);
     transition: color .3s ease;
     -webkit-transition: color .3s ease;
@@ -40,7 +40,7 @@
     -moz-transition: color .3s ease;
     -ms-transition: color .3s ease;
 }
-.footer .footerLink a:hover{
+.footer .footerLink .footerLinkChild:hover{
     color: var(--white-color);
 }
 .footer .footerOtherLinksOpen span ,.footer .footerOtherLinksClose span {
@@ -89,7 +89,6 @@
 
 
 .footer .footerInfo .footerContent .footerContentText p:first-child {
-    color: var(--white-color);
     font-weight: bolder;
 }
 .footer .footerInfo .footerContent .footerContentText p:last-child{

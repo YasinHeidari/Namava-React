@@ -9,6 +9,9 @@ import Main from "./components/Main";
 import MovieList from "./components/MovieList";
 import Movie from "./components/Movie";
 import Error from "./components/Error";
+import ContactUs from "./components/ContactUs";
+import AboutUs from "./components/AboutUs";
+import  SearchMovie from "./components/SearchMovie";
 
 const App = () => {
   return (
@@ -16,10 +19,14 @@ const App = () => {
       <Fragment>
         <Header />
         <Routes>
-          <Route path="/" exact component={<Main/>} />
-          <Route path="/MovieList" component={<MovieList/>} />
-          <Route path="/Movie/:id" component={<Movie/>} />
-          <Route path="*" component={<Error/>} />
+        {/* maybe component instead of element */}
+          <Route path="/"  element={<Main/>} exact/>
+          <Route path="/MovieList" element={<MovieList/>} />
+          <Route path="/Movie/:id" element={<Movie/>} />
+          <Route path="/ContactUs" element={<ContactUs/>}/>
+          <Route path="/AboutUs" element={<AboutUs/>}/>
+          <Route path="/SearchMovie" element={<SearchMovie/>}/>
+          <Route path="*" element={<Error/>} />
         </Routes>
         <Footer />
       </Fragment>
@@ -27,7 +34,7 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root")); 
 /*import React, { Fragment } from "react";
 import ReactDOM from "react-dom/client";
 import {

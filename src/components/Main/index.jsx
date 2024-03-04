@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import HeroSectionSlider from "../HeroSectionSlider";
 import SliderMovie from "../SliderMovieHomePage";
 import StarsSlider from "../StarsSlider";
@@ -6,32 +5,36 @@ import DirectorsSlider from "../DirectorsSlider";
 
 export default function Main (){
     return(
-        <Fragment>
-            <HeroSectionSlider/>
-            <SliderMovie title="ویژه"/>
-            <SliderMovie title="اختصاصی نماوا"/>
-            <SliderMovie title="رایگان در نماوا"/>
-            <SliderMovie title="تازه های نماوا"/>
-            <SliderMovie title="سریال های ایرانی"/>
-            <SliderMovie title="سریال های ایرانی"/>
-            <StarsSlider />
-            <SliderMovie title="ایرانی"/>
-            <SliderMovie title="اکشن"/>
-            <SliderMovie title="کمدی"/>
-            <SliderMovie title="خانوادگی"/>
-            <SliderMovie title="بر اساس داستان های واقعی"/>
-            <SliderMovie title="جنایی"/>
-            <DirectorsSlider />
-            <SliderMovie title="علمی تخیلی"/>
-            <SliderMovie title="مستند"/>
-            <SliderMovie title="قصه پریان"/>
-            <SliderMovie title="مهیج"/>
-            <SliderMovie title="عاشقانه"/>
-            <SliderMovie title="ورزشی"/>
-            <SliderMovie title="فانتزی"/>
-            <SliderMovie title="ویژه ناشنوایان"/>
-            <SliderMovie title="فیلم کوتاه"/>
-            <SliderMovie title="فیلم تئاتر"/>
-        </Fragment>
+        
+        <div>
+            <div className="movieSliderMenu d-flex flex-column align-start justify-evenly gap-8">
+                {/*<HeroSectionSlider/>*/}
+                <SliderMovie titleSection="ویژه" genre="1"/>{/*trending */}
+                <SliderMovie title="اختصاصی نماوا" genre="2"/>
+                <SliderMovie title="رایگان در نماوا" genre="3"/>
+                <SliderMovie title="تازه های نماوا" genre="4"/>
+                <SliderMovie title="سریال های ایرانی" genre="5"/>
+                <SliderMovie title="سریال های ایرانی" genre="6"/>
+                {/* <StarsSlider /> */}
+                <SliderMovie title="ایرانی" genre="7"/>
+                <SliderMovie title="اکشن" genre="28"/>
+                <SliderMovie title="کمدی" genre="35"/>
+                <SliderMovie title="خانوادگی" genre="10751"/>
+                <SliderMovie title="بر اساس داستان های واقعی" genre="9648"/>
+                <SliderMovie title="جنایی" genre="80"/>
+                {/* <DirectorsSlider /> */}
+                <SliderMovie title="علمی تخیلی" genre="878"/>
+                <SliderMovie title="مستند" genre="99"/>
+                <SliderMovie title="قصه پریان" genre="15"/>
+                <SliderMovie title="مهیج" genre="12"/>
+                <SliderMovie title="عاشقانه" genre="10749"/>
+                <SliderMovie title="ورزشی" genre="18"/>
+                <SliderMovie title="فانتزی" genre="14"/>
+                <SliderMovie title="ویژه ناشنوایان" genre="20"/>
+                <SliderMovie title="فیلم کوتاه" genre="21"/>
+                <SliderMovie title="فیلم تئاتر" genre="22"/>
+            </div>
+        </div>
+        
     )
 }
