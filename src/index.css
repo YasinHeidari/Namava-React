@@ -66,6 +66,9 @@ button{
 .dark-bgc{
     background-color: var(--heroSection-dark-bgc);
 }
+.black-bgc{
+    background-color: #000;
+}
 .black-color{
     color: #000;
 }
