@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import "./ContactUs.css";
+import options from "../../helpers/PhoneNumberOptions";
+import CountryPopup from "./ContactCountryPopUp";
+import "./index.css";
 
 export default function ContactUs() {
     const [showSelect, setShowSelect] = useState(false);
@@ -7,52 +9,112 @@ export default function ContactUs() {
     const toggleSelect = () => {
         setShowSelect(!showSelect);
     };
+    const [nameInputValue, setNameInputValue] = useState('');
+    const [emailInputValue, setEmailInputValue] = useState('');
+    const [numberInputValue, setNumberInputValue] = useState('');
+    const [subscriptionInputValue, setSubscriptionInputValue] = useState('');
+    const [explainInputValue, setExplainInputValue] = useState('');
+    
 
+
+    const handleNameInputChange = (event) => {
+        setNameInputValue(event.target.value);
+    };
+
+    const handleEmailInputChange = (event) => {
+        setEmailInputValue(event.target.value);
+    };
+    const handleNumberInputChange = (event) => {
+        setNumberInputValue(event.target.value);
+    };
+    const emailInputClass = emailInputValue ? 'ltr' : '';
+
+    const handleSubscriptionInputChange = (event) => {
+        setSubscriptionInputValue(event.target.value);
+    };
+    const handleExplainInputChange = (event) => {
+        setExplainInputValue(event.target.value);
+    };
+
+    
+        const [selectedValue, setSelectedValue] = useState('IR');
+        const [showOptions, setShowOptions] = useState(false);
+    
+        const handleOptionSelect = (value) => {
+            setSelectedValue(value);
+            setShowOptions(false);
+        };
+    
+        const handleOutsideClick = () => {
+            setShowOptions(false);
+        };
     return (
-        <div className="white-bgc">
+        <div className="contactSection">
             <div className="container">
-                <div className="d-flex flex-column justify-center align-center">
-                    <h3 className="text-center">تماس با پشتیبانی نماوا</h3>
-                    <div className="w-100">
-                        <h3>
+                <div className="contactContainer d-flex flex-column justify-center align-center gap-4">
+                    <p className="contactTitle text-center font-xl-20 font-weight-normal">تماس با پشتیبانی نماوا</p>
+                    <div className="contactText w-100  d-flex flex-column justify-evenly align-start gap-2 border-radius-12">
+                        <h2 className="white-color font-16 font-weight-normal">
                             هفت روز هفته، ۲۴ ساعت شبانه‌روز پاسخگوی شما هستیم.
-                        </h3>
-                        <div className="d-flex justify-between align-center">
-                            <p>support@namava.ir</p>
-                            <p>۰۲۱-۹۱۰۰۰۱۱۱</p>
+                        </h2>
+                        <div className="w-100 d-flex justify-btw align-center white-color ">
+                            <p className="font-14 font-weight-normal">۰۲۱-۹۱۰۰۰۱۱۱</p>
+                            <p className="font-14 font-weight-normal">support@namava.ir</p>
                         </div>
                     </div>
-                    <form className="d-flex flex-column justify-center align-center gap-2">
-                        <label>
+                    <form className="d-flex flex-column justify-center align-center gap-2 white-bgc border-radius-12">
+                        <p className="contactFormTitle font-14 ">
                             کاربر گرامی، برای پیگیری خرید اشتراک، موارد محتوایی
                             و یا ارسال پیشنهادات و انتقادات می توانید از فرم زیر
                             نیز استفاده نمایید.
-                        </label>
-                        <label>نام و نام خانوادگی</label>
+                        </p>
+                        <label className={`labelName font-12 font-weight-normal align-self-start ${nameInputValue ? 'contactVisible' : 'contactLabel'}`}>نام و نام خانوادگی</label>
                         <input
                             type="text"
                             placeholder="نام و نام خانوادگی"
-                            className="border-radius-12 w-100"
+                            className="border-radius-12 w-100 inputName"
+                            value={nameInputValue}
+                            onChange={handleNameInputChange}
+                            dir="rtl"
                         />
-                        <label>ایمیل</label>
+                        <label className={`labelEmail font-12 font-weight-normal align-self-start ${emailInputValue ? 'contactVisible' : 'contactLabel'}`}>ایمیل</label>
+                        <input
+                            type="email"
+                            placeholder="ایمیل"
+                            className={`border-radius-12 w-100 inputEmail ${emailInputClass}`}
+                            value={emailInputValue}
+                            onChange={handleEmailInputChange}
+                            
+                        />
+                        <label className="font-12 font-weight-normal align-self-start">کشور</label>
+                        <input type="text" className="border-radius-12 w-100"/>
+                        
+                        <button className="select" onClick={() => setShowOptions(!showOptions)}>
+                            {selectedValue}
+                        </button>
+                        {showOptions && (
+                            <CountryPopup
+                                options={options} 
+                                onSelect={handleOptionSelect} 
+                                handleOutsideClick={handleOutsideClick} 
+                            />
+                        )}
+
+                        <label className={`labelNumber font-12 font-weight-normal align-self-start ${numberInputValue ? 'contactVisible' : 'contactLabel'}`}>شماره تلفن همراه</label>
                         <input
                             type="text"
-                            placeholder="ایمیل"
+                            placeholder="شماره تلفن همراه"
                             className="border-radius-12 w-100"
+                            value={numberInputValue}
+                            onChange={handleNumberInputChange}
                         />
-                        {/*select list with countries codes*/}
-                        <div>
-                            <label></label>
-                            <input
-                                type="text"
-                                placeholder=""
-                                className="border-radius-12 w-100"
-                            />
-                        </div>
+                        <label className={`labeluSubscription font-12 font-weight-normal align-self-start ${subscriptionInputValue ? 'contactVisible' : 'contactLabel'}`}>کد اشتراک/شناسه کاربری شاتلی</label>
                         <input
                             type="text"
                             placeholder="کد اشتراک/شناسه کاربری شاتلی"
                             className="border-radius-12 w-100"
+                            value={subscriptionInputValue}
+                            onChange={handleSubscriptionInputChange}
                         />
                         <button onClick={toggleSelect}>
                             Show Select Option
@@ -66,6 +128,15 @@ export default function ContactUs() {
                                 </select>
                             </div>
                         )}
+                        <label className={`labelExplain font-12 font-weight-normal align-self-start ${explainInputValue ? 'contactVisible' : 'contactLabel'}`}>توضیحات</label>
+                        <textarea
+                            type="text"
+                            placeholder="توضیحات"
+                            className="border-radius-12 w-100 font-16 font-weight-normal"
+                            value={explainInputValue}
+                            onChange={handleExplainInputChange}
+                        ></textarea>
+                        <button className="submitBtn w-100 border-radius-12 font-12 font-weight-normal" type="submit" >ارسال نظر</button>
                     </form>
                 </div>
             </div>

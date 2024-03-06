@@ -23,6 +23,8 @@
     --footer-media-blue:#005fb4;
     --heroSection-active-color:#1993ff;
     --heroSection-dark-bgc:rgba(255, 255, 255, 0.2);
+    --contactUs-white:rgb(242, 242, 242);
+    --contactUs-form-title:#37383e;
 }
 body{
     direction:rtl;
@@ -67,7 +69,7 @@ button{
     background-color: var(--heroSection-dark-bgc);
 }
 .black-bgc{
-    background-color: #000;
+    background-color: #000 !important;
 }
 .black-color{
     color: #000;
@@ -299,12 +301,26 @@ button{
     -o-kit-align-items:start;
     -ms-align-items:start;
 }
+.align-self-start{
+    align-self: start;
+    -webkit-align-self: start !important;
+    -moz-align-self: start;
+    -o-kit-align-self: start;
+    -ms-align-self: start;
+}
 .align-end{
     align-items: end;
     -webkit-align-items:end;
     -moz-align-items:end;
     -o-kit-align-items:end;
     -ms-align-items:end;
+}
+.align-self-start{
+    align-self: end;
+    -webkit-align-self: end;
+    -moz-align-self: end;
+    -o-kit-align-self: end;
+    -ms-align-self: end;
 }
 .gap-1{
     gap: 8px;

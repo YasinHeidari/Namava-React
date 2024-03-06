@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 import "./index.css";
 import "./font.css";
-import BlackNavbar from "";
+import BlackNavbar from "./helpers/StyleChangers";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
@@ -14,11 +14,12 @@ import ContactUs from "./components/ContactUs";
 import AboutUs from "./components/AboutUs";
 import  SearchMovie from "./components/SearchMovie";
 
+
 const App = () => {
   return (
     <BrowserRouter>
       <Fragment>
-        <Header />
+        <Header/>
         <Routes>
         {/* maybe component instead of element */}
           <Route path="/"  element={<Main/>} exact/>

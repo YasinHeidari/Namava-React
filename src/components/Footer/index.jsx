@@ -64,13 +64,13 @@ export default function Footer(){
               </li>
             ))}
             <li className="footerLink text-center font-12">
-              <button className="footerOtherLinksOpen">
+              <button className="footerHiddenLinksOpen">
                 <span className="font-12">سایر لینک‌ها</span>
                 <img src={require("../../images/footerArrowUp.svg").default} alt="Arrow Up" />
               </button>
-              <ul className="footerOtherLinks d-none">
+              <ul className="footerHiddenLinks d-none">
                 <li className="footerLink text-center font-12">
-                  <button className="footerOtherLinksClose">
+                  <button className="footerHiddenLinksClose">
                     <span className="font-12">سایر لینک‌ها</span>
                     <img src={require('../../images/footerArrowDown.svg').default} alt="Arrow Down" className="footerArrowDown" />
                   </button>

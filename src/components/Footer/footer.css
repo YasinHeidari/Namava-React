@@ -43,7 +43,7 @@
 .footer .footerLink .footerLinkChild:hover{
     color: var(--white-color);
 }
-.footer .footerOtherLinksOpen span ,.footer .footerOtherLinksClose span {
+.footer .footerHiddenLinksOpen span ,.footer .footerHiddenLinksClose span {
     color: var(--light-white-font);
     cursor: pointer;
     transition: color .3s ease;
@@ -52,13 +52,13 @@
     -moz-transition: color .3s ease;
     -ms-transition: color .3s ease;
 }
-.footer .footerOtherLinksOpen:hover span , .footer .footerOtherLinksClose:hover span{
+.footer .footerHiddenLinksOpen:hover span , .footer .footerHiddenLinksClose:hover span{
     color: var(--white-color);
 }
-.footer .footerOtherLinksOpen img,.footer .footerOtherLinksClose img{
+.footer .footerHiddenLinksOpen img,.footer .footerHiddenLinksClose img{
     margin-right: 9px;
 }
-.footer .footerOtherLinks{
+.footer .footerHiddenLinks{
     display: none;
 }
 .footer .footerLink .footerArrowDown{

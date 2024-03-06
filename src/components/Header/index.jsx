@@ -3,10 +3,11 @@ import { Fragment } from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
 
-export default function Header(){
+export default function Header({isContactPage}){
+    const headerClass = isContactPage ? 'header black-bgc' : 'header';
     return(
         <Fragment>
-             <div className="header position-absolute top-0 right-0 left-0 z-3">
+             <div className={headerClass + " position-absolute top-0 right-0 left-0 z-3"}>
                 <div className="container">
                     <div className="d-flex justify-btw align-center">
                         <div className="d-flex flex-lg-row flex-xs-row-reverse flex-sm-row-reverse justify-center align-center gap-2 gap-xs-1 logo">
@@ -98,7 +99,7 @@ export default function Header(){
                         <p className="font-12">نماوا مگ</p>
                         <img className="menuItemImg d-lg-none d-sm-block d-xs-block" src={require("../../images/bookmark-menu.svg").default} alt=''/>
                     </Link>
-                </div>
+            </div>
         </Fragment>
     )
 }

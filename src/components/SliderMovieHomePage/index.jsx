@@ -13,7 +13,7 @@ import { Keyboard, Navigation } from "swiper/modules";
 export default function SliderMovie(props) {
     const apiKey = "api_key=4fba95dbf46cd77d415830c228c9ef01";
     const baseUrl = "https://api.themoviedb.org/3";
-    const { title } = props;
+    const { title , genre_id } = props;
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -25,7 +25,8 @@ export default function SliderMovie(props) {
                     `${baseUrl}/genre/movie/list?${apiKey}`/*&callback=jQuery22408132628371243029_1471207855881&_=1471207855884*/
                 );
                 const jsonData = await response.json();
-                setMovies(jsonData.results);
+                setMovies(jsonData.genres);
+                console.log(jsonData, "hi")
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
