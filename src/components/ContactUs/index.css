@@ -51,3 +51,15 @@ form label {
     background-color: var(--grey-color-font);
     padding: .7rem 0;
 }
+form button{
+    border: none;
+    background-color: var(--contactUs-white);
+    padding: 1rem;
+    font-size: 16px;
+    -webkit-text-fill-color: rgb(55, 56, 62);
+}
+form .select{
+    background-color: var(--contactUs-white) !important;
+    -webkit-text-fill-color: rgb(55, 56, 62);
+    border: none;
+}

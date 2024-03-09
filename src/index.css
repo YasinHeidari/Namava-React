@@ -86,6 +86,9 @@ button{
 .object-cover{
     object-fit: cover;
 }
+.ltr{
+    direction: ltr;
+}
 .p-7{
     padding: 7px;
 }

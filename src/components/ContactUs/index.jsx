@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import options from "../../helpers/PhoneNumberOptions";
+import options from "../../helpers/PhoneNumberData";
 import CountryPopup from "./ContactCountryPopUp";
 import "./index.css";
 
@@ -9,13 +9,11 @@ export default function ContactUs() {
     const toggleSelect = () => {
         setShowSelect(!showSelect);
     };
-    const [nameInputValue, setNameInputValue] = useState('');
-    const [emailInputValue, setEmailInputValue] = useState('');
-    const [numberInputValue, setNumberInputValue] = useState('');
-    const [subscriptionInputValue, setSubscriptionInputValue] = useState('');
-    const [explainInputValue, setExplainInputValue] = useState('');
-    
-
+    const [nameInputValue, setNameInputValue] = useState("");
+    const [emailInputValue, setEmailInputValue] = useState("");
+    const [numberInputValue, setNumberInputValue] = useState("");
+    const [subscriptionInputValue, setSubscriptionInputValue] = useState("");
+    const [explainInputValue, setExplainInputValue] = useState("");
 
     const handleNameInputChange = (event) => {
         setNameInputValue(event.target.value);
@@ -27,7 +25,7 @@ export default function ContactUs() {
     const handleNumberInputChange = (event) => {
         setNumberInputValue(event.target.value);
     };
-    const emailInputClass = emailInputValue ? 'ltr' : '';
+    const emailInputClass = emailInputValue ? "ltr" : "";
 
     const handleSubscriptionInputChange = (event) => {
         setSubscriptionInputValue(event.target.value);
@@ -36,30 +34,37 @@ export default function ContactUs() {
         setExplainInputValue(event.target.value);
     };
 
-    
-        const [selectedValue, setSelectedValue] = useState('IR');
-        const [showOptions, setShowOptions] = useState(false);
-    
-        const handleOptionSelect = (value) => {
-            setSelectedValue(value);
+    const [selectedValue, setSelectedValue] = useState("IR Iran (+98)");
+    const [showOptions, setShowOptions] = useState(false);
+
+    const handleOptionSelect = (value) => {
+        setSelectedValue(value);
+        setShowOptions(false);
+    };
+
+    const handleOutsideClick = (e) => {
+        if (!e.target.closest(".popup-select-options")) {
             setShowOptions(false);
-        };
-    
-        const handleOutsideClick = () => {
-            setShowOptions(false);
-        };
+        }
+    };
     return (
         <div className="contactSection">
             <div className="container">
-                <div className="contactContainer d-flex flex-column justify-center align-center gap-4">
-                    <p className="contactTitle text-center font-xl-20 font-weight-normal">تماس با پشتیبانی نماوا</p>
+                <div className="contactContainer d-flex flex-column justify-center align-center gap-4 position-relative">
+                    <p className="contactTitle text-center font-xl-20 font-weight-normal">
+                        تماس با پشتیبانی نماوا
+                    </p>
                     <div className="contactText w-100  d-flex flex-column justify-evenly align-start gap-2 border-radius-12">
                         <h2 className="white-color font-16 font-weight-normal">
                             هفت روز هفته، ۲۴ ساعت شبانه‌روز پاسخگوی شما هستیم.
                         </h2>
                         <div className="w-100 d-flex justify-btw align-center white-color ">
-                            <p className="font-14 font-weight-normal">۰۲۱-۹۱۰۰۰۱۱۱</p>
-                            <p className="font-14 font-weight-normal">support@namava.ir</p>
+                            <p className="font-14 font-weight-normal">
+                                ۰۲۱-۹۱۰۰۰۱۱۱
+                            </p>
+                            <p className="font-14 font-weight-normal">
+                                support@namava.ir
+                            </p>
                         </div>
                     </div>
                     <form className="d-flex flex-column justify-center align-center gap-2 white-bgc border-radius-12">
@@ -68,7 +73,15 @@ export default function ContactUs() {
                             و یا ارسال پیشنهادات و انتقادات می توانید از فرم زیر
                             نیز استفاده نمایید.
                         </p>
-                        <label className={`labelName font-12 font-weight-normal align-self-start ${nameInputValue ? 'contactVisible' : 'contactLabel'}`}>نام و نام خانوادگی</label>
+                        <label
+                            className={`labelName font-12 font-weight-normal align-self-start ${
+                                nameInputValue
+                                    ? "contactVisible"
+                                    : "contactLabel"
+                            }`}
+                        >
+                            نام و نام خانوادگی
+                        </label>
                         <input
                             type="text"
                             placeholder="نام و نام خانوادگی"
@@ -77,30 +90,58 @@ export default function ContactUs() {
                             onChange={handleNameInputChange}
                             dir="rtl"
                         />
-                        <label className={`labelEmail font-12 font-weight-normal align-self-start ${emailInputValue ? 'contactVisible' : 'contactLabel'}`}>ایمیل</label>
+                        <label
+                            className={`labelEmail font-12 font-weight-normal align-self-start ${
+                                emailInputValue
+                                    ? "contactVisible"
+                                    : "contactLabel"
+                            }`}
+                        >
+                            ایمیل
+                        </label>
                         <input
                             type="email"
                             placeholder="ایمیل"
                             className={`border-radius-12 w-100 inputEmail ${emailInputClass}`}
                             value={emailInputValue}
                             onChange={handleEmailInputChange}
-                            
                         />
-                        <label className="font-12 font-weight-normal align-self-start">کشور</label>
-                        <input type="text" className="border-radius-12 w-100"/>
-                        
-                        <button className="select" onClick={() => setShowOptions(!showOptions)}>
+                        <label className="font-12 font-weight-normal align-self-start">
+                            کشور
+                        </label>
+                        <input type="text" className="border-radius-12 w-100" />
+                        <button
+                            type="button"
+                            className="select border-radius-12"
+                            onClick={() => setShowOptions(!showOptions)}
+                        >
+                            {selectedValue}
+                        </button>
+                            <CountryPopup onClick={() => setShowOptions(!showOptions)} handleOutsideClick={handleOutsideClick}/>
+                        {/*<button
+                            type="button"
+                            className="select border-radius-12"
+                            onClick={() => setShowOptions(!showOptions)}
+                        >
                             {selectedValue}
                         </button>
                         {showOptions && (
                             <CountryPopup
-                                options={options} 
-                                onSelect={handleOptionSelect} 
-                                handleOutsideClick={handleOutsideClick} 
+                                options={options}
+                                onSelect={handleOptionSelect}
+                                
                             />
-                        )}
+                        )}*/}
 
-                        <label className={`labelNumber font-12 font-weight-normal align-self-start ${numberInputValue ? 'contactVisible' : 'contactLabel'}`}>شماره تلفن همراه</label>
+                        <label
+                            className={`labelNumber font-12 font-weight-normal align-self-start ${
+                                numberInputValue
+                                    ? "contactVisible"
+                                    : "contactLabel"
+                            }`}
+                        >
+                            شماره تلفن همراه
+                        </label>
                         <input
                             type="text"
                             placeholder="شماره تلفن همراه"
@@ -108,7 +149,15 @@ export default function ContactUs() {
                             value={numberInputValue}
                             onChange={handleNumberInputChange}
                         />
-                        <label className={`labeluSubscription font-12 font-weight-normal align-self-start ${subscriptionInputValue ? 'contactVisible' : 'contactLabel'}`}>کد اشتراک/شناسه کاربری شاتلی</label>
+                        <label
+                            className={`labeluSubscription font-12 font-weight-normal align-self-start ${
+                                subscriptionInputValue
+                                    ? "contactVisible"
+                                    : "contactLabel"
+                            }`}
+                        >
+                            کد اشتراک/شناسه کاربری شاتلی
+                        </label>
                         <input
                             type="text"
                             placeholder="کد اشتراک/شناسه کاربری شاتلی"
@@ -128,7 +177,15 @@ export default function ContactUs() {
                                 </select>
                             </div>
                         )}
-                        <label className={`labelExplain font-12 font-weight-normal align-self-start ${explainInputValue ? 'contactVisible' : 'contactLabel'}`}>توضیحات</label>
+                        <label
+                            className={`labelExplain font-12 font-weight-normal align-self-start ${
+                                explainInputValue
+                                    ? "contactVisible"
+                                    : "contactLabel"
+                            }`}
+                        >
+                            توضیحات
+                        </label>
                         <textarea
                             type="text"
                             placeholder="توضیحات"
@@ -136,7 +193,12 @@ export default function ContactUs() {
                             value={explainInputValue}
                             onChange={handleExplainInputChange}
                         ></textarea>
-                        <button className="submitBtn w-100 border-radius-12 font-12 font-weight-normal" type="submit" >ارسال نظر</button>
+                        <button
+                            className="submitBtn w-100 border-radius-12 font-12 font-weight-normal"
+                            type="submit"
+                        >
+                            ارسال نظر
+                        </button>
                     </form>
                 </div>
             </div>

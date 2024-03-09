@@ -26,7 +26,7 @@ export default function SliderMovie(props) {
                 );
                 const jsonData = await response.json();
                 setMovies(jsonData.genres);
-                console.log(jsonData, "hi")
+                
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
