@@ -1,0 +1,7 @@
+#components-collapse-demo-collapsible .ant-space {
+    width: 100%;
+  }
+
+.aboutUsActiveColor{
+  color: var(--heroSection-active-color);
+}

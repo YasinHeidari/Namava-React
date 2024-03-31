@@ -71,6 +71,9 @@ button{
 .black-bgc{
     background-color: #000 !important;
 }
+.light-black-bgc{
+    background-color: var(--body-bgc);
+}
 .black-color{
     color: #000;
 }
@@ -91,6 +94,9 @@ button{
 }
 .p-7{
     padding: 7px;
+}
+.p-b-half{
+    padding-bottom: .5rem;
 }
 .border-radius-5{
     border-radius: 5px;
@@ -367,6 +373,24 @@ button{
 .font-weight-normal{
     font-weight: normal !important;
 }
+.line-height-24{
+    line-height: 24px;
+}
+.line-height-28{
+    line-height: 28px;
+}
+.line-height-31{
+    line-height: 31px;
+}
+.line-height-35{
+    line-height: 35px;
+}
+.line-height-41{
+    line-height: 41px;
+}
+.line-height-42{
+    line-height: 42px;
+}
 .font-8{
     font-size: 8px;
     font-weight: normal;
@@ -390,6 +414,19 @@ button{
 .font-20{
     font-size: 20px;
     font-weight: bold;
+}
+.font-24{
+    font-size: 24px;
+    font-weight: bold;
+}
+.font-28{
+    font-size: 28px;
+}
+.font-34{
+    font-size: 34px;
+}
+.font-42{
+    font-size: 42px;
 }
 
 /*! default columns */
@@ -468,6 +505,21 @@ button{
     .col-xs-12{
         width: 100%;
     }
+    .line-height-xs-24{
+        line-height: 24px;
+    }
+    .line-height-xs-28{
+        line-height: 28px;
+    }
+    .line-height-xs-31{
+        line-height: 31px;
+    }
+    .line-height-xs-35{
+        line-height: 35px;
+    }
+    .line-height-xs-41{
+        line-height: 41px;
+    }
     .font-xs-8{
         font-size: 8px;
         font-weight: normal;
@@ -488,10 +540,28 @@ button{
         font-size: 16px;
         font-weight: bold;
     }
+    .font-xs-18{
+        font-size: 18px;
+        font-weight: bold;
+    }
     .font-xs-20{
         font-size: 20px;
         font-weight: bold;
     }
+    .font-xs-24{
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .font-xs-28{
+        font-size: 28px;
+    }
+    .font-xs-34{
+        font-size: 34px;
+    }
+    .font-xs-42{
+        font-size: 42px;
+    }
+    
     .container-small{
         width: 95%;
         margin: 0 auto;
@@ -654,6 +724,21 @@ button{
     .col-sm-12{
         width: 100%;
     }
+    .line-height-sm-24{
+        line-height: 24px;
+    }
+    .line-height-sm-28{
+        line-height: 28px;
+    }
+    .line-height-sm-31{
+        line-height: 31px;
+    }
+    .line-height-sm-35{
+        line-height: 35px;
+    }
+    .line-height-sm-41{
+        line-height: 41px;
+    }
     .font-sm-8{
         font-size: 8px;
         font-weight: normal;
@@ -674,9 +759,26 @@ button{
         font-size: 16px;
         font-weight: bold;
     }
+    .font-sm-18{
+        font-size: 18px;
+        font-weight: bold;
+    }
     .font-sm-20{
         font-size: 20px;
         font-weight: bold;
+    }
+    .font-sm-24{
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .font-sm-28{
+        font-size: 28px;
+    }
+    .font-sm-34{
+        font-size: 34px;
+    }
+    .font-sm-42{
+        font-size: 42px;
     }
     .container-small{
         width: 95%;
@@ -805,6 +907,10 @@ button{
 
 }
 @media only screen and (min-width: 768px) {
+    .container-md{
+        width: 78%;
+        margin: 0 auto;
+    }
     .col-md-1{
         width: 8.33%;
     }
@@ -844,6 +950,24 @@ button{
     .d-md-block{
         display: block;
     }
+    .text-md-right{
+        text-align: right;
+    }
+    .line-height-md-24{
+        line-height: 24px;
+    }
+    .line-height-md-28{
+        line-height: 28px;
+    }
+    .line-height-md-31{
+        line-height: 31px;
+    }
+    .line-height-md-35{
+        line-height: 35px;
+    }
+    .line-height-md-41{
+        line-height: 41px;
+    }
     .font-md-8{
         font-size: 8px;
         font-weight: normal;
@@ -864,9 +988,26 @@ button{
         font-size: 16px;
         font-weight: bold;
     }
+    .font-md-18{
+        font-size: 18px;
+        font-weight: bold;
+    }
     .font-md-20{
         font-size: 20px;
         font-weight: bold;
+    }
+    .font-md-24{
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .font-md-28{
+        font-size: 28px;
+    }
+    .font-md-34{
+        font-size: 34px;
+    }
+    .font-md-42{
+        font-size: 42px;
     }
     .d-md-inline-block{
         display: inline-block;
@@ -1023,6 +1164,21 @@ button{
     .col-lg-12{
         width: 100%;
     }
+    .line-height-lg-24{
+        line-height: 24px;
+    }
+    .line-height-lg-28{
+        line-height: 28px;
+    }
+    .line-height-lg-31{
+        line-height: 31px;
+    }
+    .line-height-lg-35{
+        line-height: 35px;
+    }
+    .line-height-lg-41{
+        line-height: 41px;
+    }
     .font-lg-8{
         font-size: 8px;
         font-weight: normal;
@@ -1043,9 +1199,26 @@ button{
         font-size: 16px;
         font-weight: bold;
     }
+    .font-lg-18{
+        font-size: 18px;
+        font-weight: bold;
+    }
     .font-lg-20{
         font-size: 20px;
         font-weight: bold;
+    }
+    .font-lg-24{
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .font-lg-28{
+        font-size: 28px;
+    }
+    .font-lg-34{
+        font-size: 34px;
+    }
+    .font-lg-42{
+        font-size: 42px;
     }
     .h-lg-auto{
         height: auto;
@@ -1228,6 +1401,21 @@ button{
     .col-xl-12{
         width: 100%;
     }
+    .line-height-xl-24{
+        line-height: 24px;
+    }
+    .line-height-xl-28{
+        line-height: 28px;
+    }
+    .line-height-xl-31{
+        line-height: 31px;
+    }
+    .line-height-xl-35{
+        line-height: 35px;
+    }
+    .line-height-xl-41{
+        line-height: 41px;
+    }
     .font-xl-8{
         font-size: 8px;
         font-weight: normal;
@@ -1248,9 +1436,26 @@ button{
         font-size: 16px;
         font-weight: bold;
     }
+    .font-xl-18{
+        font-size: 18px;
+        font-weight: bold;
+    }
     .font-xl-20{
         font-size: 20px;
         font-weight: bold;
+    }
+    .font-xl-24{
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .font-xl-28{
+        font-size: 28px;
+    }
+    .font-xl-34{
+        font-size: 34px;
+    }
+    .font-xl-42{
+        font-size: 42px;
     }
     .d-xl-block{
         display: block;
@@ -1410,6 +1615,21 @@ button{
     .col-xxl-12{
         width: 100%;
     }
+    .line-height-xxl-24{
+        line-height: 24px;
+    }
+    .line-height-xxl-28{
+        line-height: 28px;
+    }
+    .line-height-xxl-31{
+        line-height: 31px;
+    }
+    .line-height-xxl-35{
+        line-height: 35px;
+    }
+    .line-height-xxl-41{
+        line-height: 41px;
+    }
     .font-xxl-8{
         font-size: 8px;
         font-weight: normal;
@@ -1430,12 +1650,30 @@ button{
         font-size: 16px;
         font-weight: bold;
     }
+    .font-xxl-18{
+        font-size: 18px;
+        font-weight: bold;
+    }
     .font-xxl-20{
         font-size: 20px;
         font-weight: bold;
     }
-    .container-small{
+    .font-xxl-24{
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .font-xxl-28{
+        font-size: 28px;
+    }
+    .font-xxl-34{
+        font-size: 34px;
+    }
+    .font-xxl-42{
+        font-size: 42px;
+    }
+    .container-xxl{/** container-small to container-xxl*/
         width: 70%;
+        margin: 0 auto;
     }
     .d-xxl-block{
         display: block;
