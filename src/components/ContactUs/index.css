@@ -4,7 +4,7 @@
 .contactContainer{
     width: 45%;
     margin: 5rem auto 0;
-    padding: 2rem 0 ;
+    
 }
 .contactText{
     background-color: var(--heroSection-active-color);

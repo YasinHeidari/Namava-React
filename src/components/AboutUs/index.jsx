@@ -11,7 +11,7 @@ import AboutUsNamavaMag from "./AboutUsNamvaMag";
 
 export default function AboutUs() {
     return (
-        <div className="d-flex flex-column justify-evenly gap-12 light-black-bgc">
+        <div className="d-flex flex-column justify-evenly gap-12 light-black-bgc container-padding-2">
             <AboutUsHeroSection/>
             <AboutUsDisplayOptions/>
             <AboutUsLive/>

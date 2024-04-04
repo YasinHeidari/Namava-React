@@ -57,7 +57,9 @@ button{
     width: 95%;
     margin: 0 auto; /**check it out*/
 }
-
+.container-padding-2{
+    padding: 2rem 0;
+}
 .active{
     color: var(--active-color);
     fill: var(--active-color);

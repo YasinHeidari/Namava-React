@@ -9,11 +9,13 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
+import ratingDecimal from "../../helpers/ratingdecimal";
+import "./index.css";
+import MovieInfoHomePage from "../MovieInfoHomePage";
 
-export default function SliderMovieTrending(props) {
+export default function SliderMovieTrending({title}) {
     const apiKey = 'api_key=4fba95dbf46cd77d415830c228c9ef01'; 
     const baseUrl = 'https://api.themoviedb.org/3';
-    const { title } = props;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -35,6 +37,8 @@ export default function SliderMovieTrending(props) {
     return (
         <div className="container">
             {loading ? <Loading /> : (
+                <div className="d-flex flex-column justify-center align-start gap-2">
+                <h3 className="white-color">{title}</h3>
                 <Swiper
                     grabCursor={true}
                     keyboard={{
@@ -44,31 +48,34 @@ export default function SliderMovieTrending(props) {
                     navigation={true}
                     slidesPerView= {7}
                     modules={[Navigation, Keyboard]}
-                    className="mySwiper sliderMovieSwiper movieSliderItems col-12 d-flex flex-row justify-evenly align-center gap-4"
+                    className="mySwiper SliderContainer  col-12 d-flex flex-row justify-evenly align-center gap-4"
                 >
                     {data.map((val) => (
-                        <SwiperSlide key={val.id} className="col-2 white-color">
-                                <Link className="movieSliderItemLink d-flex flex-column gap-2 position-relative" to="">
-                                    <div className="darkMovieCover movieSliderItem">
+                        
+                        <SwiperSlide key={val.id} className="trendingMovieSlider h-auto">
+                                <Link className="trendingMovieSliderLink d-flex flex-column gap-2 position-relative" to="">
+                                    <div className="trendingMovieSliderItem w-100 h-100 position-relative z-0">
                                         <img
-                                            className="w-auto h-auto border-radius-5 object-cover"
+                                            className="w-100 h-100 border-radius-5 object-cover"
                                             src={val.poster_path ? `${img_300}/${val.poster_path}` : unavailable}
-                                            alt=""
+                                            alt={val.title}
                                         />
-                                        <h5 className="white-color">{val.name}</h5>
+                                        <div className="darkMovieCover position-absolute z-1 top-0 right-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-5">
+                                                <div className="d-flex justify-center align-center"><div><img src={require("../../images/IMDB.svg").default} alt=""/></div><p className="white-color font-14">{ratingDecimal(val.vote_average)}</p></div>
+                                                <div className="d-flex justify-center align-center"><div><img src={require("../../images/subScript.svg").default} alt=""/></div><p className="white-color font-12"> زیرنویس </p></div>
+                                                {val.release_date && <div className="d-flex justify-center align-center"><p className="white-color font-12">فیلم - {val.release_date.substring(0,4)}</p></div>}
+                                            </div>
                                     </div>
+                                        <h5 className="white-color">{val.name || val.title}</h5>
                                 </Link>
-                                <div className="d-flex flex-row justify-content align-center gap-4">
-                                    <h3 className="white-color" titlesection=""></h3>
-                                    <Link to="/">
-                                        <p>مشاهده همه</p>
-                                        <img src="" alt=""/>
-                                    </Link>
-                                </div>
+                                
                         </SwiperSlide>
                     ))}
                 </Swiper>
+                </div>
             )}
+            <MovieInfoHomePage/>
         </div>
     );
+    
 }

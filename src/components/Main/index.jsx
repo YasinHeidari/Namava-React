@@ -4,6 +4,7 @@ import SliderMovie from "../SliderMovieHomePage";
 import SliderMovieTrending from "../SliderMovieHomePageTrending";
 import StarsSlider from "../StarsSlider";
 import DirectorsSlider from "../DirectorsSlider";
+import LatestMoviesSlider from "../SliderMovieHomePageLatest";
 import "./main.css"
 
 export default function Main() {
@@ -23,17 +24,17 @@ export default function Main() {
 
      fetchMovies();
    }, []);
+   
     return (
         
-            <div className="d-flex flex-column align-start justify-evenly gap-8">
+            <div className="d-flex flex-column align-start justify-evenly gap-8 container-padding-2">
                 <HeroSectionSlider/>
-                <SliderMovieTrending titleSection="ویژه" />
-                {/*trending */}
+                <SliderMovieTrending title="ویژه" />
                 <SliderMovie title="اختصاصی نماوا" movies={movies} genreId={28} />
                 <SliderMovie title="رایگان در نماوا" movies={movies} genreId={12} />
-                {/* {<SliderMovie title="تازه های نماوا" movies={movies} genreId={28} />} */}
+                <LatestMoviesSlider title="تازه های نماوا"/>
                 {/* {<SliderMovie title="سریال های ایرانی" movies={movies} genreId={28} />} */}
-                {/* <StarsSlider /> */}
+                <StarsSlider title="ستارگان"/> 
                 {/* {<SliderMovie title="ایرانی" movies={movies} genreId={28} />} */}
                 <SliderMovie title="اکشن" movies={movies} genreId={28} />
                 <SliderMovie title="کمدی" movies={movies} genreId={35} />
@@ -41,7 +42,7 @@ export default function Main() {
                 <SliderMovie title="خانوادگی" movies={movies} genreId={10751} />
                 <SliderMovie title="بر اساس داستان های واقعی" movies={movies} genreId={18} />
                 <SliderMovie title="جنایی" movies={movies} genreId={80} />
-                {/* <DirectorsSlider /> */}
+                <DirectorsSlider  title="کارگردان" /> 
                 <SliderMovie title="علمی تخیلی" movies={movies} genreId={878} />
                 <SliderMovie title="مستند" movies={movies} genreId={99} />
                 {/* {<SliderMovie title="قصه پریان" movies={movies} genreId={28} />} */}

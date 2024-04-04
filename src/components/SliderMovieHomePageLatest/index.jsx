@@ -10,33 +10,32 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
 import ratingDecimal from "../../helpers/ratingdecimal";
-import "./index.css"
+import "./index.css";
 import MovieInfoHomePage from "../MovieInfoHomePage";
 
-const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
+const apiKey = '4fba95dbf46cd77d415830c228c9ef01'; 
 
-
-
-export default function SliderMovie({ genreId , title }) {
+export default function LatestMoviesSlider({ title }) {
     const [loading, setLoading] = useState(true);
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        async function fetchMovies() {
+        async function fetchLatestMovies() {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`);
+                const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`);
                 if (!response.ok) {
-                    throw new Error('Failed to fetch movies');
+                    throw new Error('Failed to fetch latest movies');
                 }
                 const data = await response.json();
-                setMovies(data.results || []);
+                setMovies(data.results); // Assuming 'data.results' is an array of movies
                 setLoading(false);
             } catch (error) {
-                console.error('Error fetching movies:', error);
+                console.error('Error fetching latest movies:', error);
             }
         }
-        fetchMovies();
-    }, [genreId]);    
+        fetchLatestMovies();
+    }, []);
+     // Empty dependency array to ensure the effect runs only once
 
     return (
         <div className="container">
@@ -72,7 +71,9 @@ export default function SliderMovie({ genreId , title }) {
                                             <div className="darkMovieCover position-absolute z-1 top-0 right-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-5">
                                                 <div className="d-flex justify-center align-center"><div><img src={require("../../images/IMDB.svg").default} alt=""/></div><p className="white-color font-14">{ratingDecimal(movie.vote_average)}</p></div>
                                                 <div className="d-flex justify-center align-center"><div><img src={require("../../images/subScript.svg").default} alt=""/></div><p className="white-color font-12"> زیرنویس </p></div>
-                                                <div className="d-flex justify-center align-center"><p className="white-color font-12">فیلم - {movie.release_date.substring(0,4)}</p></div>
+                                                <div className="d-flex justify-center align-center">
+                                                    <p className="white-color font-12">فیلم - {movie.release_date ? movie.release_date.substring(0, 4) : 'Release Date Not Available'}</p>
+                                                </div>
                                             </div>
                                         </div>
                                         <h5 className="white-color">{movie.title}</h5>
@@ -80,13 +81,12 @@ export default function SliderMovie({ genreId , title }) {
                                 </SwiperSlide>
                             ))
                         ) : (
-                            <p>No movies available for this genre</p>
+                            <p>No latest movies available</p>
                         )}
                     </Swiper>
                 </div>
             )}
             <MovieInfoHomePage/>
         </div>
-        
     );
 }

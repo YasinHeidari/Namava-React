@@ -48,7 +48,7 @@ export default function ContactUs() {
         }
     };
     return (
-        <div className="contactSection">
+        <div className="contactSection container-padding-2">
             <div className="container">
                 <div className="contactContainer d-flex flex-column justify-center align-center gap-4 position-relative">
                     <p className="contactTitle text-center font-xl-20 font-weight-normal">

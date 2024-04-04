@@ -17,6 +17,26 @@
 .insetBoxshadow{
     box-shadow: rgb(18, 18, 18) 0 -5px 5px inset;
 }
+.MainContainer{
+    padding: 2rem 0;
+}
+
+/*Swiper*/
+.SliderContainer .swiper-button-prev::after , .SliderContainer .swiper-button-next::after{
+    font-size: 1.25rem !important;
+    font-weight:900;
+}
+
+.SliderContainer .swiper-button-prev , .SliderContainer .swiper-button-next{
+    opacity: 0;
+    color: var(--white-color);
+    transition: .3s opacity ease;
+    
+}
+
+.SliderContainer:hover .swiper-button-prev , .SliderContainer:hover .swiper-button-next{
+    opacity: 1;
+}
 /*heroSection start*/
 .heroSection{
     padding-bottom: 2rem;
