@@ -140,6 +140,9 @@ button{
 .vertical-middle{
     vertical-align: middle;
 }
+.flow-hidden{
+    overflow: hidden;
+}
 
 .position-relative{
     position: relative;
@@ -303,6 +306,13 @@ button{
     -o-kit-align-items:center;
     -ms-align-items:center;
 }
+.align-stretch{
+    align-items: stretch;
+    -webkit-align-items:stretch;
+    -moz-align-items:stretch;
+    -o-kit-align-items:stretch;
+    -ms-align-items:stretch;
+}
 .align-start{
     align-items: start;
     -webkit-align-items:start;
@@ -324,7 +334,7 @@ button{
     -o-kit-align-items:end;
     -ms-align-items:end;
 }
-.align-self-start{
+.align-self-end{
     align-self: end;
     -webkit-align-self: end;
     -moz-align-self: end;
@@ -372,6 +382,9 @@ button{
 }
 .font-weight-normal{
     font-weight: normal !important;
+}
+.line-height-21{
+    line-height: 21px;
 }
 .line-height-24{
     line-height: 24px;
@@ -505,6 +518,9 @@ button{
     .col-xs-12{
         width: 100%;
     }
+    .line-height-xs-21{
+        line-height: 21px;
+    }
     .line-height-xs-24{
         line-height: 24px;
     }
@@ -633,6 +649,13 @@ button{
         -o-kit-align-items:center;
         -ms-align-items:center;
     }
+    .align-xs-stretch{
+        align-items: stretch;
+        -webkit-align-items:stretch;
+        -moz-align-items:stretch;
+        -o-kit-align-items:stretch;
+        -ms-align-items:stretch;
+    }
     .align-xs-start{
         align-items: start;
         -webkit-align-items:start;
@@ -723,6 +746,9 @@ button{
     }
     .col-sm-12{
         width: 100%;
+    }
+    .line-height-sm-21{
+        line-height: 21px;
     }
     .line-height-sm-24{
         line-height: 24px;
@@ -851,6 +877,13 @@ button{
         -o-kit-align-items:center;
         -ms-align-items:center;
     }
+    .align-sm-stretch{
+        align-items: stretch;
+        -webkit-align-items:stretch;
+        -moz-align-items:stretch;
+        -o-kit-align-items:stretch;
+        -ms-align-items:stretch;
+    }
     .align-sm-start{
         align-items: start;
         -webkit-align-items:start;
@@ -952,6 +985,9 @@ button{
     }
     .text-md-right{
         text-align: right;
+    }
+    .line-height-md-21{
+        line-height: 21px;
     }
     .line-height-md-24{
         line-height: 24px;
@@ -1073,6 +1109,13 @@ button{
         -o-kit-align-items:center;
         -ms-align-items:center;
     }
+    .align-md-stretch{
+        align-items: stretch;
+        -webkit-align-items:stretch;
+        -moz-align-items:stretch;
+        -o-kit-align-items:stretch;
+        -ms-align-items:stretch;
+    }
     .align-md-start{
         align-items: start;
         -webkit-align-items:start;
@@ -1163,6 +1206,9 @@ button{
     }
     .col-lg-12{
         width: 100%;
+    }
+    .line-height-lg-21{
+        line-height: 21px;
     }
     .line-height-lg-24{
         line-height: 24px;
@@ -1309,6 +1355,13 @@ button{
         -o-kit-align-items:center;
         -ms-align-items:center;
     }
+    .align-lg-stretch{
+        align-items: stretch;
+        -webkit-align-items:stretch;
+        -moz-align-items:stretch;
+        -o-kit-align-items:stretch;
+        -ms-align-items:stretch;
+    }
     .align-lg-start{
         align-items: start;
         -webkit-align-items:start;
@@ -1400,6 +1453,9 @@ button{
     }
     .col-xl-12{
         width: 100%;
+    }
+    .line-height-xl-21{
+        line-height: 21px;
     }
     .line-height-xl-24{
         line-height: 24px;
@@ -1524,6 +1580,13 @@ button{
         -o-kit-align-items:center;
         -ms-align-items:center;
     }
+    .align-xl-stretch{
+        align-items: stretch;
+        -webkit-align-items:stretch;
+        -moz-align-items:stretch;
+        -o-kit-align-items:stretch;
+        -ms-align-items:stretch;
+    }
     .align-xl-start{
         align-items: start;
         -webkit-align-items:start;
@@ -1614,6 +1677,9 @@ button{
     }
     .col-xxl-12{
         width: 100%;
+    }
+    .line-height-xxl-21{
+        line-height: 21px;
     }
     .line-height-xxl-24{
         line-height: 24px;
@@ -1738,6 +1804,13 @@ button{
         -moz-align-items:center;
         -o-kit-align-items:center;
         -ms-align-items:center;
+    }
+    .align-xxl-stretch{
+        align-items: stretch;
+        -webkit-align-items:stretch;
+        -moz-align-items:stretch;
+        -o-kit-align-items:stretch;
+        -ms-align-items:stretch;
     }
     .align-xxl-start{
         align-items: start;

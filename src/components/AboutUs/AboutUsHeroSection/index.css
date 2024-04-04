@@ -1,0 +1,37 @@
+.aboutUsHeroSectionImg{
+    background: url("https://static.namava.ir/Content/Upload/Images/296d237e-d6ab-43eb-90e5-5a4f7cca0319.jpg") center ;
+    background-size: cover;
+    height: 137vw;
+}
+.aboutUsHeroSectionImg h2{
+    line-height: 48px;
+}
+.aboutUsHeroSectionImg p{
+    line-height: 31px;
+}
+.aboutUsHeroSectionImg .aboutUsIntroLink{
+    background-color: var(--heroSection-active-color);
+    height: 45px;
+    padding: 1.5px 56px;
+
+}
+@media (min-width: 1280px){
+    .aboutUsHeroSectionImg .aboutUsIntroLink{
+        height: 52px;
+        padding: 4.5px 76px;
+    }
+    .aboutUsHeroSectionImg{
+        height: 62vw;
+        max-height: 868px;      
+    }
+}
+@media (min-width:768px){
+    .aboutUsHeroSectionImg .aboutUsIntroLink{
+        height: 48px;
+        padding: 3px 76px;
+    }
+    .aboutUsHeroSectionImg{
+        height: 70vw;
+        max-height: 792px;
+    }
+}

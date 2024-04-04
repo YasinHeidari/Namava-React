@@ -1,40 +1,60 @@
+import { useState, useEffect } from "react";
 import HeroSectionSlider from "../HeroSectionSlider";
 import SliderMovie from "../SliderMovieHomePage";
 import SliderMovieTrending from "../SliderMovieHomePageTrending";
 import StarsSlider from "../StarsSlider";
 import DirectorsSlider from "../DirectorsSlider";
+import "./main.css"
 
 export default function Main() {
+     const [movies, setMovies] = useState([]);
+
+   useEffect(() => {
+      //Fetch movies data
+     async function fetchMovies() {
+       try {
+         const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=4fba95dbf46cd77d415830c228c9ef01');
+         const data = await response.json();
+         setMovies(data.results);
+       } catch (error) {
+         console.error('Error fetching movies:', error);
+       }
+     }
+
+     fetchMovies();
+   }, []);
     return (
-        <div>
-            <div className="movieSliderMenu d-flex flex-column align-start justify-evenly gap-8">
-                {/*<HeroSectionSlider/>*/}
+        
+            <div className="d-flex flex-column align-start justify-evenly gap-8">
+                <HeroSectionSlider/>
                 <SliderMovieTrending titleSection="ویژه" />
                 {/*trending */}
-                <SliderMovie title="اختصاصی نماوا" genre="2" />
-                <SliderMovie title="رایگان در نماوا" genre="3" />
-                <SliderMovie title="تازه های نماوا" genre="4" />
-                <SliderMovie title="سریال های ایرانی" genre="5" />
-                <SliderMovie title="سریال های ایرانی" genre="6" />
+                <SliderMovie title="اختصاصی نماوا" movies={movies} genreId={28} />
+                <SliderMovie title="رایگان در نماوا" movies={movies} genreId={12} />
+                {/* {<SliderMovie title="تازه های نماوا" movies={movies} genreId={28} />} */}
+                {/* {<SliderMovie title="سریال های ایرانی" movies={movies} genreId={28} />} */}
                 {/* <StarsSlider /> */}
-                <SliderMovie title="ایرانی" genre="7" />
-                <SliderMovie title="اکشن" genre="28" />
-                <SliderMovie title="کمدی" genre="35" />
-                <SliderMovie title="خانوادگی" genre="10751" />
-                <SliderMovie title="بر اساس داستان های واقعی" genre="9648" />
-                <SliderMovie title="جنایی" genre="80" />
+                {/* {<SliderMovie title="ایرانی" movies={movies} genreId={28} />} */}
+                <SliderMovie title="اکشن" movies={movies} genreId={28} />
+                <SliderMovie title="کمدی" movies={movies} genreId={35} />
+                <SliderMovie title="ترسناک" movies={movies} genreId={27} />
+                <SliderMovie title="خانوادگی" movies={movies} genreId={10751} />
+                <SliderMovie title="بر اساس داستان های واقعی" movies={movies} genreId={18} />
+                <SliderMovie title="جنایی" movies={movies} genreId={80} />
                 {/* <DirectorsSlider /> */}
-                <SliderMovie title="علمی تخیلی" genre="878" />
-                <SliderMovie title="مستند" genre="99" />
-                <SliderMovie title="قصه پریان" genre="15" />
-                <SliderMovie title="مهیج" genre="12" />
-                <SliderMovie title="عاشقانه" genre="10749" />
-                <SliderMovie title="ورزشی" genre="18" />
-                <SliderMovie title="فانتزی" genre="14" />
-                <SliderMovie title="ویژه ناشنوایان" genre="20" />
-                <SliderMovie title="فیلم کوتاه" genre="21" />
-                <SliderMovie title="فیلم تئاتر" genre="22" />
+                <SliderMovie title="علمی تخیلی" movies={movies} genreId={878} />
+                <SliderMovie title="مستند" movies={movies} genreId={99} />
+                {/* {<SliderMovie title="قصه پریان" movies={movies} genreId={28} />} */}
+                <SliderMovie title="مهیج" movies={movies} genreId={53} />
+                <SliderMovie title="عاشقانه" movies={movies} genreId={10749} />
+                <SliderMovie title="وسترن" movies={movies} genreId={37} />
+                <SliderMovie title="رازآلود" movies={movies} genreId={9648} />
+                <SliderMovie title="ورزشی" movies={movies} genreId={9805} />
+                <SliderMovie title="فانتزی" movies={movies} genreId={14} />
+                <SliderMovie title="ویژه ناشنوایان" movies={movies} genreId={10770} /> 
+                <SliderMovie title="فیلم کوتاه" movies={movies} genreId={10752} /> 
+                <SliderMovie title="فیلم تئاتر" movies={10770} genreId={10770} />
             </div>
-        </div>
+        
     );
 }

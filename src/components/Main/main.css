@@ -62,26 +62,7 @@
     max-width: 190px;
 }
 
-.movieSliderMenu h3:after{
-    content: "مشاهده همه";
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.movieSliderSpecialItem{
-    width:180px ;
-    height: auto;
-}
-a .darkMovieCover{
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9));
-    opacity: 0;
-    transition: opacity .3s ease ;
-    height: 315.25px;
-    padding: 0 1rem 1rem 0;
-}
-a:hover .darkMovieCover{
-    opacity: 1;
-}
+
 @media only screen and (max-width: 576px){
     .heroSection{
         height: 75vh;

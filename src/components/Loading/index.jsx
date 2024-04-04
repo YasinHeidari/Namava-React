@@ -1,7 +1,4 @@
-export default function Loading(){
-    return(
-        <div>
-            <h1>wait</h1>
-        </div>
-    )
-}
+import React from 'react';
+import { Skeleton } from 'antd';
+const App = () => <Skeleton active />;
+export default App;

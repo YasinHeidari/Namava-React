@@ -1,10 +1,20 @@
-.movieSliderItemLink .darkMovieCover{
+.movieSlider{
+    width: 100px;
+    
+}
+.movieSliderItem{
+    
+}
+.movieSliderLink .darkMovieCover{
     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9));
     opacity: 0;
     transition: opacity .3s ease ;
-    height: 315.25px;
-    padding: 0 1rem 1rem 0;
+    padding: 1rem;
+    
 }
-.movieSliderItemLink:hover .darkMovieCover{
-    opacity: 1;
+.movieSliderLink:hover .darkMovieCover{
+    opacity: 1 ;
+}
+.darkMovieCover div p{
+    margin-right: .1rem;
 }
