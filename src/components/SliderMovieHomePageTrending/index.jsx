@@ -50,24 +50,24 @@ export default function SliderMovieTrending({title}) {
                     modules={[Navigation, Keyboard]}
                     className="mySwiper SliderContainer  col-12 d-flex flex-row justify-evenly align-center gap-4"
                 >
-                    {data.map((val) => (
+                    {data.map((movie) => (
                         
-                        <SwiperSlide key={val.id} className="trendingMovieSlider h-auto">
-                                <Link className="trendingMovieSliderLink d-flex flex-column gap-2 position-relative" to="">
+                        <SwiperSlide key={movie.id} className="trendingMovieSlider h-auto">
+                                <div className="trendingMovieSliderLink d-flex flex-column gap-2 position-relative" >
                                     <div className="trendingMovieSliderItem w-100 h-100 position-relative z-0">
                                         <img
                                             className="w-100 h-100 border-radius-5 object-cover"
-                                            src={val.poster_path ? `${img_300}/${val.poster_path}` : unavailable}
-                                            alt={val.title}
+                                            src={movie.poster_path ? `${img_300}/${movie.poster_path}` : unavailable}
+                                            alt={movie.title}
                                         />
                                         <div className="darkMovieCover position-absolute z-1 top-0 right-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-5">
-                                                <div className="d-flex justify-center align-center"><div><img src={require("../../images/IMDB.svg").default} alt=""/></div><p className="white-color font-14">{ratingDecimal(val.vote_average)}</p></div>
+                                                <div className="d-flex justify-center align-center"><div><img src={require("../../images/IMDB.svg").default} alt=""/></div><p className="white-color font-14">{ratingDecimal(movie.vote_average)}</p></div>
                                                 <div className="d-flex justify-center align-center"><div><img src={require("../../images/subScript.svg").default} alt=""/></div><p className="white-color font-12"> زیرنویس </p></div>
-                                                {val.release_date && <div className="d-flex justify-center align-center"><p className="white-color font-12">فیلم - {val.release_date.substring(0,4)}</p></div>}
+                                                {movie.release_date && <div className="d-flex justify-center align-center"><p className="white-color font-12">فیلم - {movie.release_date.substring(0,4)}</p></div>}
                                             </div>
                                     </div>
-                                        <h5 className="white-color">{val.name || val.title}</h5>
-                                </Link>
+                                        <h5 className="white-color">{movie.name || movie.title}</h5>
+                                </div>
                                 
                         </SwiperSlide>
                     ))}

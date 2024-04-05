@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { img_300 } from "../../helpers/api";
 import { unavailable } from "../../helpers/api";
 import Loading from "../Loading";
-import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -20,6 +19,7 @@ const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
 export default function SliderMovie({ genreId , title }) {
     const [loading, setLoading] = useState(true);
     const [movies, setMovies] = useState([]);
+    const [selectedMovie, setSelectedMovie] = useState(null);
 
     useEffect(() => {
         async function fetchMovies() {
@@ -37,6 +37,10 @@ export default function SliderMovie({ genreId , title }) {
         }
         fetchMovies();
     }, [genreId]);    
+
+    const handleMovieSelect = (movie) => {
+        setSelectedMovie(movie);
+    };
 
     return (
         <div className="container">
@@ -58,11 +62,8 @@ export default function SliderMovie({ genreId , title }) {
                     >
                         {movies.length > 0 ? (
                             movies.map((movie) => (
-                                <SwiperSlide key={movie.id} className="movieSlider h-auto">
-                                    <Link
-                                        className="movieSliderLink d-flex flex-column gap-2 position-relative"
-                                        to=""
-                                    >
+                                <SwiperSlide key={movie.id} className="movieSlider h-auto" onClick={() => handleMovieSelect(movie)}>
+                                    <div className="movieSliderLink d-flex flex-column gap-2 position-relative">
                                         <div className="movieSliderItem w-100 h-100 position-relative z-0">
                                             <img
                                                 className="w-100 h-100 border-radius-5 object-cover"
@@ -76,7 +77,7 @@ export default function SliderMovie({ genreId , title }) {
                                             </div>
                                         </div>
                                         <h5 className="white-color">{movie.title}</h5>
-                                    </Link>
+                                    </div>
                                 </SwiperSlide>
                             ))
                         ) : (
@@ -85,8 +86,7 @@ export default function SliderMovie({ genreId , title }) {
                     </Swiper>
                 </div>
             )}
-            <MovieInfoHomePage/>
+            {selectedMovie && <MovieInfoHomePage movie={selectedMovie} />}
         </div>
-        
     );
-}
+};

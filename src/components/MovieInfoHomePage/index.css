@@ -1,0 +1,13 @@
+/* index.css */
+.containerMovieInfo {
+    transition: height 0.5s; 
+    overflow: hidden; 
+}
+
+.containerMovieInfo.expanded {
+    height:20rem;
+}
+
+.containerMovieInfo.collapsed{
+    height: 0;
+}

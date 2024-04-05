@@ -5,10 +5,12 @@ import SliderMovieTrending from "../SliderMovieHomePageTrending";
 import StarsSlider from "../StarsSlider";
 import DirectorsSlider from "../DirectorsSlider";
 import LatestMoviesSlider from "../SliderMovieHomePageLatest";
+import MovieInfoHomePage from "../MovieInfoHomePage";
 import "./main.css"
 
 export default function Main() {
      const [movies, setMovies] = useState([]);
+     
 
    useEffect(() => {
       //Fetch movies data
@@ -37,6 +39,7 @@ export default function Main() {
                 <StarsSlider title="ستارگان"/> 
                 {/* {<SliderMovie title="ایرانی" movies={movies} genreId={28} />} */}
                 <SliderMovie title="اکشن" movies={movies} genreId={28} />
+                
                 <SliderMovie title="کمدی" movies={movies} genreId={35} />
                 <SliderMovie title="ترسناک" movies={movies} genreId={27} />
                 <SliderMovie title="خانوادگی" movies={movies} genreId={10751} />
