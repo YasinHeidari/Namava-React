@@ -57,6 +57,7 @@ button{
     width: 95%;
     margin: 0 auto; /**check it out*/
 }
+
 .container-padding-2{
     padding: 2rem 0;
 }
@@ -84,6 +85,9 @@ button{
 }
 .white-color{
     color: var(--white-color);
+}
+.light-white-font{
+    color: var(--light-white-font);
 }
 .light-black{
     color: var(--light-black);

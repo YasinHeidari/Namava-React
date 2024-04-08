@@ -1,7 +1,11 @@
+
+  
 .containerMovieInfo {
     overflow: hidden; 
-    height:20rem;
+    height:35.15625vw;
     transition: all 0.5s ease; 
+    margin: 4rem 0 0;
+    background-color: var(--footer-bgc-black);
 }
 
 .containerMovieInfo.expanded {
@@ -10,4 +14,40 @@
 
 .containerMovieInfo.collapsed{
     height: 0;
+}
+
+.movieInfoInnerBtn {
+    padding: 0 16px 0 20px;
+}
+.movieInfoInnerBtn:hover{
+    background-color: var(--heroSection-active-color);
+}
+.movieInfoInnerBtn:hover svg,
+.movieInfoInnerBtn:hover span {
+    fill: var(--white-color);
+    color: var(--white-color);
+}
+.movieInfoInnerMore {
+    padding: 0 16px 0 20px;
+    background: transparent;
+}
+.movieInfoInnerMore:hover svg path,
+.movieInfoInnerMore:hover span ,
+.movieInfoInnerMore:hover svg g path rect{
+    fill: var(--heroSection-active-color);
+    color: var(--heroSection-active-color);
+    
+}
+.containerMovieInfo .dark-cover{
+    background: radial-gradient(circle at 33% 40%, transparent 10%, var(--footer-bgc-black) 55%);
+    animation: dark-cover-animation .5s ease 2s;
+}
+
+@keyframes dark-cover-animation {
+    from{
+        background: radial-gradient(circle at 33% 40%, transparent 0, var(--footer-bgc-black) 0);
+    }
+    to{
+        background: radial-gradient(circle at 33% 40%, transparent 10%, var(--footer-bgc-black) 55%);
+    }
 }

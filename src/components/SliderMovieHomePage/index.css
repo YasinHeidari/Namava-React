@@ -1,3 +1,6 @@
+.movieSlider{
+    transition: all .3s ease;
+}
 .movieSliderLink .darkMovieCover{
     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9));
     opacity: 0;
@@ -10,4 +13,7 @@
 }
 .darkMovieCover div p{
     margin-right: .1rem;
+}
+.selected {
+    transform: translateY(1rem);
 }

@@ -19,6 +19,7 @@ export default function SliderMovie({ genreId, title }) {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [isInfoVisible, setIsInfoVisible] = useState(false); // State to control visibility of movie info
+  const [selectedSliderIndex, setSelectedSliderIndex] = useState(null);
 
   useEffect(() => {
     async function fetchMovies() {
@@ -37,16 +38,19 @@ export default function SliderMovie({ genreId, title }) {
     fetchMovies();
   }, [genreId]);
 
-  const handleMovieSelect = (movie) => {
+  const handleMovieSelect = (movie , index) => {
     setSelectedMovie(movie);
     setIsInfoVisible(true); // Show movie info when a movie is selected
+    setSelectedSliderIndex(index);
   };
 
   const handleInfoToggle = () => {
     setIsInfoVisible(false); // Hide movie info when the button is clicked
+    setSelectedSliderIndex(null); 
   };
 
   return (
+    <div className="w-100">
     <div className="container">
       {loading ? (
         <Loading />
@@ -66,8 +70,8 @@ export default function SliderMovie({ genreId, title }) {
               className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"
             >
               {movies.length > 0 ? (
-                movies.map((movie) => (
-                  <SwiperSlide key={movie.id} className="movieSlider h-auto" onClick={() => handleMovieSelect(movie)}>
+                movies.map((movie , index) => (
+                  <SwiperSlide key={movie.id} className={`movieSlider h-auto ${selectedSliderIndex === index ? 'selected' : ''}`} onClick={() => handleMovieSelect(movie,index)}>
                     <div className="movieSliderLink d-flex flex-column gap-2 position-relative">
                       <div className="movieSliderItem w-100 h-100 position-relative z-0">
                         <img
@@ -91,10 +95,10 @@ export default function SliderMovie({ genreId, title }) {
             </Swiper>
           </div>
           {/* Render MovieInfoHomePage only if a movie is selected, isInfoVisible is true, and selectedMovie is not null */}
-          {selectedMovie && isInfoVisible && <MovieInfoHomePage movie={selectedMovie} onToggle={handleInfoToggle} buttonContent="Custom Button" />}
         </>
       )}
     </div>
+          {selectedMovie && isInfoVisible && <MovieInfoHomePage movie={selectedMovie} onToggle={handleInfoToggle} buttonContent="Custom Button" />}
+    </div>
   );
 };
-
