@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { img_300 } from "../../helpers/api";
-import { unavailable } from "../../helpers/api";
 import ratingDecimal from "../../helpers/ratingdecimal";
-import "./info.css";
+import "./index.css";
 
 const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
 
@@ -54,11 +52,11 @@ export default function MovieInfoHomePage({ movie, buttonContent }) {
   // Function to get genre names based on genre IDs
   const getGenreNames = () => {
     const movieGenres = genres.filter(genre => movie.genre_ids.includes(genre.id));
-    return movieGenres.map(genre => genre.name).join(", ");
+    return movieGenres.map(genre => genre.name).join(" - ");
   };
 
   return (
-    <div className="containerMovieInfo position-relative" style={{ backgroundImage: `url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'right 20rem top' }}>
+    <div className="containerMovieInfo position-relative" style={{ backgroundImage: `url(https://media.themoviedb.org/t/p/w1280/${movie.backdrop_path})`, backgroundSize: 'contain', backgroundPosition: 'left top' , backgroundRepeat:'no-repeat'}}>
               <div className="dark-cover w-100 h-100 position-absolute top-0 right z-1"></div>
 
       <div className="container h-100" >
@@ -99,16 +97,16 @@ export default function MovieInfoHomePage({ movie, buttonContent }) {
                   </svg>
                   <span className="black-color font-12 font-weight-normal">خرید اشتراک</span>
                 </Link>
-                <Link to="/" className="movieInfoInnerMore d-flex flex-row align-center gap-1 border-radius-12 line-height-42">
+                <Link to={`/movie/${movie.id}`} className="movieInfoInnerMore d-flex flex-row align-center gap-1 border-radius-12 line-height-42">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="#fff"><g id="Group_2349" data-name="Group 2349" transform="translate(2641 -16124)"><rect id="Rectangle_459" data-name="Rectangle 459" width="30" height="30" transform="translate(-2641 16124)" fill="none"></rect><path class="svg-c1" id="Path_5398" data-name="Path 5398" d="M1530.066-359.976a12.023,12.023,0,0,0-8.558-3.545,12.022,12.022,0,0,0-8.558,3.545,12.024,12.024,0,0,0-3.545,8.558,12.024,12.024,0,0,0,3.545,8.558,12.022,12.022,0,0,0,8.558,3.545,12.023,12.023,0,0,0,8.558-3.545A12.117,12.117,0,0,0,1530.066-359.976Zm-8.558,17a1.57,1.57,0,0,1-1.57-1.57,1.57,1.57,0,0,1,1.57-1.57,1.57,1.57,0,0,1,1.57,1.57A1.57,1.57,0,0,1,1521.508-342.98Zm1.57-7.109a1.57,1.57,0,0,1-1.57,1.57,1.57,1.57,0,0,1-1.57-1.57v-7.493a1.57,1.57,0,0,1,1.57-1.57,1.57,1.57,0,0,1,1.57,1.57Z" transform="translate(-1104.395 15787.685) rotate(180)"></path></g></svg>
                   <span className="white-color font-12 font-weight-normal">توضیحات بیشتر</span>
                 </Link>
               </div>
               <p className="light-white-font font-12 font-weight-normal">
-                ستارگان: {stars.join(", ")}
+                ستارگان: {stars.join(" - ")}
               </p>
               <p className="light-white-font font-12 font-weight-normal">
-                کارگردان: {directors.join(", ")}
+                کارگردان: {directors.join(" - ")}
               </p>
               <p className="genres light-white-font font-12 font-weight-normal">
                 دسته بندی ها: {getGenreNames()}

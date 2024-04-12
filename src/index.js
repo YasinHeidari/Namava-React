@@ -24,7 +24,7 @@ const App = () => {
         {/* maybe component instead of element */}
           <Route path="/"  element={<Main/>} exact/>
           <Route path="/MovieList" element={<MovieList/>} />
-          <Route path="/Movie/:id" element={<Movie/>} />
+          <Route path="/movie/:id" element={<Movie/>} />
           <Route path="/ContactUs" element={<ContactUs/>}/>
           <Route path="/AboutUs" element={<AboutUs/>}/>
           <Route path="/SearchMovie" element={<SearchMovie/>}/>

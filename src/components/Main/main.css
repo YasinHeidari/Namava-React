@@ -22,6 +22,18 @@
 }
 
 /*Swiper*/
+.SliderContainer .swiper-button-prev , .SliderContainer .swiper-button-next{
+    height: 100%;
+    top: 0 !important;
+}
+.SliderContainer .swiper-button-next{
+    background: linear-gradient(to right, rgba(18, 18, 18, 1), rgba(18, 18, 18, 0));
+    left: 0 !important;
+}
+.SliderContainer .swiper-button-prev{
+    background: linear-gradient(to left, rgba(18, 18, 18, 1), rgba(18, 18, 18, 0));
+    right: 0 !important;
+}
 .SliderContainer .swiper-button-prev::after , .SliderContainer .swiper-button-next::after{
     font-size: 1.25rem !important;
     font-weight:900;
@@ -37,6 +49,10 @@
 .SliderContainer:hover .swiper-button-prev , .SliderContainer:hover .swiper-button-next{
     opacity: 1;
 }
+
+
+
+
 /*heroSection start*/
 .heroSection{
     padding-bottom: 2rem;
@@ -75,9 +91,7 @@
 /*hero section end */
 
 /*main sliders start*/
-.body{
-    margin: -4rem 0 100px 0;
-}
+
 .directorContainer .directorImage{
     max-width: 190px;
 }

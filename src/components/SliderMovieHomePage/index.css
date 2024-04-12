@@ -6,14 +6,21 @@
     opacity: 0;
     transition: opacity .3s ease ;
     padding: 1rem;
-    
+    transform: scaleY(0.98);
+    margin-top: -.1769rem;
 }
 .movieSliderLink:hover .darkMovieCover{
     opacity: 1 ;
+    
 }
 .darkMovieCover div p{
-    margin-right: .1rem;
+    margin-right: .1rem
 }
 .selected {
     transform: translateY(1rem);
+}
+.hideInfoButton{
+    width: 5rem;
+    height: 4px;
+    background-color: var(--grey-color-font);
 }
