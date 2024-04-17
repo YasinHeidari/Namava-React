@@ -59,7 +59,7 @@ export default function Movie() {
       <div className="container">
         <div className="d-flex flex-column justify-btw align-start h-100">
             <div className="d-flex justify-center align-center align-self-center position-relative z-3 h-100">
-            <div className="col-4 d-flex flex-column justify-center align-start gap-2 container-padding-2 h-100">
+            <div className="col-4 d-flex flex-column justify-center align-start align-self-center gap-2 container-padding-2 h-100">
                 <Link to={`/movie/${movie.id}`}>
                 {logoUrl && <img src={`https://image.tmdb.org/t/p/w300/${logoUrl}`} alt={movie.name || movie.title} />}
                 </Link>
@@ -115,7 +115,7 @@ export default function Movie() {
             <div className="d-flex justify-center align-center gap-2" style={{marginTop:'-1rem'}}>
             {images.map(image => (
                 <div className="col-2">
-                    <img className="w-100 h-auto object-cover" key={image.file_path} src={`https://image.tmdb.org/t/p/original/${image.file_path}`} alt={image.file_path} />
+                    <img className="w-100 h-auto object-cover" key={movie.id} src={`https://image.tmdb.org/t/p/original/${image.file_path}`} alt={image.file_path} />
                 </div>
               ))}
             </div>
