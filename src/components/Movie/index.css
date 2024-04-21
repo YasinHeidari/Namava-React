@@ -5,10 +5,10 @@
     margin-bottom: 2rem;
 }
 .containerMovie .dark-cover{
-    background: radial-gradient(circle at 33% 40%, transparent 20%, var(--footer-bgc-black) 75%);
+    
 }
 .movieInnerBtn{
-    padding: 0 16px 0 20px;
+    padding:0 16px 0 20px;
 }
 .movieInnerBtn:hover{
     background-color: var(--heroSection-active-color);
@@ -22,7 +22,12 @@
     padding: 0 16px 0 20px;
     background-color: rgba(255, 255, 255, 0.2);
 }
-.movieInnerMore:hover{
+.movieInnerIconHover{
+    width:42px;
+     height: 42px;
+      background-color: rgba(255, 255, 255, 0.2);
+}
+.movieInnerMore:hover , .movieInnerIconHover:hover{
     background-color: rgba(255, 255, 255, 0.4);
 }
 

@@ -1,0 +1,11 @@
+.commentContainer{
+    background-color: var(--light-black);
+    width: 65%;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+input[type=text]{
+    outline: none;
+    padding: 12px 24px;
+    font-size: 12px;
+}

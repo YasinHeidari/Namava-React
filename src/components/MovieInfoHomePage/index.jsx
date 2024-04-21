@@ -56,7 +56,7 @@ export default function MovieInfoHomePage({ movie, buttonContent }) {
   };
 
   return (
-    <div className="containerMovieInfo position-relative" style={{ backgroundImage: `url(https://media.themoviedb.org/t/p/w1280/${movie.backdrop_path})`, backgroundSize: 'contain', backgroundPosition: 'left top' , backgroundRepeat:'no-repeat'}}>
+    <div className="containerMovieInfo position-relative" style={{ backgroundImage: `url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'left top' }}>
               <div className="dark-cover w-100 h-100 position-absolute top-0 right z-1"></div>
 
       <div className="container h-100" >

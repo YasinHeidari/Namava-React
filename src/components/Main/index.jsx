@@ -5,7 +5,6 @@ import SliderMovieTrending from "../SliderMovieHomePageTrending";
 import StarsSlider from "../StarsSlider";
 import DirectorsSlider from "../DirectorsSlider";
 import LatestMoviesSlider from "../SliderMovieHomePageLatest";
-import MovieInfoHomePage from "../MovieInfoHomePage";
 import "./main.css"
 
 export default function Main() {
