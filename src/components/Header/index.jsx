@@ -1,13 +1,40 @@
-import { Fragment } from "react";
-
+import { Fragment ,useEffect , useState } from "react";
+import { Link ,useLocation } from "react-router-dom";
 import "./header.css";
-import { Link } from "react-router-dom";
 
 export default function Header({isContactPage}){
+    const location = useLocation();
+    const [scrolling, setScrolling] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [headerOpacity, setHeaderOpacity] = useState(1);
+
+    const isHomePage = location.pathname === "/";
     const headerClass = isContactPage ? 'header black-bgc' : 'header';
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    const handleScroll = () => {
+        const currentPosition = window.scrollY;
+        setScrolling(currentPosition > scrollPosition && currentPosition > 0);
+        setScrollPosition(currentPosition);
+        // Set header opacity based on scroll direction
+        if (currentPosition > scrollPosition && currentPosition > 0) {
+            // Scrolling down
+            setHeaderOpacity(0);
+        } else {
+            // Scrolling up or at top
+            setHeaderOpacity(1);
+        }
+    };
+
     return(
         <Fragment>
-             <div className={headerClass + " position-absolute top-0 right-0 left-0 z-3"}>
+             <div className={`${headerClass} position-absolute top-0 right-0 left-0 z-3`} style={{ opacity: headerOpacity }}>
                 <div className="container">
                     <div className="d-flex justify-btw align-center">
                         <div className="d-flex flex-lg-row flex-xs-row-reverse flex-sm-row-reverse justify-center align-center gap-2 gap-xs-1 logo">
@@ -18,37 +45,37 @@ export default function Header({isContactPage}){
                                     <img src={require("../../images/hamburger-menu.svg").default} alt="" />
                                 </button>
                             <div className="menu d-lg-flex justify-evenly align-center gap-2 d-xs-none d-sm-none">
-                                <Link className="active" to={"/"}>{/*each link has to be same and the direction should be at the shit heade */}
-                                    <p className="font-12 active">خانه</p>
+                                <Link to={"/"}>{/*each link has to be same and the direction should be at the shit heade */}
+                                    <p className={`font-12 font-weight-normal ${isHomePage ? 'active' : ''}`}>خانه</p>
                                 </Link>
                                 <Link to={`/MovieList`}>
-                                    <p className="font-12">فیلم ها</p>
+                                    <p className="font-12 font-weight-normal">فیلم ها</p>
                                 </Link>
                                 <Link to={`/`}>
-                                    <p className="font-12">سریال ها</p>
+                                    <p className="font-12 font-weight-normal">سریال ها</p>
                                 </Link>
                                 <Link to={`/`}>
-                                    <p className="font-12">دسته بندی </p>
+                                    <p className="font-12 font-weight-normal">دسته بندی </p>
                                 </Link>
                                 <Link to={`/`}>
-                                    <p className="font-12">تازه ها</p>
+                                    <p className="font-12 font-weight-normal">تازه ها</p>
                                 </Link>
                                 <Link to={`/`}>
-                                    <p className="font-12">کودکان</p>
+                                    <p className="font-12 font-weight-normal">کودکان</p>
                                 </Link>
                                 <Link to={`/`}>
-                                    <p className="font-12">پردیس نماوا</p>
+                                    <p className="font-12 font-weight-normal">پردیس نماوا</p>
                                 </Link>
                                 <Link to={`/`}>
-                                    <p className="font-12">نماوا مگ</p>
+                                    <p className="font-12 font-weight-normal">نماوا مگ</p>
                                 </Link>
                             </div>
                         </div>
                         <div className="d-flex justify-center align-center gap-2 gap-xs-1">
-                            <Link className="d-inline-block search" to={`/Search`}>
+                            <Link className="d-inline-block search" to={`/SearchMovie`}>
                                 <img src={require("../../images/search.svg").default} alt=""/>
                             </Link>
-                            <Link className="d-inline-block menuSubscription font-12" to='/'>خرید اشتراک</Link>
+                            <Link className="d-inline-block menuSubscription font-12 font-weight-normal" to='/'>خرید اشتراک</Link>
                             <Link className="signInImg" to='/'>
                                 <img className="w-100" src={require("../../images/sign-in-mobile.svg").default} alt=""/>
                             </Link>
@@ -77,11 +104,11 @@ export default function Header({isContactPage}){
                     </Link>
                     <Link to='/' className="d-flex flex-row-reverse justify-start gap-2 align-center w-100">
                         <p className="font-12">سریال ها</p>
-                        <svg className="menuItemImg d-lg-none d-sm-block d-xs-block" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fff"><g><path className="svg-c1" fillRule="evenodd" d="M24.19 9H5c-1.66 0-3 1.35-3 3v9.79c0 1.65 1.34 3 3 3h19.19c1.66 0 3-1.35 3-3V12c0-1.65-1.34-3-3-3zm-7.08 8.67l-2.87 1.66c-.67.38-1.5-.1-1.5-.87v-3.31c0-.77.83-1.25 1.5-.87l2.87 1.66a1 1 0 0 1 0 1.73z" fill="#fff"></path></g><path d="M6 8a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1H6zm2-2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H8z" fill="#fff"></path><defs><clipPath id="A"><path fill="#fff" transform="translate(2 9)" d="M0 0h25.19v18.07H0z"></path></clipPath></defs></svg>
+                        <svg className="menuItemImg d-lg-none d-sm-block d-xs-block" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fff"><g><path  fillRule="evenodd" d="M24.19 9H5c-1.66 0-3 1.35-3 3v9.79c0 1.65 1.34 3 3 3h19.19c1.66 0 3-1.35 3-3V12c0-1.65-1.34-3-3-3zm-7.08 8.67l-2.87 1.66c-.67.38-1.5-.1-1.5-.87v-3.31c0-.77.83-1.25 1.5-.87l2.87 1.66a1 1 0 0 1 0 1.73z" fill="#fff"></path></g><path d="M6 8a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1H6zm2-2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H8z" fill="#fff"></path><defs><clipPath id="A"><path fill="#fff" transform="translate(2 9)" d="M0 0h25.19v18.07H0z"></path></clipPath></defs></svg>
                     </Link>
                     <Link to='/' className="d-flex flex-row-reverse justify-start gap-2 align-center w-100">
                         <p className="font-12">دسته بندی </p>
-                        <svg className="menuItemImg d-lg-none d-sm-block d-xs-block" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fff"><path className="svg-c1" d="M17.931 6h4.432a1.96 1.96 0 0 1 1.957 1.957v4.432a1.96 1.96 0 0 1-1.957 1.957h-4.432a1.96 1.96 0 0 1-1.957-1.957V7.957A1.96 1.96 0 0 1 17.931 6zM7.957 6h4.432a1.96 1.96 0 0 1 1.957 1.957v4.432a1.96 1.96 0 0 1-1.957 1.957H7.957A1.96 1.96 0 0 1 6 12.389V7.957A1.96 1.96 0 0 1 7.957 6zm9.974 9.985h4.432a1.96 1.96 0 0 1 1.957 1.957v4.432a1.96 1.96 0 0 1-1.957 1.957h-4.432a1.96 1.96 0 0 1-1.957-1.957v-4.432a1.96 1.96 0 0 1 1.957-1.957zm-9.974 0h4.432a1.96 1.96 0 0 1 1.957 1.957v4.432a1.96 1.96 0 0 1-1.957 1.957H7.957A1.96 1.96 0 0 1 6 22.374v-4.432a1.96 1.96 0 0 1 1.957-1.957z"></path></svg>
+                        <svg className="menuItemImg d-lg-none d-sm-block d-xs-block" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fff"><path  d="M17.931 6h4.432a1.96 1.96 0 0 1 1.957 1.957v4.432a1.96 1.96 0 0 1-1.957 1.957h-4.432a1.96 1.96 0 0 1-1.957-1.957V7.957A1.96 1.96 0 0 1 17.931 6zM7.957 6h4.432a1.96 1.96 0 0 1 1.957 1.957v4.432a1.96 1.96 0 0 1-1.957 1.957H7.957A1.96 1.96 0 0 1 6 12.389V7.957A1.96 1.96 0 0 1 7.957 6zm9.974 9.985h4.432a1.96 1.96 0 0 1 1.957 1.957v4.432a1.96 1.96 0 0 1-1.957 1.957h-4.432a1.96 1.96 0 0 1-1.957-1.957v-4.432a1.96 1.96 0 0 1 1.957-1.957zm-9.974 0h4.432a1.96 1.96 0 0 1 1.957 1.957v4.432a1.96 1.96 0 0 1-1.957 1.957H7.957A1.96 1.96 0 0 1 6 22.374v-4.432a1.96 1.96 0 0 1 1.957-1.957z"></path></svg>
                     </Link>
                     <Link to='/' className="d-flex flex-row-reverse justify-start gap-2 align-center w-100">
                         <p className="font-12">تازه ها</p>

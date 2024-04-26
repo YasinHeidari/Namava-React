@@ -89,7 +89,7 @@ export default function SliderMovieTrending({title}) {
 
                           </div>
                         </div>
-                        <h5 className="white-color line-height-28">{movie.title}</h5>
+                        <h5 className="white-color line-height-28">{movie.title || movie.name}</h5>
                         {selectedSliderIndex === index && (  
                           <button onClick={handleInfoToggle} className="hideInfoButton border-radius-4 d-flex align-self-center" style={{margin:'2.5rem 0 2rem'}}>
                           </button>

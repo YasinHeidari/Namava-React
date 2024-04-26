@@ -8,6 +8,10 @@ import DirectorInner from "../DirectorInner";
 import SliderMovieInner from "../SliderMovieInnerMovie";
 import CinemaSlider from "../CinemaSlider";
 import CommentContainer from "./MovieInnerComment";
+import IMDB from '../../images/IMDB.svg';
+import SubScript from '../../images/subScript.svg';
+import movieInnerLike from '../../images/movieInnerLike.svg';
+import movieInnerDisLike from '../../images/movieInnerDisLike.svg';
 
 const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
 
@@ -87,7 +91,7 @@ export default function Movie() {
   };
 
   return (
-    <div style={{marginBottom:'5rem'}}>
+    <div style={{marginBottom:'7rem'}}>
     <div className="containerMovie" style={{ backgroundImage: ` radial-gradient(circle at 33% 40%, transparent 20%, #1a1a1a 75%),linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 46.875vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%),url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'left top' }}>
         <div className="container" style={{paddingTop:'5rem'}}>
           <div className="d-flex flex-column justify-btw align-start h-100">
@@ -99,7 +103,7 @@ export default function Movie() {
                 <div className="d-flex justify-start align-center gap-2">
                 <div className="d-flex justify-center align-center">
                     <div>
-                    <img src={require("../../images/IMDB.svg").default} alt="" />
+                    <img src={IMDB} alt="IMDB" />
                     </div>
                     <p className="white-color font-14">
                     {ratingDecimal(movie.vote_average)}
@@ -107,7 +111,7 @@ export default function Movie() {
                 </div>
                 <div className="d-flex justify-center align-center">
                     <div>
-                    <img src={require("../../images/subScript.svg").default} alt="" />
+                    <img src={SubScript} alt="subScript" />
                     </div>
                     <p className="white-color font-12"> زیرنویس </p>
                 </div>
@@ -122,7 +126,7 @@ export default function Movie() {
                 </p>
                 <div className="d-flex  align-center justify-evenly gap-2">
                     <Link to="/" className="movieInnerBtn white-bgc d-flex flex-row align-center gap-1 border-radius-12  line-height-42">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="Component-icon-0-1-456"><path d="M14.66 8.347l-8.537-4.93c-.502-.287-1.12-.286-1.62.005s-.81.825-.81 1.404v9.858c-.001.58.307 1.115.808 1.406s1.12.293 1.62.005l8.537-4.93a1.64 1.64 0 0 0 0-2.82z"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" ><path d="M14.66 8.347l-8.537-4.93c-.502-.287-1.12-.286-1.62.005s-.81.825-.81 1.404v9.858c-.001.58.307 1.115.808 1.406s1.12.293 1.62.005l8.537-4.93a1.64 1.64 0 0 0 0-2.82z"></path>
                     </svg>
                     <span className="black-color font-12 font-weight-normal">خرید اشتراک</span>
                     </Link>
@@ -141,12 +145,12 @@ export default function Movie() {
                     </div>
                     <div className="d-flex justify-center align-center border-radius-50 movieInnerIconHover">
                       <Tooltip placement="bottom" title={<span style={{ color: 'black' }}>دوست داشتم</span>}  color="#fff">
-                      <img src={require("../../images/movieInnerLike.svg").default}  alt="like"/>
+                      <img src={movieInnerLike}  alt="like"/>
                       </Tooltip>
                     </div>
                     <div className="d-flex justify-center align-center border-radius-50 movieInnerIconHover">
                       <Tooltip placement="bottom" title={<span style={{ color: 'black' }}>دوست نداشتم</span>}  color="#fff">
-                      <img src={require("../../images/movieInnerDisLike.svg").default}  alt="dislike"/>
+                      <img src={movieInnerDisLike}  alt="dislike"/>
                       </Tooltip>
                     </div>
                 </div>
@@ -166,7 +170,7 @@ export default function Movie() {
     <div className="d-flex flex-column gap-8">
             <div className="container"> 
                 <div className="d-flex flex-column gap-3">
-                <h3 class="white-color font-lg-18">تصاویر و جزییات</h3>
+                <h3 className="white-color font-lg-18">تصاویر و جزییات</h3>
                   <div className="d-flex justify-start align-self-start gap-2" style={{marginBottom: "1rem"}}>
                   {images.slice(0, 5).map(image => (
                       <div className="col-2"  key={image.file_path}>

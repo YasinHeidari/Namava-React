@@ -12,6 +12,8 @@ import { Keyboard, Navigation } from "swiper/modules";
 import ratingDecimal from "../../helpers/ratingdecimal";
 import "./index.css";
 import MovieInfoHomePage from "../MovieInfoHomePage";
+import IMDB from '../../images/IMDB.svg';
+import SubScript from '../../images/subScript.svg';
 
 const apiKey = '4fba95dbf46cd77d415830c228c9ef01'; 
 
@@ -87,13 +89,13 @@ export default function LatestMoviesSlider({ title }) {
                             alt={movie.title}
                           />
                           <div className="darkMovieCover position-absolute z-1 top-0 right-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-5">
-                            <div className="d-flex justify-center align-center"><div><img src={require("../../images/IMDB.svg").default} alt=""/></div><p className="white-color font-14">{ratingDecimal(movie.vote_average)}</p></div>
-                            <div className="d-flex justify-center align-center"><div><img src={require("../../images/subScript.svg").default} alt=""/></div><p className="white-color font-12"> زیرنویس </p></div>
+                            <div className="d-flex justify-center align-center"><div><img src={IMDB} alt=""/></div><p className="white-color font-14">{ratingDecimal(movie.vote_average)}</p></div>
+                            <div className="d-flex justify-center align-center"><div><img src={SubScript} alt=""/></div><p className="white-color font-12"> زیرنویس </p></div>
                             <p className="white-color font-12">فیلم - {movie.release_date ? movie.release_date.substring(0,4) : 'N/A'}</p>
 
                           </div>
                         </div>
-                        <h5 className="white-color line-height-28">{movie.title}</h5>
+                        <h5 className="white-color line-height-28">{movie.title || movie.name}</h5>
                         {selectedSliderIndex === index && (  
                           <button onClick={handleInfoToggle} className="hideInfoButton border-radius-4 d-flex align-self-center" style={{margin:'2.5rem 0 2rem'}}>
                           </button>
