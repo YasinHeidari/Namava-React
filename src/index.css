@@ -63,7 +63,7 @@ button{
     margin: 0 auto 0 0 ;
 }
 .container-padding-2{
-    padding: 2rem 0;
+    padding: 0 0 2rem;
 }
 .active{
     color: var(--active-color);
@@ -92,6 +92,9 @@ button{
 }
 .light-white-font{
     color: var(--light-white-font);
+}
+.lighter-white-font{
+    color: var(--lighter-white-font);
 }
 .light-black{
     color: var(--light-black);

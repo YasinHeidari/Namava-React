@@ -1,0 +1,17 @@
+.preResultContainer{
+    width: 380px; 
+}
+.preResultImage{
+    width: 100px;
+    height: 100px;
+}
+.preResultText{
+    color: var(--lighter-white-font);
+}
+
+@media only screen and (min-width:780px){
+    .preResultImage{
+        width: 140px;
+        height: 140px;
+    }
+}

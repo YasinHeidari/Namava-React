@@ -1,10 +1,13 @@
-.heroSectionSliderContainer {
-    width: 100%;
-    height: 100%;
+.containerMovie{
+  background-color: var(--footer-bgc-black);
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+
+@media only screen and (min-width:1280px){
+  .containerMovie{
+      min-height: 46.875vw;
+  margin-bottom: -7.03125vw;
   }
-  
-  .heroSectionSlider {
-    /* background: url("https://static.namava.ir/Content/Upload/Images/52cf84ec-bef6-420e-be93-00b6f2cf70dd.jpg?anchor=middlecenter&crop=auto&scale=both&w=1920&h=900") center cover; */
-    
-  }
-  
+}

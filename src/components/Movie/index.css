@@ -1,11 +1,7 @@
 .containerMovie{
-    
     background-color: var(--footer-bgc-black);
     height: auto;
     margin-bottom: 2rem;
-}
-.containerMovie .dark-cover{
-    
 }
 .movieInnerBtn{
     padding:0 16px 0 20px;

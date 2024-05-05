@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ratingDecimal from "../../helpers/ratingdecimal";
 import { Tooltip } from 'antd';
-import "./index.css";
 import StarInner from "../StarSliderInnerMovie";
 import DirectorInner from "../DirectorInner";
 import SliderMovieInner from "../SliderMovieInnerMovie";
@@ -12,6 +11,7 @@ import IMDB from '../../images/IMDB.svg';
 import SubScript from '../../images/subScript.svg';
 import movieInnerLike from '../../images/movieInnerLike.svg';
 import movieInnerDisLike from '../../images/movieInnerDisLike.svg';
+import "./index.css";
 
 const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
 
@@ -31,6 +31,7 @@ export default function Movie() {
         setMovie(data);
         // Extract logo URL from images object
         const logoUrl = data.images?.logos[0]?.file_path;
+        
         setLogoUrl(logoUrl);
       })
       .catch(error => console.error('Error fetching movie:', error));
@@ -58,7 +59,7 @@ export default function Movie() {
       //Fetch movies data
      async function fetchMovies() {
        try {
-         const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=4fba95dbf46cd77d415830c228c9ef01');
+         const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?${apiKey}`);
          const data = await response.json();
          setMovies(data.results);
        } catch (error) {
@@ -70,7 +71,7 @@ export default function Movie() {
 
      async function fetchMoviesGenre() {
       try {
-        const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=4fba95dbf46cd77d415830c228c9ef01');
+        const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?${apiKey}`);
         const data = await response.json();
         setMovies(data.genres);
       } catch (error) {
@@ -91,7 +92,7 @@ export default function Movie() {
   };
 
   return (
-    <div style={{marginBottom:'7rem'}}>
+  <div style={{marginBottom:'7rem'}}>
     <div className="containerMovie" style={{ backgroundImage: ` radial-gradient(circle at 33% 40%, transparent 20%, #1a1a1a 75%),linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 46.875vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%),url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'left top' }}>
         <div className="container" style={{paddingTop:'5rem'}}>
           <div className="d-flex flex-column justify-btw align-start h-100">
@@ -204,7 +205,7 @@ export default function Movie() {
                   </div>
                   <div className="d-flex flex-column justify-center align-start gap-3">
                     <h3 className="white-color containerInnerMovie">پردیس نماوا</h3>
-                    {/* <CinemaSlider/> */}
+                    <CinemaSlider/> 
                   </div>
                   <div className="d-flex flex-column justify-center align-start gap-3">
                     <h3 className="white-color containerInnerMovie">بر اساس "{movie.name || movie.title}"</h3>

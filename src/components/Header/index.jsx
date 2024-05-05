@@ -1,40 +1,46 @@
 import { Fragment ,useEffect , useState } from "react";
 import { Link ,useLocation } from "react-router-dom";
-import "./header.css";
+import "./index.css";
 
 export default function Header({isContactPage}){
     const location = useLocation();
-    const [scrolling, setScrolling] = useState(false);
-    const [scrollPosition, setScrollPosition] = useState(0);
-    const [headerOpacity, setHeaderOpacity] = useState(1);
-
     const isHomePage = location.pathname === "/";
-    const headerClass = isContactPage ? 'header black-bgc' : 'header';
+    const [isSticky, setSticky] = useState(false);
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+    const [isTransitioning, setTransitioning] = useState(false);
 
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
+  useEffect(() => {
     const handleScroll = () => {
-        const currentPosition = window.scrollY;
-        setScrolling(currentPosition > scrollPosition && currentPosition > 0);
-        setScrollPosition(currentPosition);
-        // Set header opacity based on scroll direction
-        if (currentPosition > scrollPosition && currentPosition > 0) {
-            // Scrolling down
-            setHeaderOpacity(0);
-        } else {
-            // Scrolling up or at top
-            setHeaderOpacity(1);
-        }
+        const currentScrollPos = window.scrollY;
+        const isScrollingDown = currentScrollPos > prevScrollPos;
+
+      setPrevScrollPos(currentScrollPos);
+      setTransitioning(true);
+      isScrollingDown ? setSticky(true) : setSticky(false);
     };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [prevScrollPos]);
+
+  useEffect(() => {
+    const handleTransitionEnd = () => {
+      setTransitioning(false);
+    };
+
+    const header = document.getElementById("myHeader");
+    header.addEventListener('transitionend', handleTransitionEnd);
+
+    return () => {
+      header.removeEventListener('transitionend', handleTransitionEnd);
+    };
+  }, []);
 
     return(
         <Fragment>
-             <div className={`${headerClass} position-absolute top-0 right-0 left-0 z-3`} style={{ opacity: headerOpacity }}>
+             <div className={`header ${isSticky ? 'sticky' : ''} ${isTransitioning ? 'transitioning' : ''}`} id="myHeader">
                 <div className="container">
                     <div className="d-flex justify-btw align-center">
                         <div className="d-flex flex-lg-row flex-xs-row-reverse flex-sm-row-reverse justify-center align-center gap-2 gap-xs-1 logo">

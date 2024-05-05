@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { img_300 } from "../../helpers/api";
 import { unavailable } from "../../helpers/api";
 import Loading from "../Loading";
-import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
