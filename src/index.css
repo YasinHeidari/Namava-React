@@ -162,7 +162,9 @@ button{
 .flow-hidden{
     overflow: hidden;
 }
-
+.position-sticky{
+    position: sticky;
+}
 .position-relative{
     position: relative;
 }

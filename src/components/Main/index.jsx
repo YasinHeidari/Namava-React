@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import HeroSectionSlider from "../HeroSectionSlider";
+//import HeroSectionSlider from "../HeroSectionSlider";
 import SliderMovie from "../SliderMovieHomePage";
 import SliderMovieTrending from "../SliderMovieHomePageTrending";
 import StarsSlider from "../StarsSlider";
@@ -29,7 +29,7 @@ export default function Main() {
     return (
         
             <div className="d-flex flex-column align-start justify-evenly gap-8 container-padding-2">
-                <HeroSectionSlider/>
+                {/* <HeroSectionSlider/> */}
                 <SliderMovieTrending title="ویژه" />
                 <SliderMovie title="اختصاصی نماوا" movies={movies} genreId={28} />
                 <SliderMovie title="رایگان در نماوا" movies={movies} genreId={12} />

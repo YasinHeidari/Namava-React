@@ -1,20 +1,4 @@
-:root{
-    --active-color: #6eb8ff;
-    --black-color:#000;
-    --white-color: #ffffff;
-    --light-white-font: #ccc;
-    --lighter-white-font:#aaa;
-    --green-bgc:#99c14d;
-    --grey-bgc:#ffffff33;
-    --grey-color-font:#aaaaaa;
-    --body-bgc:#121212;
-    --light-black: #222327;
-    --footer-download-link-bgc:#37383e;
-    --footer-bgc-black:#1A1A1A;
-    --footer-media-blue:#005fb4;
-}
-
-.dark-cover{
+d.dark-cover{
     background: rgba(0, 0, 0, .4);
     width: 100%;
     height: 100%;

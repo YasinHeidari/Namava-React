@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Checkbox } from 'antd';
 import searchArrowDown from '../../../../images/searchArrowDown.svg'
 
-import "./index.css";
-
 export default function GenreFilter({ checkboxes, setCheckboxes }) {
     const [isActive, setIsActive] = useState(false);
     const [filter, setFilter] = useState('');
@@ -61,19 +59,19 @@ export default function GenreFilter({ checkboxes, setCheckboxes }) {
         <div className={`searchFilterBorder d-flex flex-column  select-box ${isActive ? 'active' : ''}`}>
             <div className="select-option d-flex justify-btw align-center" onClick={handleSelectOptionClick}>
                 <input type="text" placeholder="ژانرها" readOnly name="soValue" />
-                <img src={searchArrowDown} alt='arrow down' className='searchArrowDown'/>
+                <img src={searchArrowDown} alt='arrow down' className={`searchArrowDown ${isActive ? 'rotate' : ''}`}/>
             </div>
-            <div className="content col-12 z-0 d-none">
+            <div className={`content col-12 z-0 ${isActive ? 'active' : ''}`}>
                 <div className="search" style={{ marginBottom:'1rem'}}>
                     <input className='border-radius-12 col-12' type="text" id="optionSearch" placeholder="جستجو ژانرها " onChange={handleSearchChange} name="optionSearch" />
                 </div>
                 <span className='lighter-white-font line-height-24 font-14 font-weight-normal' >همه ژانرها</span>
                 <ul className="options">
                     {options.map((option) => (
-                        <li key={option.genre_id} className='white-color font-weight-normal' style={{ display: option.text.toUpperCase().indexOf(filter) > -1 ? '' : 'none' }}>
+                        <li key={option.genre_id} className='white-color font-weight-normal' style={{ display: option.text.indexOf(filter) > -1 ? '' : 'none' }}>
                             <div className='d-flex gap-1'>
                                 <Checkbox checked={checkboxes[option.genre_id]} onChange={(e) => setCheckboxes({ ...checkboxes, [option.genre_id]: e.target.checked })} onClick={(e) => e.stopPropagation()} />
-                                {option.text}
+                                <p className='font-14 font-weight-normal'>{option.text}</p>
                             </div>
                         </li>
                     ))}

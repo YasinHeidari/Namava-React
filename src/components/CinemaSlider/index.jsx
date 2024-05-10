@@ -40,6 +40,17 @@ export default function CinemaSlider() {
               watchOverflow={true}
               speed={800}
               modules={[Navigation, Keyboard]}
+              breakpoints={{
+                1:{
+                  slidesPerView:1,
+                },
+                576: {                  
+                  slidesPerView: 1,
+                },
+                768: {
+                  slidesPerView: 3,
+                },
+              }}
               className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center"
             >
               {/* First Slide */}

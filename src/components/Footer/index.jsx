@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./footer.css";
 
-export default function Footer() {
+export default function Footer({isSearchMovieComponent}) {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const [dropdownItems, setDropdownItems] = useState([]);
 
@@ -48,7 +47,7 @@ export default function Footer() {
     ];
 
     return (
-        <div className="footer d-flex flex-column gap-3 justify-evenly">
+        <div className="footer d-flex flex-column gap-3 justify-evenly" >
             {isSmallScreen ? (
                 <select>
                     {dropdownItems.map((item, index) => (
@@ -115,7 +114,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="footerInfo">
+            <div className="footerInfo" style={{ display: isSearchMovieComponent ? 'none' : 'block' }}>
                 <div className="container-xxl">
                     <div className="d-flex flex-column gap-3">
                         <div className="footerDownload d-flex flex-row flex-xs-column justify-btw align-center border-radius-5 gap-1 gap-xs-2">
@@ -214,7 +213,7 @@ export default function Footer() {
                                 >
                                     <img
                                         className="w-100 h-auto"
-                                        src="https://www.namava.ir/images/enamad.png"
+                                        src="https://www.namava.ir/images/enamad.png" alt=""
                                     />
                                 </Link>
                                 <Link
@@ -223,7 +222,7 @@ export default function Footer() {
                                 >
                                     <img
                                         className="w-100 h-auto"
-                                        src="https://www.namava.ir/images/enamad.png"
+                                        src="https://www.namava.ir/images/enamad.png" alt=""
                                     />
                                 </Link>
                             </div>
@@ -231,7 +230,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="container-xxl">
+            <div className="container-xxl" style={{ display: isSearchMovieComponent ? 'none' : 'block' }}>
                 <div className="footerDescription d-flex flex-lg-row flex-column-reverse justify-lg-btw justify-center gap-1">
                     <div className="footerDescriptionText col-lg-9 col-12">
                         <p className="font-10">

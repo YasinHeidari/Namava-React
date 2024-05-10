@@ -1,0 +1,48 @@
+.radio-container {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+  }
+.radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    z-index: -1;
+  }
+  .radio-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  /* On radio button checked, change background color */
+  .radio-container input:checked ~ .radio-checkmark {
+    background-color:  var(--footer-download-link-bgc);
+    border: 1px solid var(--white-color);
+  }
+  
+  /* Create a checkmark (hidden by default) */
+  .radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    
+  }
+  
+  /* Show the checkmark when radio button is checked */
+  .radio-container input:checked ~ .radio-checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark */
+  .radio-container .radio-checkmark:after {
+    top: 1px;
+    left: 1px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: white;
+  }

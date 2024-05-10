@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from 'antd';
 const {Option} = Select
-const CountryPopup = () => (
+export default function CountryPopup()  {
   <Select className='select w-100 border-radius-12'
     showSearch
     
@@ -269,8 +269,8 @@ const CountryPopup = () => (
             </Option>
             ))}
   </Select>
-);
-export default CountryPopup;
+};
+
 /*import React, { useState , useMemo } from 'react';
 
 

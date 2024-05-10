@@ -20,10 +20,17 @@
     top: 50%;
     margin-top: -8px;
 }
+.rotate {
+    transform: rotate(-180deg);
+}
 .content {
     background-color: var(--footer-download-link-bgc);
-    
-    
+    transition: max-height 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+}
+.active .content {
+    max-height: 300px; 
 }
 .search input{
     background-color: var(--light-white-font);

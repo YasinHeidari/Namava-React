@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Checkbox } from 'antd';
-
+import searchArrowDown from '../../../../images/searchArrowDown.svg';
 import "./index.css";
 
 export default function CountryFilter({ checkboxes, setCheckboxes }) {
@@ -49,20 +49,22 @@ export default function CountryFilter({ checkboxes, setCheckboxes }) {
 
     return (
         <div className={`searchFilterBorder d-flex flex-column  select-box ${isActive ? 'active' : ''}`}>
-            <div className="select-option " onClick={handleSelectOptionClick}>
+            <div className="select-option  d-flex justify-btw align-center" onClick={handleSelectOptionClick}>
                 <input type="text" placeholder="کشور سازنده" readOnly name="soValue" />
+                <img src={searchArrowDown} alt='arrow down' className={`searchArrowDown ${isActive ? 'rotate' : ''}`}/>
+
             </div>
-            <div className="content col-12 z-0 d-none">
+            <div className={`content col-12 z-0 ${isActive ? 'active' : ''}`}>
                 <div className="search" style={{ marginBottom:'1rem'}}>
                     <input className='border-radius-12 col-12' type="text" id="optionSearch" placeholder="جستجو کشور سازنده" onChange={handleSearchChange} name="optionSearch" />
                 </div>
                 <span className='lighter-white-font line-height-24 font-14 font-weight-normal' style={{ marginTop:'1rem'}}>همه کشورها</span>
                 <ul className="options">
                     {options.map((option, index) => (
-                        <li key={index} className='white-color font-weight-normal' style={{ display: option.text.toUpperCase().indexOf(filter) > -1 ? '' : 'none' }}>
+                        <li key={index} className='white-color font-weight-normal' style={{ display: option.text.indexOf(filter) > -1 ? '' : 'none' }}>
                             <div className='d-flex gap-1'>
                                 <Checkbox checked={checkboxes[option.text]} onChange={(e) => setCheckboxes({ ...checkboxes, [option.text]: e.target.checked })} onClick={(e) => e.stopPropagation()} />
-                                {option.text}
+                                <p className='font-14 font-weight-normal'>{option.text}</p>
                             </div>
                         </li>
                     ))}

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import options from "../../helpers/PhoneNumberData";
 import CountryPopup from "./ContactCountryPopUp";
 import "./index.css";
 
