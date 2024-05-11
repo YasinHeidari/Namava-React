@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { img_300 } from "../../helpers/api";
 import { unavailable } from "../../helpers/api";
 import Loading from "../Loading";
-import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -63,13 +62,25 @@ export default function SliderMovieTrending({title}) {
                 }}
                 spaceBetween={15}
                 navigation={true}
-                slidesPerView={7.2}
+                slidesPerView={3.1}
                 slidesOffsetAfter={20}
                 slidesOffsetBefore={0}
                 slidesPerGroup={7}
                 watchOverflow={true}
                 speed={800}
                 modules={[Navigation, Keyboard]}
+                breakpoints={{
+                  576:{
+                    slidesPerView:3.1,
+                  },
+                  768:{
+                    slidesPerView:4.2,
+                  },
+                  992:{
+                    slidesPerView:7.2,
+                  }
+
+                }}
                 className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center"
               >
                 {movies.length > 0 ? (

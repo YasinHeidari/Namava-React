@@ -59,7 +59,7 @@ export default function Movie() {
       //Fetch movies data
      async function fetchMovies() {
        try {
-         const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?${apiKey}`);
+         const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`);
          const data = await response.json();
          setMovies(data.results);
        } catch (error) {
@@ -69,17 +69,7 @@ export default function Movie() {
 
      fetchMovies();
 
-     async function fetchMoviesGenre() {
-      try {
-        const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?${apiKey}`);
-        const data = await response.json();
-        setMovies(data.genres);
-      } catch (error) {
-        console.error('Error fetching movies:', error);
-      }
-    }
-  
-    fetchMoviesGenre();
+     
    
   }, [id, movie]);
 
@@ -100,7 +90,7 @@ export default function Movie() {
                 <Link to={`/movie/${movie.id}`}>
                 {logoUrl && <img src={`https://image.tmdb.org/t/p/w300/${logoUrl}`} alt={movie.name || movie.title} />}
                 </Link>
-                <h1 className="font-xl-12 white-color">{movie.title || movie.name}</h1>
+                <h1 className="font-xl-20 white-color">{movie.title || movie.name}</h1>
                 <div className="d-flex justify-start align-center gap-2">
                 <div className="d-flex justify-center align-center">
                     <div>

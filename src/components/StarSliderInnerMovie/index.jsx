@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import "./index.css";
 
 const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
-
+//?input-dependent effect
 export default function StarInner({ movieId }) {
     const [stars, setStars] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -49,7 +49,19 @@ export default function StarInner({ movieId }) {
                     }}
                     spaceBetween={30}
                     navigation={true}
-                    slidesPerView={7}
+                    slidesPerView={3}
+                    breakpoints={{
+                    576:{
+                        slidesPerView:3,
+                    },
+                    768:{
+                        slidesPerView:4,
+                    },
+                    992:{
+                        slidesPerView:7,
+                    }
+
+                    }}
                     modules={[Navigation, Keyboard]}
                     className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"
                 >

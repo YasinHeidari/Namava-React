@@ -31,7 +31,7 @@ export default function DirectorInner({ movieId }) {
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching directors data:", error);
-                setLoading(false);
+                setLoading(false);//yh
             }
         }
 

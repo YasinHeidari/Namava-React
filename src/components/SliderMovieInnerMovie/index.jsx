@@ -67,13 +67,25 @@ export default function SliderMovieInner({ genreId, title }) {
                 }}
                 spaceBetween={15}
                 navigation={true}
-                slidesPerView={7.2}
+                slidesPerView={3.1}
                 slidesOffsetAfter={20}
                 slidesOffsetBefore={0}
                 slidesPerGroup={7}
                 watchOverflow={true}
                 speed={800}
                 modules={[Navigation, Keyboard]}
+                breakpoints={{
+                  576:{
+                    slidesPerView:3.1,
+                  },
+                  768:{
+                    slidesPerView:4.2,
+                  },
+                  992:{
+                    slidesPerView:7.2,
+                  }
+
+                }}
                 className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center"
               >
                 {movies.length > 0 ? (

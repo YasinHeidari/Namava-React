@@ -11,7 +11,7 @@ export default function Comment() {
                 </div>
                 <div className="col-12 d-flex flex-column align-start gap-4" style={{borderBottom: 'solid 1px #37383e'}}>
                     <p className="font-md-12 font-weight-normal light-white-font">محمدعلی - پنج‌شنبه ۳ اسفند ۱۴۰۲</p>
-                    <p className="font-md-12 white-color font-weight-normal">خیلی خوب</p>
+                    <p className="font-md-12 white-color font-weight-normal">خیلی خوب</p>{/*yh */}
                     <div className="d-flex justify-center align-center gap-4" style={{marginBottom:'25px'}}>
                         <div className="d-flex justify-center align-center gap-1" style={{width:'40px' , height:'40px'}}>
                             <img src={movieInnerLike} alt="like" className="w-100 h-100 object-cover"/>

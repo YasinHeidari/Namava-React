@@ -63,8 +63,20 @@ export default function DirectorsSlider({ title }) {
                         }}
                         spaceBetween={30}
                         navigation={true}
-                        slidesPerView={7}
+                        slidesPerView={3}
                         modules={[Navigation, Keyboard]}
+                        breakpoints={{
+                        576:{
+                            slidesPerView:3,
+                        },
+                        768:{
+                            slidesPerView:4,
+                        },
+                        992:{
+                            slidesPerView:7,
+                        }
+
+                        }}
                         className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"
                     >
                         {directors.map((director, index) => (
