@@ -26,7 +26,7 @@ const App = () => {
           <Route path="/SearchMovie" element={<SearchMovie/>}/>
           <Route path="*" element={<Error/>} />
         </Routes>
-        <Footer isSearchMovieComponent={true} />
+        <Footer />
       </Fragment>
     </BrowserRouter>
   );

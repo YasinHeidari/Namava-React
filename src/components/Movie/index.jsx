@@ -23,57 +23,40 @@ export default function Movie() {
   const [logoUrl, setLogoUrl] = useState(null);
   const [images, setImages] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [isMovieFetched, setIsMovieFetched] = useState(false);
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,jp,null`)
-      .then(response => response.json())
-      .then(data => {
-        setMovie(data);
-        // Extract logo URL from images object
-        const logoUrl = data.images?.logos[0]?.file_path;
-        
+    const fetchMovieData = async () => {
+      try {
+        const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,jp,null`);
+        const movieData = await movieResponse.json();
+        setMovie(movieData);
+        const logoUrl = movieData.images?.logos[0]?.file_path;
         setLogoUrl(logoUrl);
-      })
-      .catch(error => console.error('Error fetching movie:', error));
 
-      fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${apiKey}&language=en`)
-      .then(response => response.json())
-      .then(data => {
-        setImages(data.backdrops);
-      })
-      .catch(error => console.error('Error fetching movie images:', error));
+        const imagesResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${apiKey}&language=en`);
+        const imagesData = await imagesResponse.json();
+        setImages(imagesData.backdrops);
 
-    if (movie && movie.id) {
-      fetch(`https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${apiKey}`)
-        .then(response => response.json())
-        .then(data => {
-          const topStars = data.cast.slice(0, 5).map(actor => actor.name);
-          setStars(topStars);
-          const directorsList = data.crew.filter(member => member.job === "Director").map(director => director.name);
-          setDirectors(directorsList);
-        })
-        .catch(error => console.error('Error fetching movie credits:', error));
+        const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`);
+        const creditsData = await creditsResponse.json();
+        const topStars = creditsData.cast.slice(0, 5).map(actor => actor.name);
+        setStars(topStars);
+        const directorsList = creditsData.crew.filter(member => member.job === "Director").map(director => director.name);
+        setDirectors(directorsList);
+
+        setIsMovieFetched(true);
+      } catch (error) {
+        console.error('Error fetching movie data:', error);
+      }
+    };
+
+    if (id && !isMovieFetched) {
+      fetchMovieData();
     }
+  }, [id, isMovieFetched]); // Changed dependencies
 
-    
-      //Fetch movies data
-     async function fetchMovies() {
-       try {
-         const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`);
-         const data = await response.json();
-         setMovies(data.results);
-       } catch (error) {
-         console.error('Error fetching movies:', error);
-       }
-     }
-
-     fetchMovies();
-
-     
-   
-  }, [id, movie]);
-
-  if (!movie) {
+  if (!isMovieFetched) {
     return <div>Loading...</div>;
   }
 

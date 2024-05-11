@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./footer.css";
 
-export default function Footer({isSearchMovieComponent}) {
+export default function Footer() {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const [dropdownItems, setDropdownItems] = useState([]);
 
@@ -114,7 +114,7 @@ export default function Footer({isSearchMovieComponent}) {
                 </div>
             </div>
 
-            <div className="footerInfo" style={{ display: isSearchMovieComponent ? 'none' : 'block' }}>
+            <div className="footerInfo" >
                 <div className="container-xxl">
                     <div className="d-flex flex-column gap-3">
                         <div className="footerDownload d-flex flex-row flex-xs-column justify-btw align-center border-radius-5 gap-1 gap-xs-2">
@@ -230,7 +230,7 @@ export default function Footer({isSearchMovieComponent}) {
                     </div>
                 </div>
             </div>
-            <div className="container-xxl" style={{ display: isSearchMovieComponent ? 'none' : 'block' }}>
+            <div className="container-xxl" >
                 <div className="footerDescription d-flex flex-lg-row flex-column-reverse justify-lg-btw justify-center gap-1">
                     <div className="footerDescriptionText col-lg-9 col-12">
                         <p className="font-10">
