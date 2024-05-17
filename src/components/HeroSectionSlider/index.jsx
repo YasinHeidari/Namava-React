@@ -83,7 +83,7 @@ export default function HeroSectionSlider() {
                                     <div className="d-flex flex-column justify-btw align-start h-100">
                                         <div className="col-6 d-flex flex-column justify-center align-start align-self-start gap-2 container-padding-2 h-100">
                                             <Link to={`/movie/${movie.id}`}>
-                                            
+
                                             {logoUrl && <img src={`https://image.tmdb.org/t/p/w300/${logoUrl}`} alt={movie.name || movie.title} />}
                                             </Link>
                                             <h1 className="font-xl-20 font-16 white-color">{movie.title || movie.name}</h1>
