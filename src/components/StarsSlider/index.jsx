@@ -67,7 +67,7 @@ export default function StarsSlider({ title }) {
                         {stars.map((star, index) => (
                             <SwiperSlide key={index} className="StarsSlider h-100">
                                 <Link to="/" className="d-flex flex-column align-center gap-2">
-                                    <img
+                                    <img loading="lazy"
                                         src={`https://image.tmdb.org/t/p/w500/${star.profile_path}`}
                                         alt={star.name}
                                         className="starImg border-radius-50 object-cover"

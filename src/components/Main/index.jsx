@@ -5,6 +5,7 @@ import SliderMovieTrending from "../SliderMovieHomePageTrending";
 import StarsSlider from "../StarsSlider";
 import DirectorsSlider from "../DirectorsSlider";
 import LatestMoviesSlider from "../SliderMovieHomePageLatest";
+import ScrollToTop from "../../helpers/ScrollToTop";
 import "./main.css"
 
 export default function Main() {
@@ -29,6 +30,7 @@ export default function Main() {
     return (
         
             <div className="d-flex flex-column align-start justify-evenly gap-8 container-padding-2">
+            <ScrollToTop/>
                 <HeroSectionSlider/> 
                 <SliderMovieTrending title="ویژه" />
                 <SliderMovie title="اختصاصی نماوا" movies={movies} genreId={28} />

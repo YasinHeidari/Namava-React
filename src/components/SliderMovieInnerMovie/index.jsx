@@ -93,7 +93,7 @@ export default function SliderMovieInner({ genreId, title }) {
                     <SwiperSlide key={movie.id} className={`movieSlider h-auto d-flex flex-column align-center ${selectedSliderIndex === index ? 'selected' : ''}`} onClick={() => handleMovieSelect(movie,index)}>
                       <div className="movieSliderLink d-flex flex-column gap-1 position-relative">
                         <div className="movieSliderItem w-100 h-100 position-relative z-0">
-                          <img
+                          <img loading="lazy"
                             className="w-100 h-100 border-radius-5 object-cover"
                             src={movie.poster_path ? `${img_300}/${movie.poster_path}` : unavailable}
                             alt={movie.title}

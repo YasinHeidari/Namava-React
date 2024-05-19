@@ -59,7 +59,7 @@ export default function CinemaSlider() {
                 onClick={() => handleMovieSelect(1)}
               >
                 <div className="position-relative">
-                  <img
+                  <img loading="lazy"
                     src="https://static.namava.ir/Content/Upload/Images/fb7430f2-e826-4d44-a911-7b57795d8c5f.jpg?anchor=middlecenter&amp;crop=auto&amp;scale=both&amp;w=360&amp;h=171"
                     alt="احمد به تنهایی"
                     title="احمد به تنهایی"
@@ -69,13 +69,13 @@ export default function CinemaSlider() {
                     <div className="darkMovieCover position-absolute top-0 left-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-5">
                       <div className="d-flex justify-center align-center">
                         <div>
-                          <img src={require("../../images/IMDB.svg").default} alt="" />
+                          <img loading="lazy" src={require("../../images/IMDB.svg").default} alt="" />
                         </div>
                         <p className="white-color font-14">6.4</p>
                       </div>
                       <div className="d-flex justify-center align-center">
                         <div>
-                          <img src={require("../../images/subScript.svg").default} alt="" />
+                          <img loading="lazy" src={require("../../images/subScript.svg").default} alt="" />
                         </div>
                         <p className="white-color font-12"> زیرنویس </p>
                       </div>
@@ -94,7 +94,7 @@ export default function CinemaSlider() {
                 onClick={() => handleMovieSelect(2)}
               >
                 <div className="position-relative">
-                  <img
+                  <img loading="lazy"
                     src="https://static.namava.ir/Content/Upload/Images/2983f2aa-b689-45a5-9f16-5fb7db02985f.jpg?anchor=middlecenter&amp;crop=auto&amp;scale=both&amp;w=360&amp;h=171"
                     alt="آبجی"
                     title="آبجی"
@@ -104,13 +104,13 @@ export default function CinemaSlider() {
                     <div className="darkMovieCover position-absolute top-0 left-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-5">
                       <div className="d-flex justify-center align-center">
                         <div>
-                          <img src={require("../../images/IMDB.svg").default} alt="" />
+                          <img loading="lazy" src={require("../../images/IMDB.svg").default} alt="" />
                         </div>
                         <p className="white-color font-14">6.4</p>
                       </div>
                       <div className="d-flex justify-center align-center">
                         <div>
-                          <img src={require("../../images/subScript.svg").default} alt="" />
+                          <img loading="lazy" src={require("../../images/subScript.svg").default} alt="" />
                         </div>
                         <p className="white-color font-12"> زیرنویس </p>
                       </div>

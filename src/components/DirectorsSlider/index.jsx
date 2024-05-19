@@ -83,7 +83,7 @@ export default function DirectorsSlider({ title }) {
                             <SwiperSlide key={index} className="DirectorsSlider h-100">
                                 <Link to="/" className="d-flex flex-column align-center gap-2">
                                     {director.profile_path ? (
-                                        <img
+                                        <img loading="lazy"
                                             src={`https://image.tmdb.org/t/p/w500/${director.profile_path}`}
                                             alt={director.name}
                                             className="DirectorImg object-cover border-radius-50"

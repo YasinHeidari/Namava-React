@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ratingDecimal from "../../helpers/ratingdecimal";
 import IMDB from '../../images/IMDB.svg';
 import SubScript from '../../images/subScript.svg';
@@ -16,6 +16,8 @@ export default function MovieInfoHomePage({ movie, buttonContent }) {
   const [loading, setLoading] = useState(false); // State for loading status
   const [showSpinner, setShowSpinner] = useState(false); // State to manage spinner visibility
 
+  let navigate = useNavigate(); // Hook to get history for navigation
+
   useEffect(() => {
     // Reset expanded state when movie prop changes
     setExpanded(true);
@@ -23,7 +25,7 @@ export default function MovieInfoHomePage({ movie, buttonContent }) {
     if (movie && movie.id) {
       setLoading(true); // Set loading to true before fetching data
       setShowSpinner(true); // Show spinner immediately
-      
+
       // Set a timeout to ensure the spinner is shown for at least 3 seconds
       const spinnerTimeout = setTimeout(() => {
         setShowSpinner(false);
@@ -80,6 +82,12 @@ export default function MovieInfoHomePage({ movie, buttonContent }) {
     return movieGenres.map(genre => genre.name).join(" - ");
   };
 
+  const handleLinkClick = (e) => {
+    e.preventDefault();
+    navigate(`/movie/${movie.id}`);
+  };
+  
+
   return (
     <div className="containerMovieInfo position-relative" style={{ backgroundImage: `url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'left top' }}>
       <div className="dark-cover w-100 h-100 position-absolute top-0 right z-1"></div>
@@ -114,7 +122,7 @@ export default function MovieInfoHomePage({ movie, buttonContent }) {
                 </div>
                 <p className="white-color font-12 font-weight-normal">{movie.overview}</p>
                 <div className="d-flex justify-evenly align-center gap-2">
-                  {buttonContent && <button onClick={toggleHeight}>{buttonContent}</button>}
+                {buttonContent && <button onClick={toggleHeight}>{buttonContent}</button>}
                 </div>
                 <div className="d-flex align-center justify-center gap-1">
                   <Link to="/" className="movieInfoInnerBtn white-bgc d-flex flex-row align-center gap-1 border-radius-12 line-height-42">
@@ -123,7 +131,7 @@ export default function MovieInfoHomePage({ movie, buttonContent }) {
                     </svg>
                     <span className="black-color font-12 font-weight-normal">خرید اشتراک</span>
                   </Link>
-                  <Link to={`/movie/${movie.id}`} className="movieInfoInnerMore d-flex flex-row align-center gap-1 border-radius-12 line-height-42">
+                  <Link to={`/movie/${movie.id}`} onClick={handleLinkClick} className="movieInfoInnerMore d-flex flex-row align-center gap-1 border-radius-12 line-height-42">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="#fff">
                       <g id="Group_2349" data-name="Group 2349" transform="translate(2641 -16124)">
                         <rect id="Rectangle_459" data-name="Rectangle 459" width="30" height="30" transform="translate(-2641 16124)" fill="none"></rect>
