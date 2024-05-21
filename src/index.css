@@ -54,6 +54,10 @@ button{
     padding: 0;
 }
 
+
+.swiper-button-disabled::after{
+    opacity: 0 !important;
+}
 .container{
     width: 95%;
     margin: 0 auto; 

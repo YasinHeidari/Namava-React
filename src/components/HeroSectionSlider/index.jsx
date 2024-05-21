@@ -4,12 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation } from "swiper/modules";
+import { EffectFade , Navigation } from "swiper/modules";
 import Loading from "../Loading";
 import { Link } from "react-router-dom";
 import IMDB from '../../images/IMDB.svg';
 import ratingDecimal from "../../helpers/ratingdecimal";
-
+import "./index.css";
 const apiKey = '4fba95dbf46cd77d415830c228c9ef01'; 
 
 export default function HeroSectionSlider() {
@@ -73,8 +73,10 @@ export default function HeroSectionSlider() {
                 <Swiper
                     navigation={true}
                     slidesPerView={1}
-                    modules={[Navigation]}
-                    className="mySwiper containerMovie col-12 d-flex flex-row justify-evenly align-center" style={{height: '100vh'}}
+                    effect={'fade'}
+                    loop={true}
+                    modules={[Navigation , EffectFade]}
+                    className="mySwiper heroSectionSlider containerMovie col-12 d-flex flex-row justify-evenly align-center" style={{height: '100vh'}}
                 >
                     {movies.length > 0 ? (
                         movies.map((movie) => (

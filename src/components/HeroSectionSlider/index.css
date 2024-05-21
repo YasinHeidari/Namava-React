@@ -4,6 +4,29 @@
   margin-bottom: 2rem;
 }
 
+.heroSectionSlider.mySwiper  .swiper-button-prev, .heroSectionSlider.mySwiper .swiper-button-next{
+  color: rgba(255, 255, 255, .3);
+  background-color: rgba(255, 255, 255, .3);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  top: 75% !important;
+  
+}
+.heroSectionSlider.mySwiper  .swiper-button-prev:hover, .heroSectionSlider.mySwiper .swiper-button-next:hover{
+  color: var(--white-color);
+  
+}
+.heroSectionSlider.mySwiper  .swiper-button-prev::after, .heroSectionSlider.mySwiper .swiper-button-next::after{
+  font-size: .9rem;
+  font-weight: bolder;
+}
+.heroSectionSlider.mySwiper  .swiper-button-prev{
+  right: 90% !important;
+}
+.heroSectionSlider.mySwiper .swiper-button-next{
+  left: 4%;
+}
 
 @media only screen and (min-width:1280px){
   .containerMovie{
