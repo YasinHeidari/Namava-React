@@ -1,3 +1,13 @@
+.personContainer{
+    padding: 30px 24px;
+    background-color: var(--light-black);
+}
+
+.personImgContainer{
+    width: 140px;
+    height: 140px;
+}
+
 .searchInputContainer{
     background-color: var(--footer-download-link-bgc);
     padding: 11px 16px;
@@ -56,5 +66,10 @@
     }
     .searchInput[type=text]{
         font-size: 14px !important;
+    }
+    .personImgContainer{
+        width: 140px;
+        height: 140px;
+        min-width: 140px;
     }
 }

@@ -186,7 +186,7 @@ export default function Movie() {
                     <SliderMovieInner movies={movies} genreId={28} />
                   </div>
             </div> 
-            <CommentContainer movieId={movie.id}/> {/* Corrected this line */}
+            <CommentContainer movieId={movie.id}/> 
     </div>    
 </div>
   );
