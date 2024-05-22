@@ -7,6 +7,7 @@ import DirectorsSlider from "../DirectorsSlider";
 import LatestMoviesSlider from "../SliderMovieHomePageLatest";
 import ScrollToTop from "../../helpers/ScrollToTop";
 import "./main.css"
+import SliderPoster from "../SliderPoster";
 
 export default function Main() {
      const [movies, setMovies] = useState([]);
@@ -32,6 +33,7 @@ export default function Main() {
             <div className="d-flex flex-column align-start justify-evenly gap-8 container-padding-2">
             <ScrollToTop/>
                 <HeroSectionSlider/> 
+                <SliderPoster/>
                 <SliderMovieTrending title="ویژه" />
                 <SliderMovie title="اختصاصی نماوا" movies={movies} genreId={28} />
                 <SliderMovie title="رایگان در نماوا" movies={movies} genreId={12} />

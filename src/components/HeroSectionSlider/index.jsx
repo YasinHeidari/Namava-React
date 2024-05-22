@@ -4,12 +4,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { EffectFade , Navigation } from "swiper/modules";
+import { EffectFade, Navigation, Autoplay } from "swiper/modules";
 import Loading from "../Loading";
 import { Link } from "react-router-dom";
 import IMDB from '../../images/IMDB.svg';
 import ratingDecimal from "../../helpers/ratingdecimal";
 import "./index.css";
+
 const apiKey = '4fba95dbf46cd77d415830c228c9ef01'; 
 
 export default function HeroSectionSlider() {
@@ -19,51 +20,32 @@ export default function HeroSectionSlider() {
     const [logoUrl, setLogoUrl] = useState(null);
 
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,jp,null`)
-            .then(response => response.json())
-            .then(data => {
-                // Extract logo URL from images object
-                const logoUrl = data.images?.logos[0]?.file_path;
-                
-                setLogoUrl(logoUrl);
-            })
-            .catch(error => console.error('Error fetching movie:', error));
-
-        fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setMovies(data.results);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-                setLoading(false);
-            });
-
-        const fetchMovieCredits = async (movieId) => {
+        const fetchHeroData = async () => {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`);
-                const data = await response.json();
-                return data;
+                const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,jp,null`);
+                const movieData = await movieResponse.json();
+                const logo = movieData.images?.logos[0]?.file_path;
+                setLogoUrl(logo);
+
+                const upcomingResponse = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`);
+                const upcomingData = await upcomingResponse.json();
+
+                const moviesWithCredits = await Promise.all(upcomingData.results.map(async (movie) => {
+                    const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${apiKey}`);
+                    const creditsData = await creditsResponse.json();
+                    return { ...movie, credits: creditsData, logoUrl: movie.id === parseInt(id) ? logo : null };
+                }));
+
+                setMovies(moviesWithCredits);
             } catch (error) {
-                console.error('Error fetching movie credits:', error);
-                return null;
+                console.error('Error fetching data:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
-        const fetchData = async () => {
-            const promises = movies.map(async (movie) => {
-                const credits = await fetchMovieCredits(movie.id);
-                return { ...movie, credits };
-            });
-            const updatedMovies = await Promise.all(promises);
-            setMovies(updatedMovies);
-        };
-
-        if (!loading) {
-            fetchData();
-        }
-    }, []);
+        fetchHeroData();
+    }, [id]);
 
     return (
         <div className="w-100 h-100">
@@ -74,19 +56,20 @@ export default function HeroSectionSlider() {
                     navigation={true}
                     slidesPerView={1}
                     effect={'fade'}
+                    autoplay={{ delay: 4500 }}
                     loop={true}
-                    modules={[Navigation , EffectFade]}
-                    className="mySwiper heroSectionSlider containerMovie col-12 d-flex flex-row justify-evenly align-center" style={{height: '100vh'}}
+                    modules={[Navigation, EffectFade, Autoplay]}
+                    className="mySwiper heroSectionSlider containerMovie col-12 d-flex flex-row justify-evenly align-center"
+                    style={{ height: '100vh' }}
                 >
                     {movies.length > 0 ? (
                         movies.map((movie) => (
-                            <SwiperSlide key={movie.id} className={`w-100 movieSlider h-auto d-flex flex-column align-center`} style={{ backgroundImage: ` radial-gradient(circle at 33% 40%, transparent 20%, #1a1a1a 75%),linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 46.875vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%),url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'left top' }}>
+                            <SwiperSlide key={movie.id} className="w-100 movieSlider h-auto d-flex flex-column align-center" style={{ backgroundImage: `radial-gradient(circle at 33% 40%, transparent 20%, #1a1a1a 75%), linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 46.875vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%), url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'left top' }}>
                                 <div className="container" style={{ paddingTop: '5rem' }}>
                                     <div className="d-flex flex-column justify-btw align-start h-100">
                                         <div className="col-6 d-flex flex-column justify-center align-start align-self-start gap-2 container-padding-2 h-100">
                                             <Link to={`/movie/${movie.id}`}>
-
-                                            {logoUrl && <img loading="lazy" src={`https://image.tmdb.org/t/p/w300/${logoUrl}`} alt={movie.name || movie.title} />}
+                                                {logoUrl && <img loading="lazy" src={`https://image.tmdb.org/t/p/w300/${logoUrl}`} alt={movie.name || movie.title} />}
                                             </Link>
                                             <h1 className="font-xl-20 font-16 white-color">{movie.title || movie.name}</h1>
                                             <div className="d-flex justify-start align-center gap-2">
@@ -107,7 +90,7 @@ export default function HeroSectionSlider() {
                                                     </p>
                                                 </div>
                                             </div>
-                                            <p className="white-color font-xl-14 ">
+                                            <p className="white-color font-xl-14">
                                                 {movie.overview.length > 50 ? `${movie.overview.substring(0, 100)}` : movie.overview}
                                             </p>
                                             <div className="d-flex  align-center justify-evenly gap-2">
@@ -124,7 +107,6 @@ export default function HeroSectionSlider() {
                                                 </Link>
                                             </div>
                                             <p className="light-white-font font-12 font-weight-normal">
-                                                {/* Directors */}
                                                 ستارگان : {movie.credits && movie.credits.cast && movie.credits.cast
                                                 .slice(0, 5) // Display only top 5 cast members
                                                 .map(actor => actor.name)
