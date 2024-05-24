@@ -270,6 +270,9 @@ button{
     -o-kit-display: flex;
     -ms-display: flex;
 }
+.flex-basis{
+    flex-basis: auto;
+}
 .flex-wrap{
     flex-wrap: wrap;
 }
@@ -623,6 +626,9 @@ button{
     .d-xs-block{
         display: block;
     }
+    .flex-xs-basis{
+        flex-basis: auto;
+    }
     .flex-xs-wrap{
         flex-wrap: wrap;
     }
@@ -853,6 +859,9 @@ button{
     }
     .d-sm-block{
         display: block;
+    }
+    .flex-sm-basis{
+        flex-basis: auto;
     }
     .flex-sm-wrap{
         flex-wrap: wrap;
@@ -1088,6 +1097,9 @@ button{
     }
     .d-md-inline-block{
         display: inline-block;
+    }
+    .flex-md-basis{
+        flex-basis: auto;
     }
     .flex-md-wrap{
         flex-wrap: wrap;
@@ -1338,6 +1350,9 @@ button{
     .d-lg-none{
         display: none;
     }
+    .flex-lg-basis{
+        flex-basis: auto;
+    }
     .flex-lg-wrap{
         flex-wrap: wrap;
     }
@@ -1566,6 +1581,9 @@ button{
     .d-xl-flex{
         display: flex;
     }
+    .flex-xl-basis{
+        flex-basis: auto;
+    }
     .flex-xl-wrap{
         flex-wrap: wrap;
     }
@@ -1793,6 +1811,9 @@ button{
     }
     .d-xxl-block{
         display: block;
+    }
+    .flex-xxl-basis{
+        flex-basis: auto;
     }
     .flex-xxl-wrap{
         flex-wrap: wrap;

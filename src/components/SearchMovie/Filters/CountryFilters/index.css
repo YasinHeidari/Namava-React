@@ -37,6 +37,7 @@
 }
 .search input[type=text]{
     outline: none;
+    border: none;
 }
 .search input[type=text]::placeholder{
     font-size: 16px;

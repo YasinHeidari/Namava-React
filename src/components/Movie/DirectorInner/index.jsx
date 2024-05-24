@@ -5,7 +5,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
-import Loading from "../Loading";
+import Loading from "../../Loading";
 import { Link } from "react-router-dom";
 import "./index.css";
 

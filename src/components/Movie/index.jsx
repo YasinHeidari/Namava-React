@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link  } from "react-router-dom";
 import ratingDecimal from "../../helpers/ratingdecimal";
 import { Tooltip } from 'antd';
-import StarInner from "../StarSliderInnerMovie";
-import DirectorInner from "../DirectorInner";
+import StarInner from "./StarSliderInnerMovie";
+import DirectorInner from "./DirectorInner";
 import SliderMovieInner from "../SliderMovieInnerMovie";
 import CinemaSlider from "../CinemaSlider";
-import CommentContainer from "./MovieInnerComment";
+import CommentContainer from "./MovieInnerComment"
 import IMDB from '../../images/IMDB.svg';
 import SubScript from '../../images/subScript.svg';
 import movieInnerLike from '../../images/movieInnerLike.svg';
 import movieInnerDisLike from '../../images/movieInnerDisLike.svg';
 import ScrollToTop from "../../helpers/ScrollToTop";
 import "./index.css";
+import SpinnerLoading from "../Loading/SpinnerLoading";
 
 const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
 
@@ -27,6 +28,7 @@ export default function Movie() {
   const [loading, setLoading] = useState(true); // Add a loading state
 
   useEffect(() => {
+    
     const fetchMovieData = async () => {
       try {
         const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,jp,null`);
@@ -52,12 +54,13 @@ export default function Movie() {
         setLoading(false); // Set loading to false in case of error
       }
     };
+    document.title = `فیلم ${movie?.name || movie?.title}`
 
     fetchMovieData();
   }, [id]); // Only depend on id
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <SpinnerLoading/>;
   }
 
   const getGenreNames = () => {
@@ -72,9 +75,9 @@ export default function Movie() {
           <div className="d-flex flex-column justify-btw align-start h-100">
             <div className="col-6 d-flex flex-column justify-center align-start align-self-start gap-2 container-padding-2 h-100">
                 <Link to={`/movie/${movie.id}`}>
-                {logoUrl && <img loading="lazy" src={`https://image.tmdb.org/t/p/w300/${logoUrl}`} alt={movie.name || movie.title} />}
+                {logoUrl && <img loading="lazy" className="logoImg" src={`https://image.tmdb.org/t/p/w300/${logoUrl}`} alt={movie?.name || movie?.title} />}
                 </Link>
-                <h1 className="font-xl-20 white-color">{movie.title || movie.name}</h1>
+                <h1 className="font-xl-20 white-color">{movie?.title || movie?.name}</h1>
                 <div className="d-flex justify-start align-center gap-2">
                 <div className="d-flex justify-center align-center">
                     <div>
@@ -155,9 +158,9 @@ export default function Movie() {
                   </div>
                 </div>
                 <div className="d-flex flex-column gap-4">
-                  <h2 className="white-color font-md-14 font-weight-normal">{movie.name || movie.title}</h2>
-                  <h2 className="white-color font-lg-18 font-weight-normal">درباره فیلم {movie.name || movie.title}</h2>
-                  <p className="light-white-font font-md-14 font-weight-normal" style={{lineHeight:'2'}}>{movie.overview}</p>
+                  <h2 className="white-color font-md-14 font-weight-normal">{movie?.name || movie?.title}</h2>
+                  <h2 className="white-color font-lg-18 font-weight-normal">درباره فیلم {movie?.name || movie?.title}</h2>
+                  <p className="light-white-font font-md-14 font-weight-normal" style={{lineHeight:'2'}}>{movie?.overview}</p>
                   <p className="white-color font-14 font-weight-normal">
                     دسته بندی ها: {getGenreNames()}
                   </p>
@@ -170,19 +173,19 @@ export default function Movie() {
 
             <div className="d-flex flex-column gap-4">
                   <div className="d-flex flex-column justify-center align-start gap-3">
-                    <h3 className="white-color containerInnerMovie">بازیگران فیلم {movie.name || movie.title}</h3>
+                    <h3 className="white-color containerInnerMovie">بازیگران فیلم {movie?.name || movie?.title}</h3>
                     <StarInner movieId={id}/>
                   </div>
                   <div className="d-flex flex-column justify-center align-start gap-3">
-                    <h3 className="white-color containerInnerMovie">عوامل فیلم {movie.name || movie.title}</h3>
+                    <h3 className="white-color containerInnerMovie">عوامل فیلم {movie?.name || movie?.title}</h3>
                     <DirectorInner movieId={id}/>
                   </div>
                   <div className="d-flex flex-column justify-center align-start gap-3">
-                    <h3 className="white-color containerInnerMovie">پردیس نماوا</h3>
+                    
                     <CinemaSlider/> 
                   </div>
                   <div className="d-flex flex-column justify-center align-start gap-3">
-                    <h3 className="white-color containerInnerMovie">بر اساس "{movie.name || movie.title}"</h3>
+                    <h3 className="white-color containerInnerMovie">بر اساس "{movie?.name || movie?.title}"</h3>
                     <SliderMovieInner movies={movies} genreId={28} />
                   </div>
             </div> 

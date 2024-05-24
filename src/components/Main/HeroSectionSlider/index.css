@@ -28,9 +28,14 @@
   left: 4%;
 }
 
+
 @media only screen and (min-width:1280px){
   .containerMovie{
-      min-height: 46.875vw;
-  margin-bottom: -7.03125vw;
+    min-height: 46.875vw;
+    margin-bottom: -7.03125vw;
+  }
+  .logoImg{
+    max-width: 20vw;
+    max-height: 10vw;
   }
 }

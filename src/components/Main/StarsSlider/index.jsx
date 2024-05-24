@@ -5,11 +5,11 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
-import Loading from "../Loading";
+import Loading from "../../Loading";
 import { Link } from "react-router-dom";
 import "./index.css";
 
-const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
+const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
 
 export default function StarsSlider({ title }) {
     const [stars, setStars] = useState([]);
@@ -32,7 +32,9 @@ export default function StarsSlider({ title }) {
                         `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${apiKey}`
                     );
                     const castData = await castResponse.json();
-                    const cast = castData.cast.filter(actor => actor.profile_path !== null);
+                    const cast = castData.cast.filter(
+                        (actor) => actor.profile_path !== null
+                    );
                     starsArray.push(...cast);
                 }
                 setStars(starsArray);
@@ -65,9 +67,16 @@ export default function StarsSlider({ title }) {
                         className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"
                     >
                         {stars.map((star, index) => (
-                            <SwiperSlide key={index} className="StarsSlider h-100">
-                                <Link to="/" className="d-flex flex-column align-center gap-2">
-                                    <img loading="lazy"
+                            <SwiperSlide
+                                key={index}
+                                className="StarsSlider h-100"
+                            >
+                                <Link
+                                    to="/"
+                                    className="d-flex flex-column align-center gap-2"
+                                >
+                                    <img
+                                        loading="lazy"
                                         src={`https://image.tmdb.org/t/p/w500/${star.profile_path}`}
                                         alt={star.name}
                                         className="starImg border-radius-50 object-cover"

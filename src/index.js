@@ -11,6 +11,7 @@ import Error from "./components/Error";
 import ContactUs from "./components/ContactUs";
 import AboutUs from "./components/AboutUs";
 import  SearchMovie from "./components/SearchMovie";
+import Show from "./components/Show";
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         <Routes>
           <Route path="/"  element={<Main/>} exact/>
           <Route path="/movie/:id" element={<Movie/>} />
+          <Route path="/show/:id" element={<Show/>} />
           <Route path="/ContactUs" element={<ContactUs/>}/>
           <Route path="/AboutUs" element={<AboutUs/>}/>
           <Route path="/SearchMovie" element={<SearchMovie/>}/>

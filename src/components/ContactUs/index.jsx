@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CountryPopup from "./ContactCountryPopUp";
 import "./index.css";
+import ScrollToTop from "../../helpers/ScrollToTop";
 
 export default function ContactUs() {
     const [showSelect, setShowSelect] = useState(false);
+
+    useEffect(()=>{
+        document.title = 'تماس با ما'
+    })
 
     const toggleSelect = () => {
         setShowSelect(!showSelect);
@@ -48,6 +53,7 @@ export default function ContactUs() {
     };
     return (
         <div className="contactSection container-padding-2">
+        <ScrollToTop/>
             <div className="container">
                 <div className="contactContainer d-flex flex-column justify-center align-center gap-4 position-relative">
                     <p className="contactTitle text-center font-xl-20 font-weight-normal">

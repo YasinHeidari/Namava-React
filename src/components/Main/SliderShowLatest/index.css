@@ -1,0 +1,11 @@
+.showSliderLink .darkShowCover{
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9));
+    opacity: 0;
+    transition: opacity .3s ease ;
+    padding: 1rem;
+    transform: scaleY(.99);
+    margin-top: -.15rem;
+}
+.showSliderLink:hover .darkShowCover{
+    opacity: 1 ;
+}

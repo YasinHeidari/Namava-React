@@ -5,12 +5,12 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
-import Loading from "../Loading";
-import { unavailable } from "../../helpers/api";
+import Loading from "../../Loading";
+import { unavailable } from "../../../helpers/api";
 import { Link } from "react-router-dom";
 import "./index.css";
 
-const apiKey = '4fba95dbf46cd77d415830c228c9ef01'; // Replace with your actual API key
+const apiKey = "4fba95dbf46cd77d415830c228c9ef01"; // Replace with your actual API key
 
 export default function DirectorsSlider({ title }) {
     const [directors, setDirectors] = useState([]);
@@ -25,7 +25,7 @@ export default function DirectorsSlider({ title }) {
                 );
                 const data = await response.json();
                 const movies = data.results;
-        
+
                 // Iterate through each movie and fetch its credits
                 const directorsArray = [];
                 for (const movie of movies) {
@@ -33,10 +33,14 @@ export default function DirectorsSlider({ title }) {
                         `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${apiKey}`
                     );
                     const creditsData = await creditsResponse.json();
-                    const directorsInMovie = creditsData.crew.filter(member => member.job === "Director" && member.profile_path !== null);
+                    const directorsInMovie = creditsData.crew.filter(
+                        (member) =>
+                            member.job === "Director" &&
+                            member.profile_path !== null
+                    );
                     directorsArray.push(...directorsInMovie);
                 }
-                
+
                 setDirectors(directorsArray);
                 setLoading(false);
             } catch (error) {
@@ -44,7 +48,6 @@ export default function DirectorsSlider({ title }) {
                 setLoading(false);
             }
         }
-        
 
         fetchDirectorsFromAllMovies();
     }, []);
@@ -66,32 +69,42 @@ export default function DirectorsSlider({ title }) {
                         slidesPerView={3}
                         modules={[Navigation, Keyboard]}
                         breakpoints={{
-                        576:{
-                            slidesPerView:3,
-                        },
-                        768:{
-                            slidesPerView:4,
-                        },
-                        992:{
-                            slidesPerView:7,
-                        }
-
+                            576: {
+                                slidesPerView: 3,
+                            },
+                            768: {
+                                slidesPerView: 4,
+                            },
+                            992: {
+                                slidesPerView: 7,
+                            },
                         }}
                         className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"
                     >
                         {directors.map((director, index) => (
-                            <SwiperSlide key={index} className="DirectorsSlider h-100">
-                                <Link to="/" className="d-flex flex-column align-center gap-2">
+                            <SwiperSlide
+                                key={index}
+                                className="DirectorsSlider h-100"
+                            >
+                                <Link
+                                    to="/"
+                                    className="d-flex flex-column align-center gap-2"
+                                >
                                     {director.profile_path ? (
-                                        <img loading="lazy"
+                                        <img
+                                            loading="lazy"
                                             src={`https://image.tmdb.org/t/p/w500/${director.profile_path}`}
                                             alt={director.name}
                                             className="DirectorImg object-cover border-radius-50"
                                         />
                                     ) : (
-                                        <p className="white-color">No image available</p>
+                                        <p className="white-color">
+                                            No image available
+                                        </p>
                                     )}
-                                    <h5 className="white-color">{director.name}</h5>
+                                    <h5 className="white-color">
+                                        {director.name}
+                                    </h5>
                                 </Link>
                             </SwiperSlide>
                         ))}
