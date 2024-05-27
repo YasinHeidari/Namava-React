@@ -4,7 +4,7 @@ import ratingDecimal from "../../helpers/ratingdecimal";
 import { Tooltip } from 'antd';
 import StarInner from "./StarSliderInnerMovie";
 import DirectorInner from "./DirectorInner";
-import SliderMovieInner from "../SliderMovieInnerMovie";
+import SliderMovieInner from "./SliderMovieInnerMovie";
 import CinemaSlider from "../CinemaSlider";
 import CommentContainer from "./MovieInnerComment"
 import IMDB from '../../images/IMDB.svg';

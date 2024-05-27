@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ratingDecimal from "../../helpers/ratingdecimal";
 import { Tooltip } from "antd";
-import SliderMovieInner from "../SliderMovieInnerMovie";
+import SliderMovieInner from "../Movie/SliderMovieInnerMovie";
 import CinemaSlider from "../CinemaSlider";
 import IMDB from "../../images/IMDB.svg";
 import SubScript from "../../images/subScript.svg";
@@ -14,6 +14,8 @@ import SpinnerLoading from "../Loading/SpinnerLoading";
 import DirectorInnerShow from "./DirectorInnerShow";
 import StarInnerShow from "./StarInnerShow";
 import ShowCommentContainer from "./ShowInnerComment";
+import Episode from "./Episodes";
+
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
 
@@ -24,7 +26,7 @@ export default function Show() {
     const [directors, setDirectors] = useState([]);
     const [logoUrl, setLogoUrl] = useState(null);
     const [images, setImages] = useState([]);
-    const [loading, setLoading] = useState(true); // Add a loading state
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchSeriesData = async () => {
@@ -56,18 +58,18 @@ export default function Show() {
                     .map((director) => director.name);
                 setDirectors(directorsList);
 
-                setLoading(false); // Set loading to false after fetching data
+                setLoading(false);
             } catch (error) {
                 console.error("Error fetching series data:", error);
-                setLoading(false); // Set loading to false in case of error
+                setLoading(false);
             }
         };
         document.title = `سریال ${series?.name || series?.title}`;
 
         fetchSeriesData();
-    }, [id]); // Only depend on id
+    }, [id]);
 
-    if (loading || series ===null) {
+    if (loading || series === null) {
         return <SpinnerLoading />;
     }
 
@@ -245,7 +247,7 @@ export default function Show() {
                                 ستارگان: {stars.join(" ، ")}
                             </p>
                             <p className="light-white-font font-12 font-weight-normal">
-                                کارگردان: {directors.join(" - ")}
+                                کارگردان: {directors.length > 0 ? directors.join(" - ") : "ندارد"}
                             </p>
                             <p className="light-white-font font-12 font-weight-normal">
                                 دسته بندی ها: {getGenreNames()}
@@ -257,6 +259,12 @@ export default function Show() {
             <div className="d-flex flex-column gap-8">
                 <div className="container">
                     <div className="d-flex flex-column gap-3">
+                    <div className="d-flex flex-column justify-center align-start gap-3">
+                        <h3 className="white-color containerInnerMovie">
+                        فصل ۱ 
+                        </h3>
+                        <Episode seriesId={id} showName={series?.name || series?.title}/>
+                    </div>
                         <h3 className="white-color font-lg-18">
                             تصاویر و جزییات
                         </h3>

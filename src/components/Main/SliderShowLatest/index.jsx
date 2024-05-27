@@ -78,7 +78,7 @@ export default function LatestShow({ title }) {
                                             key={show.id}
                                             className="showSlider h-auto d-flex flex-column align-center"
                                         >
-                                            <Link to={`/movie/${show.id}`} className="showSliderLink d-flex flex-column gap-1 position-relative">
+                                            <Link to={`/show/${show.id}`} className="showSliderLink d-flex flex-column gap-1 position-relative">
                                                 <div className="showSliderItem w-100 h-100 position-relative z-0">
                                                     <img
                                                         loading="lazy"
@@ -110,7 +110,6 @@ export default function LatestShow({ title }) {
                                                                     cy="30"
                                                                     r="30"
                                                                     transform="translate(875 712)"
-                                                                    class="svg-c1"
                                                                     opacity="0.952"
                                                                 ></circle>
                                                                 <path

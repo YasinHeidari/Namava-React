@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { img_300 } from "../../helpers/api";
-import { unavailable } from "../../helpers/api";
-import Loading from "../Loading";
+import { img_300 } from "../../../helpers/api";
+import { unavailable } from "../../../helpers/api";
+import Loading from "../../Loading";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
-import ratingDecimal from "../../helpers/ratingdecimal";
+import ratingDecimal from "../../../helpers/ratingdecimal";
 import "./index.css";
-import MovieInfoHomePage from "../Main/MovieInfoHomePage";
-import IMDB from "../../images/IMDB.svg";
-import SubScript from "../../images/subScript.svg";
+import MovieInfoHomePage from "../../Main/MovieInfoHomePage";
+import IMDB from "../../../images/IMDB.svg";
+import SubScript from "../../../images/subScript.svg";
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
 

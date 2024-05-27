@@ -65,8 +65,7 @@ export default function Main() {
             <SliderMovie title="رازآلود" movies={movies} genreId={9648} />
             <SliderMovie title="ورزشی" movies={movies} genreId={53} />
             <SliderMovie title="فانتزی" movies={movies} genreId={14} />
-            <SliderMovie
-                title="ویژه ناشنوایان"
+            <SliderMovie title="ویژه ناشنوایان"
                 movies={movies}
                 genreId={10770}
             />
