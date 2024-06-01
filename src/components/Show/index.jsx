@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ratingDecimal from "../../helpers/ratingdecimal";
-import { Tooltip } from "antd";
 import SliderMovieInner from "../Movie/SliderMovieInnerMovie";
 import CinemaSlider from "../CinemaSlider";
 import IMDB from "../../images/IMDB.svg";
 import SubScript from "../../images/subScript.svg";
-import movieInnerLike from "../../images/movieInnerLike.svg";
-import movieInnerDisLike from "../../images/movieInnerDisLike.svg";
 import ScrollToTop from "../../helpers/ScrollToTop";
 import "./index.css";
 import SpinnerLoading from "../Loading/SpinnerLoading";
@@ -15,6 +12,7 @@ import DirectorInnerShow from "./DirectorInnerShow";
 import StarInnerShow from "./StarInnerShow";
 import ShowCommentContainer from "./ShowInnerComment";
 import Episode from "./Episodes";
+import ShowTooltip from "./ShowTooltip";
 
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
@@ -27,6 +25,9 @@ export default function Show() {
     const [logoUrl, setLogoUrl] = useState(null);
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [numberOfSeasons, setNumberOfSeasons] = useState(null);
+    const [popularity, setPopularity] = useState(null);
+
 
     useEffect(() => {
         const fetchSeriesData = async () => {
@@ -36,14 +37,17 @@ export default function Show() {
                 );
                 const seriesData = await seriesResponse.json();
                 setSeries(seriesData);
-                const logoUrl = seriesData.images?.logos[0]?.file_path;
-                setLogoUrl(logoUrl);
+                
 
                 const imagesResponse = await fetch(
-                    `https://api.themoviedb.org/3/tv/${id}/images?api_key=${apiKey}&language=en`
+                    `https://api.themoviedb.org/3/tv/${id}/images?api_key=${apiKey}`
                 );
                 const imagesData = await imagesResponse.json();
                 setImages(imagesData.backdrops);
+                const logoUrls = imagesData?.logos.map(logo => logo.file_path).filter(path => path);
+            
+                const firstNonNullLogoUrl = logoUrls.find(url => url !== null);
+                setLogoUrl(firstNonNullLogoUrl);
 
                 const creditsResponse = await fetch(
                     `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}`
@@ -57,6 +61,9 @@ export default function Show() {
                     .filter((member) => member.job === "Director")
                     .map((director) => director.name);
                 setDirectors(directorsList);
+                setNumberOfSeasons(seriesData.number_of_seasons);
+                setPopularity(seriesData.popularity);
+
 
                 setLoading(false);
             } catch (error) {
@@ -91,7 +98,7 @@ export default function Show() {
                 <div className="container" style={{ paddingTop: "5rem" }}>
                     <div className="d-flex flex-column justify-btw align-start h-100">
                         <div className="col-6 d-flex flex-column justify-center align-start align-self-start gap-2 container-padding-2 h-100">
-                            <Link to={`/series/${series.id}`}>
+                            <Link to={`/series/${series.id}`} className="h-auto col-12" >
                                 {logoUrl && (
                                     <img
                                         loading="lazy"
@@ -141,9 +148,9 @@ export default function Show() {
                                     ? `${series.overview.substring(0, 50)}...`
                                     : series.overview}
                             </p>
-                            <div className="d-flex  align-center justify-evenly gap-2">
+                            <div className="d-flex align-center justify-evenly gap-2">
                                 <Link
-                                    to="/"
+                                    to={`/series/${series.id}`}
                                     className="movieInnerBtn white-bgc d-flex flex-row align-center gap-1 border-radius-12  line-height-42"
                                 >
                                     <svg
@@ -159,89 +166,14 @@ export default function Show() {
                                     </span>
                                 </Link>
                                 <Link
-                                    to="/"
+                                    to={`/series/${series.id}`}
                                     className="movieInnerMore  border-radius-12 line-height-42"
                                 >
                                     <span className="white-color font-12 font-weight-normal">
                                         پیش نمایش
                                     </span>
                                 </Link>
-                                <div className="d-flex justify-center align-center border-radius-50 movieInnerIconHover">
-                                    <Tooltip
-                                        placement="bottom"
-                                        title={
-                                            <span style={{ color: "black" }}>
-                                                افزودن به لیست من
-                                            </span>
-                                        }
-                                        color="#fff"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="20"
-                                            height="20"
-                                            viewBox="0 0 40 40"
-                                            fill="#fff"
-                                        >
-                                            <path d="M31.56 18.64H21.4V8.48a1.4 1.4 0 0 0-2.39-.99 1.4 1.4 0 0 0-.41.99v10.16H8.44a1.4 1.4 0 0 0-1.4 1.4 1.4 1.4 0 0 0 1.4 1.4H18.6V31.6a1.4 1.4 0 0 0 1.4 1.4 1.4 1.4 0 0 0 1.4-1.4V21.44h10.16a1.4 1.4 0 0 0 1.4-1.4 1.4 1.4 0 0 0-1.4-1.4z"></path>
-                                        </svg>
-                                    </Tooltip>
-                                </div>
-                                <div className="d-flex justify-center align-center border-radius-50 movieInnerIconHover">
-                                    <Tooltip
-                                        placement="bottom"
-                                        title={
-                                            <span style={{ color: "black" }}>
-                                                دانلود
-                                            </span>
-                                        }
-                                        color="#fff"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="30"
-                                            height="30"
-                                            viewBox="0 0 30 30"
-                                            fill="#fff"
-                                        >
-                                            <path d="M14.568 18.596a.54.54 0 0 0 .766 0l3.2-3.2a.542.542 0 1 0-.766-.766l-2.272 2.272V7.54a.54.54 0 1 0-1.084 0v9.363L12.14 14.63a.542.542 0 1 0-.766.766zm8.792-4.122a.54.54 0 0 0-.542.542v3.958c-.001 1.22-1 2.2-2.2 2.2H9.293c-1.22-.001-2.2-1-2.2-2.2v-3.958a.54.54 0 1 0-1.084 0v3.958a3.3 3.3 0 0 0 3.293 3.293h11.316a3.3 3.3 0 0 0 3.293-3.293v-3.958a.54.54 0 0 0-.54-.542z"></path>
-                                        </svg>
-                                    </Tooltip>
-                                </div>
-                                <div className="d-flex justify-center align-center border-radius-50 movieInnerIconHover">
-                                    <Tooltip
-                                        placement="bottom"
-                                        title={
-                                            <span style={{ color: "black" }}>
-                                                دوست داشتم
-                                            </span>
-                                        }
-                                        color="#fff"
-                                    >
-                                        <img
-                                            loading="lazy"
-                                            src={movieInnerLike}
-                                            alt="like"
-                                        />
-                                    </Tooltip>
-                                </div>
-                                <div className="d-flex justify-center align-center border-radius-50 movieInnerIconHover">
-                                    <Tooltip
-                                        placement="bottom"
-                                        title={
-                                            <span style={{ color: "black" }}>
-                                                دوست نداشتم
-                                            </span>
-                                        }
-                                        color="#fff"
-                                    >
-                                        <img
-                                            loading="lazy"
-                                            src={movieInnerDisLike}
-                                            alt="dislike"
-                                        />
-                                    </Tooltip>
-                                </div>
+                                <ShowTooltip/>
                             </div>
                             <p className="light-white-font font-12 font-weight-normal">
                                 ستارگان: {stars.join(" ، ")}
@@ -259,12 +191,7 @@ export default function Show() {
             <div className="d-flex flex-column gap-8">
                 <div className="container">
                     <div className="d-flex flex-column gap-3">
-                    <div className="d-flex flex-column justify-center align-start gap-3">
-                        <h3 className="white-color containerInnerMovie">
-                        فصل ۱ 
-                        </h3>
-                        <Episode seriesId={id} showName={series?.name || series?.title}/>
-                    </div>
+                        <Episode seriesId={id} showName={series?.name || series?.title} numberOfSeasons={numberOfSeasons} popularity={popularity}/>
                         <h3 className="white-color font-lg-18">
                             تصاویر و جزییات
                         </h3>
@@ -335,7 +262,7 @@ export default function Show() {
                         <SliderMovieInner movies={series} genreId={28} />
                     </div>
                 </div>
-                <ShowCommentContainer movieId={series?.id} />
+                <ShowCommentContainer seriesId={id} />
             </div>
         </div>
     );

@@ -24,6 +24,7 @@ export default function Movie() {
   const [directors, setDirectors] = useState([]);
   const [logoUrl, setLogoUrl] = useState(null);
   const [images, setImages] = useState([]);
+  const [posters, setPosters] = useState([]);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true); // Add a loading state
 
@@ -34,12 +35,15 @@ export default function Movie() {
         const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,jp,null`);
         const movieData = await movieResponse.json();
         setMovie(movieData);
-        const logoUrl = movieData.images?.logos[0]?.file_path;
-        setLogoUrl(logoUrl);
+        
 
-        const imagesResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${apiKey}&language=en`);
+        const imagesResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${apiKey}`);
         const imagesData = await imagesResponse.json();
         setImages(imagesData.backdrops);
+        const logoUrls = imagesData?.logos.map(logo => logo.file_path).filter(path => path);
+        const firstNonNullLogoUrl = logoUrls.find(url => url !== null);
+        setLogoUrl(firstNonNullLogoUrl);
+        setPosters(imagesData.posters)
 
         const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`);
         const creditsData = await creditsResponse.json();
@@ -59,7 +63,7 @@ export default function Movie() {
     fetchMovieData();
   }, [id]); // Only depend on id
 
-  if (loading) {
+  if (loading || movie === null) {
     return <SpinnerLoading/>;
   }
 
@@ -74,7 +78,7 @@ export default function Movie() {
         <div className="container" style={{paddingTop:'5rem'}}>
           <div className="d-flex flex-column justify-btw align-start h-100">
             <div className="col-6 d-flex flex-column justify-center align-start align-self-start gap-2 container-padding-2 h-100">
-                <Link to={`/movie/${movie.id}`}>
+                <Link to={`/movie/${movie.id}`} className="col-12 h-auto">
                 {logoUrl && <img loading="lazy" className="logoImg" src={`https://image.tmdb.org/t/p/w300/${logoUrl}`} alt={movie?.name || movie?.title} />}
                 </Link>
                 <h1 className="font-xl-20 white-color">{movie?.title || movie?.name}</h1>

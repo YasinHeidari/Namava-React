@@ -1,0 +1,29 @@
+.episodeImgContainer .freeEpisode{
+    background: linear-gradient(252deg, rgb(255, 209, 45) 0%, rgb(240, 132, 83) 100%);
+    padding: 6.5px 12px;
+
+}
+.episodeImgContainer .timeEpisode{
+    background: rgba(18, 18, 18, 0.8);
+    padding: 4px 12px;
+}
+.episodeImgContainer:hover .darkEpisodeHover{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+.episodeTooltipBgc{
+    width: 30px !important;
+    height: 30px !important;
+}
+.seasonEpisodenumber{
+    border: 1px solid #fff;
+    width: 76px;
+    padding: 9px 0px;
+    
+}
+.seasonCounts{
+    background: var(--light-black);
+    padding: 6px 16px;
+}
+.overviewEpisode{
+    color: var(--lighter-white-font);
+}

@@ -6,13 +6,16 @@ import StarsSlider from "./StarsSlider";
 import DirectorsSlider from "./DirectorsSlider";
 import LatestMoviesSlider from "./SliderMovieHomePageLatest";
 import ScrollToTop from "../../helpers/ScrollToTop";
-import "./main.css";
 import SliderPoster from "./SliderPoster";
 import CinemaSlider from "../CinemaSlider";
 import LatestShow from "./SliderShowLatest";
+import SpinnerLoading from "../Loading/SpinnerLoading";
+import "./main.css";
+import IranMoviesSlider from "./IranSlider";
 
 export default function Main() {
     const [movies, setMovies] = useState([]);
+    const [loading , setLoading] = useState(true);
 
     useEffect(() => {
         document.title = "تماشای فیلم و سریال آنلاین | نماوا";
@@ -28,9 +31,20 @@ export default function Main() {
                 console.error("Error fetching movies:", error);
             }
         }
+        const timer = setTimeout(() => {
+            setLoading(false);
+            fetchMovies();
+        }, 8000);
 
-        fetchMovies();
+        
+        return () => clearTimeout(timer);
+        
+
+        
     }, []);
+    if (loading || movies === null) {
+        return <SpinnerLoading/>
+    }
 
     return (
         <div className="d-flex flex-column align-start justify-evenly gap-8 container-padding-2">
@@ -43,9 +57,8 @@ export default function Main() {
             <LatestMoviesSlider title="تازه های نماوا" />
             <LatestShow title="سریال های به روز شده"/>
             <StarsSlider title="ستارگان" />
-            {/* {<SliderMovie title="ایرانی" movies={movies} genreId={28} />} */}
+            <IranMoviesSlider title="ایرانی"/>
             <SliderMovie title="اکشن" movies={movies} genreId={28} />
-
             <SliderMovie title="کمدی" movies={movies} genreId={35} />
             <SliderMovie title="ترسناک" movies={movies} genreId={27} />
             <SliderMovie title="خانوادگی" movies={movies} genreId={10751} />

@@ -8,6 +8,7 @@
     -ms-box-sizing: border-box;
     font-family: IRANYekanX;
     transition: height .3s ease;
+    font-feature-settings: "ss01", "tnum";
 }
 :root{
     --active-color: #6eb8ff;
@@ -1709,7 +1710,7 @@ button{
         gap: 256px;
     }
 }
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1440px) {
     .col-xxl-1{
         width: 8.33%;
     }

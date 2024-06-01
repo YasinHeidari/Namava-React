@@ -25,7 +25,7 @@ export default function DirectorInner({ movieId }) {
                     `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
                 );
                 const data = await response.json();
-                const directorsInMovie = data.crew.filter(member => member.job === "Director" && member.profile_path !== null);
+                const directorsInMovie = data.crew.filter(member => member.job  && member.profile_path !== null);
 
                 setDirectors(directorsInMovie);
                 setLoading(false);
@@ -67,7 +67,7 @@ export default function DirectorInner({ movieId }) {
                                     <p className="white-color">No image available</p>
                                 )}
                                 <h5 className="white-color">{director.name}</h5>
-                                <p className="font-lg-14 line-height-lg-24 light-white-font font-weight-normal">کارگردان</p>
+                                <p className="font-lg-14 line-height-lg-24 light-white-font font-weight-normal">{director.job}</p>
                             </Link>
                         </SwiperSlide>
                     ))}
