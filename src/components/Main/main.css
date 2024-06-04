@@ -6,7 +6,7 @@
 }
 
 /*Swiper*/
-.SliderContainer .swiper-button-prev, .SliderContainer .swiper-button-next{ /*! ::after*/
+.SliderContainer .swiper-button-prev, .SliderContainer .swiper-button-next{ 
     height: 100%;
     top: 0 !important;
 }

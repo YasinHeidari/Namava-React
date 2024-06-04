@@ -72,7 +72,7 @@ export default function Movie() {
   };
 
   return (
-  <div style={{marginBottom:'7rem'}}>
+  <div style={{margin:'5rem 0 7rem'}}>
   <ScrollToTop/>
     <div className="containerMovie" style={{ backgroundImage: ` radial-gradient(circle at 33% 40%, transparent 20%, #1a1a1a 75%),linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 46.875vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%),url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'left top' }}>
         <div className="container" style={{paddingTop:'5rem'}}>

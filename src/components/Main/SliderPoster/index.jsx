@@ -6,8 +6,8 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
-
 import PosterImages from "../../../helpers/PosterLocalApi";
+import "./index.css"
 
 export default function SliderPoster() {
     const [loading, setLoading] = useState(true);
@@ -54,7 +54,7 @@ export default function SliderPoster() {
                             slidesPerView: 3,
                         },
                     }}
-                    className="mySwiper SliderPoster SliderContainer col-12 d-flex flex-row justify-evenly align-center"
+                    className="mySwiper SliderPoster col-12 d-flex flex-row justify-evenly align-center"
                 >
                     {poster.length > 0 ? (
                         poster.map((movie) => (
