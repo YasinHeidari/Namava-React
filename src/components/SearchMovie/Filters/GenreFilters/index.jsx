@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Checkbox } from 'antd';
 import searchArrowDown from '../../../../images/searchArrowDown.svg'
 
-export default function GenreFilter({ checkboxes, setCheckboxes }) {
+export default function GenreFilter({ checkboxes, setCheckboxes, handleGenreChange }) {
     const [isActive, setIsActive] = useState(false);
     const [filter, setFilter] = useState('');
 
@@ -11,36 +11,28 @@ export default function GenreFilter({ checkboxes, setCheckboxes }) {
     };
 
     const options = [
-        { text: "اجتماعی", genre_id: "1" },
-        { text: "اسکار", genre_id: "2" },
-        { text: "اکشن", genre_id: "3" },
-        { text: "انیمه", genre_id: "4" },
-        { text: "انیمیشن", genre_id: "5" },
-        { text: "برترین ها", genre_id: "6" },
-        { text: "بیوگرافی", genre_id: "7" },
-        { text: "تاریخی", genre_id: "8" },
-        { text: "ترسناک", genre_id: "9" },
-        { text: "جنایی", genre_id: "10" },
-        { text: "جنگی", genre_id: "11" },
-        { text: "خانوادگی", genre_id: "12" },
-        { text: "درام", genre_id: "13" },
-        { text: "دوبله نماوا", genre_id: "14" },
-        { text: "راز آلود", genre_id: "15" },
-        { text: "عاشقانه", genre_id: "16" },
-        { text: "علمی تخیلی", genre_id: "17" },
-        { text: "فانتزی", genre_id: "18" },
-        { text: "فیلم تئاتر", genre_id: "19" },
-        { text: "فیلم کوتاه", genre_id: "20" },
-        { text: "کلاسیک", genre_id: "21" },
-        { text: "کمدی", genre_id: "22" },
-        { text: "کنسرت", genre_id: "23" },
-        { text: "کودک", genre_id: "24" },
-        { text: "ماجراجویی", genre_id: "25" },
-        { text: "مستند", genre_id: "26" },
-        { text: "موزیکال", genre_id: "27" },
-        { text: "مهیج", genre_id: "28" },
-        { text: "ورزشی", genre_id: "29" },
-        { text: "وسترن", genre_id: "30" },
+        { text: "اکشن", genre_id: "28" },
+        { text: "انیمیشن", genre_id: "16" },
+        { text: "بیوگرافی", genre_id: "99" },
+        { text: "تاریخی", genre_id: "36" },
+        { text: "ترسناک", genre_id: "27" },
+        { text: "جنایی", genre_id: "80" },
+        { text: "جنگی", genre_id: "10752" },
+        { text: "خانوادگی", genre_id: "10751" },
+        { text: "درام", genre_id: "18" },
+        { text: "راز آلود", genre_id: "9648" },
+        { text: "عاشقانه", genre_id: "10749" },
+        { text: "علمی تخیلی", genre_id: "878" },
+        { text: "فانتزی", genre_id: "14" },
+        { text: "فیلم تئاتر", genre_id: "10770" },
+        { text: "کلاسیک", genre_id: "10766" },
+        { text: "کمدی", genre_id: "35" },
+        { text: "کودک", genre_id: "10762" },
+        { text: "ماجراجویی", genre_id: "12" },
+        { text: "مستند", genre_id: "10764" },
+        { text: "موزیکال", genre_id: "10402" },
+        { text: "مهیج", genre_id: "53" },
+        { text: "وسترن", genre_id: "37" },
     ];
 
     const handleSelectOptionClick = () => {
@@ -54,6 +46,12 @@ export default function GenreFilter({ checkboxes, setCheckboxes }) {
     const handleSearchChange = (e) => {
         setFilter(e.target.value.toUpperCase());
     };
+    
+    const handleCheckboxChange = (genre_id, checked) => {
+        setCheckboxes({ ...checkboxes, [genre_id]: checked });
+        handleGenreChange({ ...checkboxes, [genre_id]: checked }); // Pass selected genres to parent component
+    };
+
 
     return (
         <div className={`searchFilterBorder d-flex flex-column  select-box ${isActive ? 'active' : ''}`}>

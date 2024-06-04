@@ -1,9 +1,3 @@
-d.dark-cover{
-    background: rgba(0, 0, 0, .4);
-    width: 100%;
-    height: 100%;
-}
-/*footer*/
 .footer .footerLinksContainer{
     background: var(--light-black);
 }
@@ -24,6 +18,19 @@ d.dark-cover{
     -moz-transition: color .3s ease;
     -ms-transition: color .3s ease;
 }
+.FixedFooter{
+    width: 100%;
+    position: fixed;
+    bottom: 0; 
+    right: 0;
+    z-index: 3;
+}
+.footerArrowDown {
+    transition: transform 0.3s ease;
+} 
+.footerArrowDown.rotate {
+    transform: rotate(-180deg);
+}
 .footer .footerLink .footerLinkChild:hover{
     color: var(--white-color);
 }
@@ -41,12 +48,6 @@ d.dark-cover{
 }
 .footer .footerHiddenLinksOpen img,.footer .footerHiddenLinksClose img{
     margin-right: 9px;
-}
-.footer .footerHiddenLinks{
-    display: none;
-}
-.footer .footerLink .footerArrowDown{
-    transform: rotate(180deg);
 }
 .footer .footerInfo .footerDownload{
     background: transparent;

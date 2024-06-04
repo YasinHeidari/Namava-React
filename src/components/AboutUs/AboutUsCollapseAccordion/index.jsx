@@ -14,6 +14,10 @@ export default function AboutUsAccordion(){
     
     const PanelStyle ={
         marginBottom: 16,
+        backgroundColor:'#222327',
+        borderRadius:'12px',
+        lineHeight: '26px',
+        padding:'24px 0',
     }
     return(
     <div className="container-md">
@@ -22,7 +26,6 @@ export default function AboutUsAccordion(){
                 components: {
                     Collapse: {
                         headerBg: " #222327",
-                        contentBg: "#222327",
                         fontSize: "16px",
                         colorTextHeading: "#fff",
                         colorText: "#fff",
@@ -33,7 +36,7 @@ export default function AboutUsAccordion(){
         >
         <Space direction="vertical" className="w-100"> 
     {/*expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}*/}
-            <Collapse className="" style={{padding: '12px 0'}}  bordered={false}>
+            <Collapse className="d-flex flex-column gap-1" style={{padding: '12px 0' , backgroundColor:'#121212'}}  bordered={false}>
                 <Panel  onClick={() => changeBorderTop(1)} header="۱. آیا برای تماشای محتوای نماوا نیاز به خرید اشتراک وجود دارد؟ " key="1" style={PanelStyle}>
                 <p  className={borderTop} >
                                 بله، برای تماشای تمامی محتوای نماوا به جز قسمت{" "}
@@ -119,7 +122,7 @@ export default function AboutUsAccordion(){
                             </p>
                 </Panel>
             </Collapse>,
-            mountNode,
+            
             </Space>
         </ConfigProvider>
     </div>

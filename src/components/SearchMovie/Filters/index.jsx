@@ -10,15 +10,16 @@ export default function Filters(){
         serial: false,
         // Add more checkbox states here if needed
       });
+      const [selectedGenres, setSelectedGenres] = useState({}); // Track selected genres
 
-      const handleReset = () => {
-        // Reset all checkbox states to false
-        setCheckboxes({
-          film: false,
-          serial: false,
-          // Add more checkbox states here if needed
-        });
-      };
+    const handleGenreChange = (genres) => {
+        setSelectedGenres(genres);
+    };
+
+    const handleReset = () => {
+      setCheckboxes({});
+      setSelectedGenres({});
+  };
     return(
         <div className="searchFiltersContainer border-radius-12 d-flex flex-column gap-2 position-fixed right-0 z-0" style={{ top: '21%' }}>
           <div className="d-flex justify-btw align-center">
@@ -37,7 +38,7 @@ export default function Filters(){
               <label className="white-color font-weight-normal font-14" htmlFor="سریال">سریال</label>
             </div>
           </div>
-          <GenreFilter checkboxes={checkboxes} setCheckboxes={setCheckboxes} />
+          <GenreFilter checkboxes={checkboxes} setCheckboxes={setCheckboxes} handleGenreChange={handleGenreChange} />
           <CountryFilter checkboxes={checkboxes} setCheckboxes={setCheckboxes} />
           <SoundFilter checkboxes={checkboxes} setCheckboxes={setCheckboxes} />
           <OrganizeFilter checkboxes={checkboxes} setCheckboxes={setCheckboxes} />

@@ -10,6 +10,7 @@ import AboutUsBackUp from "./AboutUsBackUp";
 import AboutUsNamavaMag from "./AboutUsNamvaMag";
 import ScrollToTop from "../../helpers/ScrollToTop";
 import "./index.css";
+import AboutUsSlider from "./AboutUsSlider";
 
 export default function AboutUs() {
     useEffect(()=>{
@@ -20,6 +21,7 @@ export default function AboutUs() {
         <ScrollToTop/>
             <AboutUsHeroSection/>
             <AboutUsDisplayOptions/>
+            <AboutUsSlider/>
             <AboutUsLive/>
             <AboutUsKids/>  
             <AboutUsServices/>

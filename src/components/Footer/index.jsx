@@ -1,120 +1,58 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React , {useState , useEffect , useRef} from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./footer.css";
+import FooterInfo from "./FooterInfo";
 
 export default function Footer() {
-    const [isSmallScreen, setIsSmallScreen] = useState(false);
-    const [dropdownItems, setDropdownItems] = useState([]);
+    const location = useLocation();
+    const isSearchMoviePage = location.pathname === "/SearchMovie";
+    const [isFixed, setIsFixed] = useState(false);
+    const footerRef = useRef(null);
 
     useEffect(() => {
-        const handleResize = () => {
-            const screenWidth = window.innerWidth;
-            const itemsPerSection = 3;
-            const sectionWidth = 100;
-
-            const sections = Math.floor(screenWidth / sectionWidth);
-            const remainingItems = sections * itemsPerSection;
-
-            setIsSmallScreen(screenWidth <= sectionWidth);
-            setDropdownItems(
-                remainingItems > 0 ? footerLinks.slice(-remainingItems) : []
-            );
+        const observerOptions = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 1.0 // Trigger when entire footer is out of view
         };
 
-        handleResize();
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                setIsFixed(!entry.isIntersecting);
+            });
+        };
 
-        window.addEventListener("resize", handleResize);
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        if (footerRef.current) {
+            observer.observe(footerRef.current);
+        }
 
         return () => {
-            window.removeEventListener("resize", handleResize);
+            if (footerRef.current) {
+                observer.unobserve(footerRef.current);
+            }
+            observer.disconnect();
         };
     }, []);
 
-    const footerLinks = [
-        { label: "اپلیکیشن‌ها", to: "/" },
-        { label: "فرصت‌های شغلی", to: "/" },
-        { label: "تبلیغات در نماوا", to: "/" },
-        { label: "خرید اشتراک", to: "/" },
-        { label: "کارت هدیه", to: "/" },
-        { label: "سوالات متداول", to: "/" },
-        { label: "تماس با ما", to: "/ContactUs" },
-        { label: "درباره نماوا", to: "/AboutUs" },
-        { label: "نماوا مگ", to: "/" },
-        { label: "قوانین", to: "/" },
-        { label: "شرایط مصرف اینترنت", to: "/" },
-        { label: "ارسال فیلمنامه", to: "/" },
-        { label: "دانلود‌ها", to: "/" },
-    ];
+    useEffect(() => {
+        // Check if footer is initially visible and set isFixed accordingly
+        const footerElement = footerRef.current;
+        if (footerElement) {
+            const observer = new IntersectionObserver((entries) => {
+                setIsFixed(!entries[0].isIntersecting);
+            });
+            observer.observe(footerElement);
+            return () => observer.disconnect();
+        }
+    }, []);
 
     return (
-        <div className="footer d-flex flex-column gap-3 justify-evenly" >
-            {isSmallScreen ? (
-                <select>
-                    {dropdownItems.map((item, index) => (
-                        <option key={index}>{item.label}</option>
-                    ))}
-                </select>
-            ) : null}
-            <div className="footerLinksContainer">
-                <div className="container">
-                    <ul className="footerLinks d-flex justify-evenly align-center">
-                        {footerLinks.map((item, index) => (
-                            <li
-                                key={index}
-                                className="footerLink text-center font-12"
-                            >
-                                <Link className="footerLinkChild" to={item.to}>
-                                    {item.label}
-                                </Link>
-                            </li>
-                        ))}
-                        <li className="footerLink text-center font-12">
-                            <button className="footerHiddenLinksOpen">
-                                <span className="font-12">سایر لینک‌ها</span>
-                                <img
-                                    src={
-                                        require("../../images/footerArrowUp.svg")
-                                            .default
-                                    }
-                                    alt="Arrow Up"
-                                />
-                            </button>
-                            <ul className="footerHiddenLinks d-none">
-                                <li className="footerLink text-center font-12">
-                                    <button className="footerHiddenLinksClose">
-                                        <span className="font-12">
-                                            سایر لینک‌ها
-                                        </span>
-                                        <img
-                                            src={
-                                                require("../../images/footerArrowDown.svg")
-                                                    .default
-                                            }
-                                            alt="Arrow Down"
-                                            className="footerArrowDown"
-                                        />
-                                    </button>
-                                </li>
-                                {footerLinks.slice(9).map((item, index) => (
-                                    <li
-                                        key={index}
-                                        className="footerLink text-center font-12"
-                                    >
-                                        <Link
-                                            className="white-color footerLinkChild"
-                                            to={item.to}
-                                        >
-                                            {item.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className="footerInfo" >
+        <div  className={`footer d-flex flex-column gap-3 justify-evenly ${isSearchMoviePage ? 'FixedFooter' : ''}`}>
+            <FooterInfo isFixed={isFixed}/>
+            {!isSearchMoviePage && (
+                <div>
+                <div className="footerInfo" ref={footerRef}>
                 <div className="container-xxl">
                     <div className="d-flex flex-column gap-3">
                         <div className="footerDownload d-flex flex-row flex-xs-column justify-btw align-center border-radius-5 gap-1 gap-xs-2">
@@ -251,7 +189,6 @@ export default function Footer() {
                                 viewBox="0 0 24 20"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="i-socialIcon-0-1-91"
                             >
                                 <path
                                     d="M24 2.55705C23.117 2.94905 22.168 3.21305 21.172 3.33205C22.189 2.72305 22.97 1.75805 23.337 0.608047C22.386 1.17205 21.332 1.58205 20.21 1.80305C19.313 0.846047 18.032 0.248047 16.616 0.248047C13.437 0.248047 11.101 3.21405 11.819 6.29305C7.728 6.08805 4.1 4.12805 1.671 1.14905C0.381 3.36205 1.002 6.25705 3.194 7.72305C2.388 7.69705 1.628 7.47605 0.965 7.10705C0.911 9.38805 2.546 11.522 4.914 11.997C4.221 12.185 3.462 12.229 2.69 12.081C3.316 14.037 5.134 15.46 7.29 15.5C5.22 17.123 2.612 17.848 0 17.54C2.179 18.937 4.768 19.752 7.548 19.752C16.69 19.752 21.855 12.031 21.543 5.10605C22.505 4.41105 23.34 3.54405 24 2.55705Z"
@@ -270,7 +207,6 @@ export default function Footer() {
                                 viewBox="0 0 23 23"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="i-socialIcon-0-1-91"
                             >
                                 <path
                                     fillRule="evenodd"
@@ -291,7 +227,6 @@ export default function Footer() {
                                 viewBox="0 0 25 21"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="i-socialIcon-0-1-91"
                             >
                                 <path
                                     fillRule="evenodd"
@@ -304,6 +239,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
+            </div>)}
         </div>
-    );
-}
+    )
+}          

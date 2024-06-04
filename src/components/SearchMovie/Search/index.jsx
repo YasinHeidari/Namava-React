@@ -6,7 +6,7 @@ import SubScript from '../../../images/subScript.svg';
 import ratingDecimal from '../../../helpers/ratingdecimal';
 import PreResult from "../PreResult";
 
-export default function SearchInput(){
+export default function SearchInput({selectedGenres}){
     const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState({ persons: [], movies: [], keywords: [], collections: [] });
   const [searchActive, setSearchActive] = useState(false);
@@ -49,6 +49,13 @@ export default function SearchInput(){
     
         fetchSearchResults();
       }, [searchInput]);
+      const filteredMovies = searchResults.movies.filter(movie =>
+        movie.genre_ids.some(genre_id => selectedGenres[genre_id])
+    );
+
+    const filteredShows = searchResults.shows.filter(show =>
+        selectedGenres[show.genre_id]
+    );
     return(
         <div className="col-12 d-flex flex-column justify-center gap-4" style={{ marginRight: '22em' }}>
           <div className="searchInputContainer col-12 d-flex justify-sm-start align-center gap-1 font-xl-14 font-12 border-radius-12 line-height-xl-24 line-height-21">
