@@ -20,7 +20,7 @@ export default function StarInner({ movieId }) {
             try {
                 // Fetch cast for the given movie ID
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=fa`
                 );
                 const data = await response.json();
                 const cast = data.cast.filter(

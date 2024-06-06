@@ -3,15 +3,28 @@ import { Link, useLocation } from "react-router-dom";
 import classNames from "classnames";
 import "./index.css";
 
-export default function Header({ isContactUsComponent }) {
+export default function Header() {
     const location = useLocation();
     const isHomePage = location.pathname === "/";
-    const [isSticky, setSticky] = useState(false);
+    const isContactUsPage = location.pathname === "/ContactUs";
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [isTransitioning, setTransitioning] = useState(false);
     const [isHeaderVisible, setHeaderVisible] = useState(true);
-    const [bgColor, setBgColor] = useState(isContactUsComponent ? '#000' : 'rgba(0, 0, 0, .4)');
     const headerRef = useRef(null);
+
+    const HomeStyle = {
+        backgroundImage: 'linear-gradient(to bottom, rgba(18, 18, 18, 1), rgba(18, 18, 18, 0))',
+        backgroundColor: 'rgba(18, 18, 18, 0)',
+        boxShadow: '0 0 0 rgba(0, 0, 0, 0)'
+    };
+
+    const ContactUsStyle = {
+        backgroundColor: 'rgba(18, 18, 18, 1)',
+        backgroundImage: 'linear-gradient(to bottom, rgba(18, 18, 18, 1), rgba(18, 18, 18, 0))',
+        boxShadow: '0 0 0 rgba(0, 0, 0, 0)'
+    };
+
+    const [bgColor, setBgColor] = useState(isContactUsPage ? ContactUsStyle : HomeStyle);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -23,10 +36,8 @@ export default function Header({ isContactUsComponent }) {
 
             if (isScrollingDown) {
                 setHeaderVisible(false);
-                setBgColor('rgba(0, 0, 0, 0)');
             } else {
                 setHeaderVisible(true);
-                setBgColor(isContactUsComponent ? '#000' : 'rgba(0, 0, 0, .4)');
             }
 
             setTimeout(() => {
@@ -41,14 +52,20 @@ export default function Header({ isContactUsComponent }) {
         };
     }, [prevScrollPos]);
 
+    useEffect(() => {
+        setBgColor(isContactUsPage ? ContactUsStyle : HomeStyle);
+    }, [location.pathname]);
+
     return (
         <Fragment>
             <div
                 className={classNames("header col-12 z-3 top-0 right-0", { 'sticky': isHeaderVisible }, { 'transitioning': isTransitioning })}
                 style={{
-                    backgroundColor: isContactUsComponent ? '#000' : 'rgba(0, 0, 0, .4)',
+                    backgroundImage: bgColor.backgroundImage,
+                    backgroundColor: bgColor.backgroundColor,
+                    boxShadow: bgColor.boxShadow,
                     height: isHeaderVisible ? '80px' : '0',
-                    position: isHeaderVisible ? 'fixed' : 'relative',
+                    position: isHeaderVisible ? 'fixed' : 'fixed',
                     top: isHeaderVisible ? '0' : 'auto'
                 }}
                 ref={headerRef}
@@ -112,4 +129,8 @@ export default function Header({ isContactUsComponent }) {
         </Fragment>
     );
 }
+
+
+
+
 

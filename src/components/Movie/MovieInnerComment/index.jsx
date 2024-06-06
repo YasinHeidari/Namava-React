@@ -17,7 +17,7 @@ export default function CommentContainer({ movieId }) {
             }
 
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${apiKey}`);
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${apiKey}&language=fa-IR`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

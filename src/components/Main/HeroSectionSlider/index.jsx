@@ -137,7 +137,7 @@ export default function HeroSectionSlider() {
                                                     </p>
                                                 </div>
                                             </div>
-                                            <p className="white-color font-xl-14">
+                                            <p className="white-color font-xl-14 font-weight-normal">
                                                 {movie.overview.length > 100
                                                     ? `${movie.overview.substring(
                                                           0,

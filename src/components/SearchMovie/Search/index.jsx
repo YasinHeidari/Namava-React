@@ -23,9 +23,12 @@ export default function SearchInput({ selectedGenres, selectedCountries, isFilmS
       const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
       const query = encodeURIComponent(searchInput);
       const endpoints = [
-        `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${query}`,
-        `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${query}`,
-        `https://api.themoviedb.org/3/search/collection?api_key=${apiKey}&query=${query}`
+        `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${query}&language=fa-IR&append_to_response=images&include_image_language=fa`,
+        `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${query}&language=fa-IR&append_to_response=images&include_image_language=fa`,
+        `https://api.themoviedb.org/3/search/collection?api_key=${apiKey}&query=${query}&language=fa-IR&append_to_response=images&include_image_language=fa`,
+        `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${query}&language=en-US&append_to_response=images&include_image_language=en`,
+        `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${query}&language=en-US&append_to_response=images&include_image_language=en`,
+        `https://api.themoviedb.org/3/search/collection?api_key=${apiKey}&query=${query}&language=en-US&append_to_response=images&include_image_language=en`
       ];
 
       try {
@@ -73,7 +76,7 @@ export default function SearchInput({ selectedGenres, selectedCountries, isFilmS
   };
 
   return (
-    <div className="col-12 d-flex flex-column justify-center gap-4" style={{ marginRight: '22em', marginTop:'80px' }}>
+    <div className="col-12 d-flex flex-column justify-center gap-4" style={{ marginRight: '22em', paddingTop:'80px' }}>
       <div className="searchInputContainer col-12 d-flex justify-sm-start align-center gap-1 font-xl-14 font-12 border-radius-12 line-height-xl-24 line-height-21">
         <img src={searchIcon} alt='searchIcon' />
         <input

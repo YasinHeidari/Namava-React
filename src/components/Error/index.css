@@ -1,0 +1,33 @@
+.errorHome{
+    padding: 0 20px;
+}
+.errorHome:hover{
+    background-color: var(--heroSection-active-color);
+    color: #fff;
+}
+@media only screen and (max-width:768px){
+    .errorImg{
+        width: 180px;
+        height: 117px;
+    }
+    .errorHome{
+        width: 220px;
+    }
+    
+}
+@media only screen and (min-width: 768px) {
+    .errorHome{
+        width: 240px;
+    }
+    .errorImg{
+        width: 280px;
+        height: 182px;
+    }
+    
+}
+@media (min-width: 1280px) and (max-width: 1919px) {
+    .errorImg {
+        width: 336px;
+        height: 219px;
+    }
+}

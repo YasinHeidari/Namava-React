@@ -52,7 +52,7 @@ export default function ContactUs() {
         }
     };
     return (
-        <div className="contactSection container-padding-2" style={{marginTop:'80px'}}>
+        <div className="contactSection container-padding-2" style={{paddingTop:'80px'}}>
         <ScrollToTop/>
             <div className="container">
                 <div className="contactContainer d-flex flex-column justify-center align-center gap-4 position-relative">

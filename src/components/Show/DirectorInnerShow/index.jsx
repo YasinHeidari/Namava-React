@@ -22,7 +22,7 @@ export default function DirectorInnerShow({ seriesId }) {
 
                 // Fetch credits for the given series ID
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/tv/${seriesId}/credits?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/tv/${seriesId}/credits?api_key=${apiKey}&language=fa-IR`
                 );
                 const data = await response.json();
                 const directorsInSeries = data.crew.filter(member =>  member.job &&  member.profile_path !== null);

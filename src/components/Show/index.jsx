@@ -33,14 +33,14 @@ export default function Show() {
         const fetchSeriesData = async () => {
             try {
                 const seriesResponse = await fetch(
-                    `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=en-US&append_to_response=images`
+                    `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=fa-IR&append_to_response=images`
                 );
                 const seriesData = await seriesResponse.json();
                 setSeries(seriesData);
                 
 
                 const imagesResponse = await fetch(
-                    `https://api.themoviedb.org/3/tv/${id}/images?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/tv/${id}/images?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=fa`
                 );
                 const imagesData = await imagesResponse.json();
                 setImages(imagesData.backdrops);
@@ -50,7 +50,7 @@ export default function Show() {
                 setLogoUrl(firstNonNullLogoUrl);
 
                 const creditsResponse = await fetch(
-                    `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=fa`
                 );
                 const creditsData = await creditsResponse.json();
                 const topStars = creditsData.cast

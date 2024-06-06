@@ -32,12 +32,12 @@ export default function Movie() {
     
     const fetchMovieData = async () => {
       try {
-        const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,jp,null`);
+        const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=en,fa,jp,null`);
         const movieData = await movieResponse.json();
         setMovie(movieData);
         
 
-        const imagesResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${apiKey}`);
+        const imagesResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,jp,null`);
         const imagesData = await imagesResponse.json();
         setImages(imagesData.backdrops);
         const logoUrls = imagesData?.logos.map(logo => logo.file_path).filter(path => path);
@@ -45,7 +45,7 @@ export default function Movie() {
         setLogoUrl(firstNonNullLogoUrl);
         setPosters(imagesData.posters)
 
-        const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`);
+        const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=fa,jp`);
         const creditsData = await creditsResponse.json();
         const topStars = creditsData.cast.slice(0, 5).map(actor => actor.name);
         setStars(topStars);
@@ -72,7 +72,7 @@ export default function Movie() {
   };
 
   return (
-  <div style={{margin:'5rem 0 7rem'}}>
+  <div style={{margin:'-5rem 0 7rem', paddingTop:'80px'}}>
   <ScrollToTop/>
     <div className="containerMovie" style={{ backgroundImage: ` radial-gradient(circle at 33% 40%, transparent 20%, #1a1a1a 75%),linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 46.875vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%),url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'left top' }}>
         <div className="container" style={{paddingTop:'5rem'}}>

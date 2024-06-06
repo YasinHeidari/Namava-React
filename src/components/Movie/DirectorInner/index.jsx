@@ -22,7 +22,7 @@ export default function DirectorInner({ movieId }) {
 
                 // Fetch credits for the given movie ID
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=fa-IR`
                 );
                 const data = await response.json();
                 const directorsInMovie = data.crew.filter(member => member.job  && member.profile_path !== null);

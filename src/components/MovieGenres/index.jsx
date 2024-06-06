@@ -8,7 +8,7 @@ export default function MovieGenres({ setGenreId }) {
     useEffect(() => {
         async function fetchGenresId() {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`);
+                const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=fa-IR`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch genres');
                 }

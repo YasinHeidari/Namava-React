@@ -14,7 +14,7 @@ export default function Episode({ seriesId, showName , numberOfSeasons , popular
         const fetchEpisodes = async () => {
             try {
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/tv/${seriesId}/season/1?api_key=${apiKey}&language=en-US`
+                    `https://api.themoviedb.org/3/tv/${seriesId}/season/1?api_key=${apiKey}&language=fa-IR`
                 );
                 const data = await response.json();
                 setEpisodes(data.episodes || []); 

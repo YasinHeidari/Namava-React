@@ -26,7 +26,7 @@ export default function IranMoviesSlider({ title }) {
         async function fetchIranMovies() {
             try {
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_original_language=fa`
+                    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_original_language=fa&language=fa-IR`
                 );
                 if (!response.ok) {
                     throw new Error("Failed to fetch Iranian movies");
