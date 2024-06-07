@@ -32,49 +32,79 @@ export default function Show() {
     useEffect(() => {
         const fetchSeriesData = async () => {
             try {
+                console.log('Fetching series data...');
                 const seriesResponse = await fetch(
                     `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=fa-IR&append_to_response=images`
                 );
                 const seriesData = await seriesResponse.json();
+                console.log('Series data fetched:', seriesData);
                 setSeries(seriesData);
-                
-
+    
+                console.log('Fetching images data...');
                 const imagesResponse = await fetch(
-                    `https://api.themoviedb.org/3/tv/${id}/images?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=fa`
+                    `https://api.themoviedb.org/3/tv/${id}/images?api_key=${apiKey}&language=en-US&append_to_response=images`
                 );
                 const imagesData = await imagesResponse.json();
-                setImages(imagesData.backdrops);
-                const logoUrls = imagesData?.logos.map(logo => logo.file_path).filter(path => path);
-            
-                const firstNonNullLogoUrl = logoUrls.find(url => url !== null);
-                setLogoUrl(firstNonNullLogoUrl);
-
+                console.log('Images data fetched:', imagesData);
+    
+                if (!imagesData || !imagesData.backdrops || !imagesData.logos) {
+                    console.warn('No images data found for the given series ID');
+                } else {
+                    console.log('Images data backdrops:', imagesData.backdrops);
+                    console.log('Images data logos:', imagesData.logos);
+    
+                    setImages(imagesData.backdrops);
+    
+                    const logoUrls = imagesData.logos.map(logo => logo.file_path).filter(path => path);
+                    console.log('Logo URLs:', logoUrls);
+    
+                    const firstNonNullLogoUrl = logoUrls.find(url => url !== null);
+                    console.log('First non-null logo URL:', firstNonNullLogoUrl);
+                    setLogoUrl(firstNonNullLogoUrl);
+                }
+    
+                console.log('Fetching credits data...');
                 const creditsResponse = await fetch(
                     `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=fa`
                 );
                 const creditsData = await creditsResponse.json();
+                console.log('Credits data fetched:', creditsData);
+    
                 const topStars = creditsData.cast
                     .slice(0, 5)
                     .map((actor) => actor.name);
+                console.log('Top stars:', topStars);
                 setStars(topStars);
+    
                 const directorsList = creditsData.crew
                     .filter((member) => member.job === "Director")
                     .map((director) => director.name);
+                console.log('Directors list:', directorsList);
                 setDirectors(directorsList);
+    
                 setNumberOfSeasons(seriesData.number_of_seasons);
+                console.log('Number of seasons:', seriesData.number_of_seasons);
+    
                 setPopularity(seriesData.popularity);
-
-
+                console.log('Popularity:', seriesData.popularity);
+    
                 setLoading(false);
+                console.log('Loading set to false');
             } catch (error) {
                 console.error("Error fetching series data:", error);
                 setLoading(false);
+                console.log('Loading set to false due to error');
             }
         };
+    
+        console.log('Setting document title...');
         document.title = `سریال ${series?.name || series?.title}`;
-
+    
+        console.log('Calling fetchSeriesData...');
         fetchSeriesData();
     }, [id]);
+    
+    
 
     if (loading || series === null) {
         return <SpinnerLoading />;
