@@ -4,7 +4,7 @@ import './index.css';
 import Filters from './Filters';
 import SearchInput from './Search';
 
-export default function SearchMovie() {
+export default function Search() {
 
   return (
     <div className="container SearchMovie" style={{ minHeight: '100vh', marginTop: '5rem' }}>

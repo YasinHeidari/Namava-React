@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import classNames from "classnames";
+import PreloadStyles from "../Loading/PreLoader";
 import "./index.css";
 
 export default function Header() {
@@ -58,6 +59,7 @@ export default function Header() {
 
     return (
         <Fragment>
+        <PreloadStyles href='./index.css' as='style'/>
             <div
                 className={classNames("header col-12 z-3 top-0 right-0", { 'sticky': isHeaderVisible }, { 'transitioning': isTransitioning })}
                 style={{

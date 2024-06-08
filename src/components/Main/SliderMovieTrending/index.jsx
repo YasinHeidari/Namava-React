@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { img_300 } from "../../../helpers/api";
 import { unavailable } from "../../../helpers/api";
 import Loading from "../../Loading";
@@ -9,39 +9,35 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
 import ratingDecimal from "../../../helpers/ratingdecimal";
+import MovieInfoHomePage from "../MovieInfo";
+import PreloadStyles from "../../Loading/PreLoader";
 import "./index.css";
-import MovieInfoHomePage from "../MovieInfoHomePage";
-import IMDB from "../../../images/IMDB.svg";
-import SubScript from "../../../images/subScript.svg";
 
-const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
-
-export default function SliderMovie({ genreId, title }) {
-    const [loading, setLoading] = useState(true);
+export default function SliderMovieTrending({ title }) {
+    const apiKey = "api_key=4fba95dbf46cd77d415830c228c9ef01";
+    const baseUrl = "https://api.themoviedb.org/3";
     const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [isInfoVisible, setIsInfoVisible] = useState(false); // State to control visibility of movie info
     const [selectedSliderIndex, setSelectedSliderIndex] = useState(null);
 
     useEffect(() => {
-        async function fetchMovies() {
+        async function getApi() {
+            setLoading(true);
             try {
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`
+                    `${baseUrl}/trending/all/day?${apiKey}`
                 );
-                if (!response.ok) {
-                    throw new Error("Failed to fetch movies");
-                }
-                const data = await response.json();
-                setMovies(data.results || []);
-                setLoading(false);
+                const jsonData = await response.json();
+                setMovies(jsonData.results);
             } catch (error) {
-                console.error("Error fetching movies:", error);
+                console.error("Error fetching data:", error);
             }
+            setLoading(false);
         }
-        fetchMovies();
-    }, [genreId]);
-
+        getApi();
+    }, []);
     const handleMovieSelect = (movie, index) => {
         setSelectedMovie(movie);
         setIsInfoVisible(true); // Show movie info when a movie is selected
@@ -55,6 +51,7 @@ export default function SliderMovie({ genreId, title }) {
 
     return (
         <div className="w-100">
+        <PreloadStyles href='./index.css' as='style'/>
             <div className="d-flex flex-column align-center gap-2">
                 <div className="container">
                     {loading ? (
@@ -102,7 +99,7 @@ export default function SliderMovie({ genreId, title }) {
                                                 handleMovieSelect(movie, index)
                                             }
                                         >
-                                            <div className="movieSliderLink d-flex flex-column gap-1 position-relative">
+                                            <div className="movieSliderLink d-flex flex-column gap-1 ">
                                                 <div className="movieSliderItem w-100 h-100 position-relative z-0">
                                                     <img
                                                         loading="lazy"
@@ -118,7 +115,10 @@ export default function SliderMovie({ genreId, title }) {
                                                         <div className="d-flex justify-center align-center">
                                                             <div>
                                                                 <img
-                                                                    src={IMDB}
+                                                                    src={
+                                                                        require("../../../images/IMDB.svg")
+                                                                            .default
+                                                                    }
                                                                     alt=""
                                                                 />
                                                             </div>
@@ -132,7 +132,8 @@ export default function SliderMovie({ genreId, title }) {
                                                             <div>
                                                                 <img
                                                                     src={
-                                                                        SubScript
+                                                                        require("../../../images/subScript.svg")
+                                                                            .default
                                                                     }
                                                                     alt=""
                                                                 />
@@ -142,19 +143,19 @@ export default function SliderMovie({ genreId, title }) {
                                                                 زیرنویس{" "}
                                                             </p>
                                                         </div>
-                                                        <div className="d-flex justify-center align-center">
-                                                            <p className="white-color font-12">
-                                                                فیلم -{" "}
-                                                                {movie.release_date.substring(
-                                                                    0,
-                                                                    4
-                                                                )}
-                                                            </p>
-                                                        </div>
+                                                        <p className="white-color font-12">
+                                                            فیلم -{" "}
+                                                            {movie.release_date
+                                                                ? movie.release_date.substring(
+                                                                      0,
+                                                                      4
+                                                                  )
+                                                                : "N/A"}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <h5 className="white-color line-height-28">
-                                                    {movie.title}
+                                                    {movie.title || movie.name}
                                                 </h5>
                                                 {selectedSliderIndex ===
                                                     index && (

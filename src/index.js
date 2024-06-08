@@ -10,7 +10,7 @@ import Movie from "./components/Movie";
 import Error from "./components/Error";
 import ContactUs from "./components/ContactUs";
 import AboutUs from "./components/AboutUs";
-import  SearchMovie from "./components/SearchMovie";
+import  Search from "./components/SearchMovie";
 import Show from "./components/Show";
 
 
@@ -25,7 +25,7 @@ const App = () => {
           <Route path="/show/:id" element={<Show/>} />
           <Route path="/ContactUs" element={<ContactUs/>}/>
           <Route path="/AboutUs" element={<AboutUs/>}/>
-          <Route path="/SearchMovie" element={<SearchMovie/>}/>
+          <Route path="/SearchMovie" element={<Search/>}/>
           <Route path="*" element={<Error/>} />
         </Routes>
         <Footer />

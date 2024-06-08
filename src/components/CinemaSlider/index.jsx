@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
 import "./index.css";
-import MovieInfoHomePage from "../Main/MovieInfoHomePage";
+import MovieInfoHomePage from "../Main/MovieInfo";
 
 export default function CinemaSlider() {
     const [selectedMovie, setSelectedMovie] = useState(null);

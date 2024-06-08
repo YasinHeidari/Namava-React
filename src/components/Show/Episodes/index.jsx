@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import EpisodeTooltip from './EpisodeToolTip';
+import { Dropdown, Space, Menu , ConfigProvider } from 'antd';
 import './index.css';
+import DotsLoader from '../../Loading/DotsLoader';
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
 
 export default function Episode({ seriesId, showName , numberOfSeasons , popularity }) {
     const [episodes, setEpisodes] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [seasonNumber, setSeasonNumber] = useState(null);
+    const [seasonNumber, setSeasonNumber] = useState(1); // Default to the first season
+    const [dropdownVisible, setDropdownVisible] = useState(false); // State to manage dropdown visibility
 
     useEffect(() => {
         const fetchEpisodes = async () => {
+            setLoading(true);
             try {
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/tv/${seriesId}/season/1?api_key=${apiKey}&language=fa-IR`
+                    `https://api.themoviedb.org/3/tv/${seriesId}/season/${seasonNumber}?api_key=${apiKey}&language=en-US`
                 );
                 const data = await response.json();
-                setEpisodes(data.episodes || []); 
-                setSeasonNumber(data.season_number);
+                setEpisodes(data.episodes || []);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching episodes:", error);
@@ -27,10 +30,24 @@ export default function Episode({ seriesId, showName , numberOfSeasons , popular
         };
 
         fetchEpisodes();
-    }, [seriesId]);
+    }, [seriesId, seasonNumber]);
+
+    const handleMenuClick = ({ key }) => {
+        setSeasonNumber(parseInt(key));
+    };
+
+    const menuItems = Array.from({ length: numberOfSeasons }, (_, index) => ({
+        label: `فصل ${index + 1}`,
+        key: (index + 1).toString(),
+    }));
+
+    const handleSeasonClick = (season) => {
+        setSeasonNumber(season);
+        setDropdownVisible(false); // Hide dropdown after selecting a season
+    };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <DotsLoader/>;
     }
 
     if (episodes.length === 0) {
@@ -38,16 +55,29 @@ export default function Episode({ seriesId, showName , numberOfSeasons , popular
     }
 
     return (
+        <ConfigProvider
+            theme={{
+                token: {
+                    colorBgBase: '#222327',  // Setting background color to black
+                    colorText: '#ccc',
+                },
+            }}
+        >
         <div className="d-flex flex-column align-start gap-3">
-        <div className='d-flex justify-start align-center gap-5'>
-            <span className="white-color containerInnerMovie seasonEpisodenumber border-radius-12 text-center ">
-                فصل {seasonNumber} 
-            </span>
-            <div className='d-flex justify-evenly align-center gap-2 seasonCounts border-radius-12'>
-                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" ><g clipath="url(#clip0_16448:5568)"><path fillRule="evenodd" clipRule="evenodd" d="M24.19 6H5C3.34 6 2 7.35 2 9V18.79C2 20.44 3.34 21.79 5 21.79H24.19C25.85 21.79 27.19 20.44 27.19 18.79V9C27.19 7.35 25.85 6 24.19 6ZM17.11 14.67L14.24 16.33C13.57 16.71 12.74 16.23 12.74 15.46V12.15C12.74 11.38 13.57 10.9 14.24 11.28L17.11 12.94C17.78 13.32 17.78 14.29 17.11 14.67Z" fill="white"></path><path fillRule="evenodd" clipRule="evenodd" d="M6.36001 24.0699H22.74C22.99 24.0699 23.19 23.8699 23.19 23.6199C23.19 23.3699 22.99 23.1699 22.74 23.1699H6.36001C6.11001 23.1699 5.91001 23.3699 5.91001 23.6199C5.90001 23.8699 6.11001 24.0699 6.36001 24.0699Z" fill="white"></path></g><defs><clipPath ><rect width="25.19" height="18.07" fill="white" transform="translate(2 6)"></rect></clipPath></defs></svg>
-                <span className='white-color font-14 font-weight-normal'>تعداد کل فصل‌ها: {numberOfSeasons}</span>
+            <div className='d-flex justify-start align-center gap-5'>
+            <Dropdown overlay={<Menu onClick={handleMenuClick} items={menuItems} />} trigger={['click']} placement='bottom'>
+                    <Link onClick={(e) => e.preventDefault()}>
+                        <Space className='white-color'>
+                            فصل {seasonNumber}
+                        </Space>
+                    </Link>
+                </Dropdown>
+                <div className='d-flex justify-evenly align-center gap-2 seasonCounts border-radius-12'>
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><g clipPath="url(#clip0_16448:5568)"><path fillRule="evenodd" clipRule="evenodd" d="M24.19 6H5C3.34 6 2 7.35 2 9V18.79C2 20.44 3.34 21.79 5 21.79H24.19C25.85 21.79 27.19 20.44 27.19 18.79V9C27.19 7.35 25.85 6 24.19 6ZM17.11 14.67L14.24 16.33C13.57 16.71 12.74 16.23 12.74 15.46V12.15C12.74 11.38 13.57 10.9 14.24 11.28L17.11 12.94C17.78 13.32 17.78 14.29 17.11 14.67Z" fill="white"></path><path fillRule="evenodd" clipRule="evenodd" d="M6.36001 24.0699H22.74C22.99 24.0699 23.19 23.8699 23.19 23.6199C23.19 23.3699 22.99 23.1699 22.74 23.1699H6.36001C6.11001 23.1699 5.91001 23.3699 5.91001 23.6199C5.90001 23.8699 6.11001 24.0699 6.36001 24.0699Z" fill="white"></path></g><defs><clipPath><rect width="25.19" height="18.07" fill="white" transform="translate(2 6)"></rect></clipPath></defs></svg>
+                    <span className='white-color font-14 font-weight-normal'>تعداد کل فصل‌ها: {numberOfSeasons}</span>
+                </div>
             </div>
-        </div>
+            
             <div className='d-flex flex-wrap col-12 ' >
                 {episodes.map((episode) => {
                     if (!episode.still_path) {
@@ -89,5 +119,8 @@ export default function Episode({ seriesId, showName , numberOfSeasons , popular
                 })}
             </div>
         </div>
+        </ConfigProvider>
     );
 }
+
+

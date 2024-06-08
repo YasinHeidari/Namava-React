@@ -1,7 +1,8 @@
 import React , {useState , useEffect , useRef} from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./footer.css";
 import FooterInfo from "./FooterInfo";
+import PreloadStyles from "../Loading/PreLoader";
+import "./index.css";
 
 export default function Footer() {
     const location = useLocation();
@@ -49,6 +50,7 @@ export default function Footer() {
 
     return (
         <div  className={`footer d-flex flex-column gap-3 justify-evenly ${isSearchMoviePage ? 'FixedFooter' : ''}`}>
+        <PreloadStyles href='./index.css' as='style'/>
             <FooterInfo isFixed={isFixed}/>
             {!isSearchMoviePage && (
                 <div>

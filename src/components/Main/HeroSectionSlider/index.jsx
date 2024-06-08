@@ -9,6 +9,7 @@ import Loading from "../../Loading";
 import { Link } from "react-router-dom";
 import IMDB from "../../../images/IMDB.svg";
 import ratingDecimal from "../../../helpers/ratingdecimal";
+import PreloadStyles from '../../Loading/PreLoader';
 import "./index.css";
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
@@ -22,7 +23,7 @@ export default function HeroSectionSlider() {
         const fetchHeroData = async () => {
             try {
                 const upcomingResponse = await fetch(
-                    `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&append_to_response=images,credits&include_image_language=en,jp,null`
                 );
                 const upcomingData = await upcomingResponse.json();
 
@@ -54,9 +55,11 @@ export default function HeroSectionSlider() {
 
     return (
         <div className="w-100 h-100">
+        <PreloadStyles href='./index.css' as='style'/>
             {loading ? (
                 <Loading />
             ) : (
+                
                 <Swiper
                     navigation={true}
                     slidesPerView={1}
@@ -86,13 +89,13 @@ export default function HeroSectionSlider() {
                                         <div className="col-4 d-flex flex-column justify-center align-start align-self-start gap-4 container-padding-2 h-100">
                                             <Link
                                                 to={`/movie/${movie.id}`}
-                                                className="w-100"
+                                                className="col-9"
                                             >
                                                 {movie.logoUrl && (
                                                     <img
                                                         loading="lazy"
-                                                        className="w-100 h-auto object-cover logoImg"
-                                                        src={`https://image.tmdb.org/t/p/w300/${movie.logoUrl}`}
+                                                        className="w-100 h-auto object-cover"
+                                                        src={`https://image.tmdb.org/t/p/original/${movie.logoUrl}`}
                                                         alt={
                                                             movie.name ||
                                                             movie.title
@@ -117,12 +120,14 @@ export default function HeroSectionSlider() {
                                                         )}
                                                     </p>
                                                 </div>
-                                                <div className="d-flex justify-center align-center">
-                                                    <p
-                                                        className="ageRestriction white-color font-14"
-                                                        style={{
+                                                <div className="d-flex justify-center align-center border-radius-12 " style={{
                                                             background: `linear-gradient(rgb(255, 213, 76) 0%, rgb(222, 171, 0) 100%)`,
-                                                        }}
+                                                            width:'37px',
+                                                            height:'24px'
+                                                        }}>
+                                                    <p
+                                                        className="ageRestriction black-color font-xl-14 "
+                                                        
                                                     >
                                                         {" "}
                                                         ۱۲+{" "}

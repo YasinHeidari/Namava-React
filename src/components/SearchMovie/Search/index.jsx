@@ -5,51 +5,80 @@ import IMDB from '../../../images/IMDB.svg';
 import SubScript from '../../../images/subScript.svg';
 import ratingDecimal from '../../../helpers/ratingdecimal';
 import PreResult from "../PreResult";
+import DotsLoader from '../../Loading/DotsLoader';
+import './index.css';
 
 export default function SearchInput({ selectedGenres, selectedCountries, isFilmSelected, isSerialSelected }) {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState({ persons: [], movies: [], keywords: [], collections: [], shows: [] });
   const [searchActive, setSearchActive] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [allResultsLoaded, setAllResultsLoaded] = useState(false);
 
-  useEffect(() => {
-    document.title = 'جستجو';
-    if (searchInput.length < 3) {
-      setSearchResults({ persons: [], movies: [], keywords: [], collections: [], shows: [] });
-      setSearchActive(false);
-      return;
-    }
 
-    const fetchSearchResults = async () => {
-      const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
-      const query = encodeURIComponent(searchInput);
-      const endpoints = [
-        `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${query}&language=fa-IR&append_to_response=images&include_image_language=fa`,
-        `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${query}&language=fa-IR&append_to_response=images&include_image_language=fa`,
-        `https://api.themoviedb.org/3/search/collection?api_key=${apiKey}&query=${query}&language=fa-IR&append_to_response=images&include_image_language=fa`,
-        `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${query}&language=en-US&append_to_response=images&include_image_language=en`,
-        `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${query}&language=en-US&append_to_response=images&include_image_language=en`,
-        `https://api.themoviedb.org/3/search/collection?api_key=${apiKey}&query=${query}&language=en-US&append_to_response=images&include_image_language=en`
-      ];
+const fetchSearchResults = async (page = 1) => {
+  const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
+  const query = encodeURIComponent(searchInput);
+  const endpoints = [
+    `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${query}&language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/search/collection?api_key=${apiKey}&query=${query}&language=en-US&page=${page}`
+  ];
 
-      try {
-        const [personsRes, moviesRes, keywordsRes, collectionsRes] = await Promise.all(
-          endpoints.map(endpoint => fetch(endpoint).then(res => res.json()))
-        );
+  try {
+    const responses = await Promise.all(
+      endpoints.map(endpoint => fetch(endpoint).then(res => res.json()))
+    );
 
-        setSearchResults({
-          persons: personsRes.results || [],
-          movies: moviesRes.results || [],
-          collections: collectionsRes.results || [],
-          shows: [] // Add shows here if you fetch them from another endpoint or initialize it as empty
-        });
-        setSearchActive(true);
-      } catch (error) {
-        console.error('Error fetching search results:', error);
-      }
-    };
+    const [personsRes, moviesRes, showsRes, collectionsRes] = responses;
 
+    setSearchResults(prevResults => ({
+      persons: page === 1 ? personsRes.results : [...prevResults.persons, ...personsRes.results],
+      movies: page === 1 ? moviesRes.results : [...prevResults.movies, ...moviesRes.results],
+      collections: page === 1 ? collectionsRes.results : [...prevResults.collections, ...collectionsRes.results],
+      shows: page === 1 ? showsRes.results : [...prevResults.shows, ...showsRes.results],
+    }));
+
+    setAllResultsLoaded(
+      !personsRes.total_pages ||
+      !moviesRes.total_pages ||
+      !showsRes.total_pages ||
+      !collectionsRes.total_pages ||
+      page >= personsRes.total_pages && page >= moviesRes.total_pages && page >= showsRes.total_pages && page >= collectionsRes.total_pages
+    );
+
+    setSearchActive(true);
+    setLoading(false);
+  } catch (error) {
+    console.error('Error fetching search results:', error);
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  if (searchInput.length >= 3) {
     fetchSearchResults();
-  }, [searchInput]);
+  }
+}, [searchInput]);
+
+useEffect(() => {
+  const handleScroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight && !loading && !allResultsLoaded) {
+      setLoading(true);
+      setTimeout(() => {
+        setCurrentPage(prevPage => prevPage + 1);
+        fetchSearchResults(currentPage + 1);
+      }, 1000);
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, [loading, currentPage, allResultsLoaded]);
+
+  
 
   const filteredMovies = searchResults.movies.filter(movie =>
     Array.isArray(movie.genre_ids) &&
@@ -61,8 +90,10 @@ export default function SearchInput({ selectedGenres, selectedCountries, isFilmS
 
 
   const filteredShows = searchResults.shows.filter(show =>
-    selectedGenres[show.genre_id] &&
-    selectedCountries[show.production_countries?.iso_3166_1]
+    Array.isArray(show.genre_ids) &&
+    Array.isArray(show.production_countries) &&
+    show.genre_ids.some(genre_id => selectedGenres[genre_id]) &&
+    show.production_countries.some(country => selectedCountries[country.iso_3166_1])
   );
 
   const displayedResults = () => {
@@ -84,7 +115,8 @@ export default function SearchInput({ selectedGenres, selectedCountries, isFilmS
           type="text"
           placeholder="فیلم، سریال، بازیگر و ژانر"
           value={searchInput}
-          onChange={e => setSearchInput(e.target.value)}
+          onChange={e => {setSearchInput(e.target.value);
+          setCurrentPage(1)}}
         />
       </div>
       <div className="d-flex flex-column justify-center">
@@ -104,7 +136,7 @@ export default function SearchInput({ selectedGenres, selectedCountries, isFilmS
                   ))}
                 </div>
                 {searchResults.persons[0].profile_path && (
-                  <div key={searchResults.persons[0].id} className="col-12 d-flex align-center gap-2 border-radius-12 personContainer">
+                  <div key={searchResults.persons[0].id} className="col-12 d-flex align-start  gap-2 border-radius-12 personContainer">
                     <div className='personImgContainer'>
                       <img className='col-12 h-auto border-radius-50' src={`https://image.tmdb.org/t/p/w200${searchResults.persons[0].profile_path}`} alt={searchResults.persons[0].name} />
                     </div>
@@ -119,30 +151,48 @@ export default function SearchInput({ selectedGenres, selectedCountries, isFilmS
               </div>
             )}
 
-            {searchResults.movies.length > 0 &&  (
-              <div className='d-flex flex-wrap gap-6 justify-start align-stretch '>
-                {searchResults.movies
-                  // Filter out movies with null or undefined poster_path
-                  .filter(movie => movie.poster_path)
-                  // Filter out duplicate movies based on ID
-                  .filter((movie, index, self) => self.findIndex(m => m.id === movie.id) === index)
-                  .map(movie => (
-                    <Link to={`/movie/${movie.id}`} key={movie.id} className="movieResultContainer col-2 d-flex flex-column gap-2 " style={{ marginBottom: '4rem' }}>
+            <div className='d-flex flex-wrap gap-6 justify-start align-stretch '>
+            {searchResults.movies
+              .filter(item => item.poster_path) // Filter out entries with null or undefined poster_path
+              .map(item => (
+                <Link
+                  key={item.id}
+                  to={`/movie/${item.id}`}
+                      className='movieResultContainer col-2 d-flex flex-column gap-2'
+                      style={{ marginBottom: '4rem' }}
+                    >
                       <div className='position-relative w-100 h-100'>
-                        <img className='w-100 h-100 border-radius-5 object-cover' src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie?.title || movie?.name} />
-                        <div className="darkMovieCover position-absolute z-1 top-0 right-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-2">
-                          <div className="d-flex justify-center align-center"><div><img src={IMDB} alt="IMDB" /></div><p className="white-color font-14">{ratingDecimal(movie.vote_average)}</p></div>
+                        <img className='w-100 h-100 border-radius-5 object-cover' src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item?.title || item?.name} />
+                        <div className='darkMovieCover position-absolute z-1 top-0 right-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-2'>
+                          <div className="d-flex justify-center align-center"><div><img src={IMDB} alt="IMDB" /></div><p className="white-color font-14">{ratingDecimal(item.vote_average)}</p></div>
                           <div className="d-flex justify-center align-center"><div><img src={SubScript} alt="SubScript" /></div><p className="white-color font-12"> زیرنویس </p></div>
-                          <p className="white-color font-12">فیلم - {movie.release_date ? movie.release_date.slice(0, 4) : ''}</p>
+                          <p className="white-color font-12">فیلم - {item.release_date?.slice(0, 4)}</p>
                         </div>
                       </div>
-                      <p className='font-14 white-color'>{movie.title}</p>
-                    </Link>
-                  ))}
-              </div>
-            )}
+                      <p className='font-14 white-color'>{item.title || item.name}</p>
+                    </Link>))}
+            {searchResults.shows
+              .filter(item => item.poster_path) // Filter out entries with null or undefined poster_path
+              .map(item => (
+                <Link
+                  key={item.id}
+                  to={`/show/${item.id}`} 
+                      className='showResultContainer col-2 d-flex flex-column gap-2'
+                      style={{ marginBottom: '4rem' }}
+                    >
+                      <div className='position-relative w-100 h-100'>
+                        <img className='w-100 h-100 border-radius-5 object-cover' src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item?.title || item?.name} />
+                        <div className='darkShowCover position-absolute z-1 top-0 right-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-2'>
+                          <div className="d-flex justify-center align-center"><div><img src={IMDB} alt="IMDB" /></div><p className="white-color font-14">{ratingDecimal(item.vote_average)}</p></div>
+                          <div className="d-flex justify-center align-center"><div><img src={SubScript} alt="SubScript" /></div><p className="white-color font-12"> زیرنویس </p></div>
+                          <p className="white-color font-12">سریال - {item.first_air_date?.slice(0, 4)}</p>
+                        </div>
+                      </div>
+                      <p className='font-14 white-color'>{item.title || item.name}</p>
+                    </Link>))}
+               
+            </div>
 
-            
 
             {displayedResults().length > 0 && (
               <div className='d-flex flex-wrap gap-6 justify-start align-stretch'>
@@ -163,6 +213,7 @@ export default function SearchInput({ selectedGenres, selectedCountries, isFilmS
                   ))}
               </div>
             )}
+            {loading && <DotsLoader />}
           </div>
         ) : (
           <div className="searchInactiveContainer d-flex justify-center align-center">

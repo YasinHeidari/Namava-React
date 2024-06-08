@@ -31,27 +31,20 @@ export default function CountryFilter({ checkboxes, setCheckboxes, handleCountry
     ];
 
     const handleCheckboxChange = (country, checked) => {
-        setCheckboxes({ ...checkboxes, [country]: checked });
-        handleCountryChange({ ...checkboxes, [country]: checked }); // Pass selected countries to parent component
-    };
-
-    const handleSelectOptionClick = () => {
-        setIsActive(!isActive);
-    };
-
-    const handleSearchChange = (e) => {
-        setFilter(e.target.value.toUpperCase());
+        const updatedCheckboxes = { ...checkboxes, [country]: checked };
+        setCheckboxes(updatedCheckboxes);
+        handleCountryChange(updatedCheckboxes); // Pass selected countries to parent component
     };
 
     return (
         <div className={`searchFilterBorder d-flex flex-column select-box ${isActive ? 'active' : ''}`}>
-            <div className="select-option d-flex justify-btw align-center" onClick={handleSelectOptionClick}>
+            <div className="select-option d-flex justify-btw align-center" onClick={() => setIsActive(!isActive)}>
                 <input type="text" placeholder="کشور سازنده" readOnly name="soValue" />
                 <img src={searchArrowDown} alt='arrow down' className={`searchArrowDown ${isActive ? 'rotate' : ''}`} />
             </div>
             <div className={`content col-12 z-0 ${isActive ? 'active' : ''}`}>
                 <div className="search" style={{ marginBottom: '1rem' }}>
-                    <input className='border-radius-12 col-12' type="text" id="optionSearch" placeholder="جستجو کشور سازنده" onChange={handleSearchChange} name="optionSearch" />
+                    <input className='border-radius-12 col-12' type="text" id="optionSearch" placeholder="جستجو کشور سازنده" onChange={(e) => setFilter(e.target.value.toUpperCase())} name="optionSearch" />
                 </div>
                 <span className='lighter-white-font line-height-24 font-14 font-weight-normal' style={{ marginTop: '1rem' }}>همه کشورها</span>
                 <ul className="options">

@@ -14,7 +14,6 @@ import ShowCommentContainer from "./ShowInnerComment";
 import Episode from "./Episodes";
 import ShowTooltip from "./ShowTooltip";
 
-
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
 
 export default function Show() {
@@ -24,86 +23,55 @@ export default function Show() {
     const [directors, setDirectors] = useState([]);
     const [logoUrl, setLogoUrl] = useState(null);
     const [images, setImages] = useState([]);
+    const [posters, setPosters] = useState([]); // Added posters state
     const [loading, setLoading] = useState(true);
     const [numberOfSeasons, setNumberOfSeasons] = useState(null);
     const [popularity, setPopularity] = useState(null);
 
-
     useEffect(() => {
         const fetchSeriesData = async () => {
             try {
-                console.log('Fetching series data...');
                 const seriesResponse = await fetch(
-                    `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=fa-IR&append_to_response=images`
+                    `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,fa,jp,null`
                 );
                 const seriesData = await seriesResponse.json();
-                console.log('Series data fetched:', seriesData);
                 setSeries(seriesData);
-    
-                console.log('Fetching images data...');
+
                 const imagesResponse = await fetch(
-                    `https://api.themoviedb.org/3/tv/${id}/images?api_key=${apiKey}&language=en-US&append_to_response=images`
+                    `https://api.themoviedb.org/3/tv/${id}/images?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,jp,null`
                 );
                 const imagesData = await imagesResponse.json();
-                console.log('Images data fetched:', imagesData);
-    
-                if (!imagesData || !imagesData.backdrops || !imagesData.logos) {
-                    console.warn('No images data found for the given series ID');
-                } else {
-                    console.log('Images data backdrops:', imagesData.backdrops);
-                    console.log('Images data logos:', imagesData.logos);
-    
-                    setImages(imagesData.backdrops);
-    
-                    const logoUrls = imagesData.logos.map(logo => logo.file_path).filter(path => path);
-                    console.log('Logo URLs:', logoUrls);
-    
-                    const firstNonNullLogoUrl = logoUrls.find(url => url !== null);
-                    console.log('First non-null logo URL:', firstNonNullLogoUrl);
-                    setLogoUrl(firstNonNullLogoUrl);
-                }
-    
-                console.log('Fetching credits data...');
+                setImages(imagesData.backdrops);
+
+                const logoUrls = imagesData?.logos.map(logo => logo.file_path).filter(path => path);
+                const firstNonNullLogoUrl = logoUrls.find(url => url !== null);
+                setLogoUrl(firstNonNullLogoUrl);
+                setPosters(imagesData.posters); // Set posters data
+
                 const creditsResponse = await fetch(
-                    `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=fa`
+                    `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,fa,jp`
                 );
                 const creditsData = await creditsResponse.json();
-                console.log('Credits data fetched:', creditsData);
-    
-                const topStars = creditsData.cast
-                    .slice(0, 5)
-                    .map((actor) => actor.name);
-                console.log('Top stars:', topStars);
+                const topStars = creditsData.cast.slice(0, 5).map(actor => actor.name);
                 setStars(topStars);
-    
-                const directorsList = creditsData.crew
-                    .filter((member) => member.job === "Director")
-                    .map((director) => director.name);
-                console.log('Directors list:', directorsList);
+
+                const directorsList = creditsData.crew.filter(member => member.job === "Director").map(director => director.name);
                 setDirectors(directorsList);
-    
+
                 setNumberOfSeasons(seriesData.number_of_seasons);
-                console.log('Number of seasons:', seriesData.number_of_seasons);
-    
                 setPopularity(seriesData.popularity);
-                console.log('Popularity:', seriesData.popularity);
-    
-                setLoading(false);
-                console.log('Loading set to false');
+
+                setLoading(false); // Set loading to false after fetching data
             } catch (error) {
-                console.error("Error fetching series data:", error);
-                setLoading(false);
-                console.log('Loading set to false due to error');
+                console.error('Error fetching series data:', error);
+                setLoading(false); // Set loading to false in case of error
             }
         };
-    
-        console.log('Setting document title...');
+
         document.title = `سریال ${series?.name || series?.title}`;
-    
-        console.log('Calling fetchSeriesData...');
         fetchSeriesData();
     }, [id]);
-    
+
     
 
     if (loading || series === null) {
@@ -111,8 +79,9 @@ export default function Show() {
     }
 
     const getGenreNames = () => {
-        return series.genres.map((genre) => genre.name).join(" ، ");
+        return series.genres ? series.genres.map((genre) => genre.name).join(" ، ") : '';
     };
+    
 
     return (
         <div style={{ marginBottom: "7rem" }}>
@@ -128,7 +97,7 @@ export default function Show() {
                 <div className="container" style={{ paddingTop: "5rem" }}>
                     <div className="d-flex flex-column justify-btw align-start h-100">
                         <div className="col-6 d-flex flex-column justify-center align-start align-self-start gap-2 container-padding-2 h-100">
-                            <Link to={`/series/${series.id}`} className="h-auto col-12" >
+                            <Link to={`/show/${series.id}`} className="h-auto col-12" >
                                 {logoUrl && (
                                     <img
                                         loading="lazy"
@@ -151,7 +120,7 @@ export default function Show() {
                                         />
                                     </div>
                                     <p className="white-color font-14">
-                                        {ratingDecimal(series.vote_average)}
+                                        {ratingDecimal(series?.vote_average)}
                                     </p>
                                 </div>
                                 <div className="d-flex justify-center align-center">
@@ -169,14 +138,14 @@ export default function Show() {
                                 </div>
                                 <div className="d-flex justify-center align-center">
                                     <p className="white-color font-12">
-                                        {series.first_air_date.substring(0, 4)}
+                                        {series.first_air_date?.substring(0, 4)}
                                     </p>
                                 </div>
                             </div>
                             <p className="white-color font-12 font-weight-normal">
-                                {series.overview.length > 50
-                                    ? `${series.overview.substring(0, 50)}...`
-                                    : series.overview}
+                            {series.overview && series.overview.length > 50
+                                ? `${series.overview?.substring(0, 50)}...`
+                                : series.overview}
                             </p>
                             <div className="d-flex align-center justify-evenly gap-2">
                                 <Link

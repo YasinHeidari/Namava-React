@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { Helmet } from 'react-helmet';
 
-const Loader = () => {
+const PreloadStyles = ({ href }) => {
   return (
-    <div>Loader</div>
-  )
-}
+    <Helmet>
+      <link rel="preload" href={href} as="style" />
+      <link rel="stylesheet" href={href} />
+    </Helmet>
+  );
+};
 
-export default Loader
+export default PreloadStyles;

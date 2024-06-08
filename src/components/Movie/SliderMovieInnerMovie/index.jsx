@@ -9,10 +9,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
 import ratingDecimal from "../../../helpers/ratingdecimal";
-import "./index.css";
-import MovieInfoHomePage from "../../Main/MovieInfoHomePage";
+import MovieInfoHomePage from "../../Main/MovieInfo";
 import IMDB from "../../../images/IMDB.svg";
 import SubScript from "../../../images/subScript.svg";
+import PreloadStyles from '../../Loading/PreLoader';
+import "./index.css";
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
 
@@ -55,6 +56,7 @@ export default function SliderMovieInner({ genreId, title }) {
 
     return (
         <div className="w-100">
+        <PreloadStyles href='./index.css' as='style'/>
             <div className="d-flex flex-column align-center gap-2">
                 <div className="containerInnerMovie">
                     {loading ? (
