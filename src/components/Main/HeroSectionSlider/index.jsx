@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { EffectFade, Navigation, Autoplay } from "swiper/modules";
+import { EffectFade, Navigation, Autoplay , Pagination } from "swiper/modules";
+
 import Loading from "../../Loading";
-import { Link } from "react-router-dom";
 import IMDB from "../../../images/IMDB.svg";
 import ratingDecimal from "../../../helpers/ratingdecimal";
 import PreloadStyles from '../../Loading/PreLoader';
@@ -52,6 +53,7 @@ export default function HeroSectionSlider() {
 
         fetchHeroData();
     }, [id]);
+    
 
     return (
         <div className="w-100 h-100">
@@ -61,14 +63,22 @@ export default function HeroSectionSlider() {
             ) : (
                 
                 <Swiper
-                    navigation={true}
+                    grabCursor={true}
+                    navigation={false}
                     slidesPerView={1}
                     effect={"fade"}
                     autoplay={{ delay: 4500 }}
                     loop={true}
-                    modules={[Navigation, EffectFade, Autoplay]}
-                    className="mySwiper heroSectionSlider containerMovie col-12 d-flex flex-row justify-evenly align-center"
-                    style={{ height: "100vh" }}
+                    pagination={true}
+                    modules={[Navigation, EffectFade, Autoplay, Pagination]}
+                    breakpoints={{
+                                    992: {
+                                        navigation: true,
+                                        pagination: false
+                                    },
+                                }}
+                    className="mySwiper heroSectionSlider col-12 d-flex flex-row justify-evenly align-center"
+                    
                 >
                     {movies.length > 0 ? (
                         movies.map((movie) => (
@@ -76,20 +86,17 @@ export default function HeroSectionSlider() {
                                 key={movie.id}
                                 className="w-100 movieSlider h-auto d-flex flex-column align-center"
                                 style={{
-                                    backgroundImage: `linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 46.875vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%), url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`,
-                                    backgroundSize: "cover",
+                                    backgroundImage: `linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 46.875vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%) , url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`,
                                     backgroundPosition: "left top",
+                                    backgroundRepeat: 'no-repeat'
                                 }}
                             >
-                                <div
-                                    className="container"
-                                    style={{ paddingTop: "7rem" }}
-                                >
-                                    <div className="d-flex flex-column justify-btw align-start h-100">
-                                        <div className="col-4 d-flex flex-column justify-center align-start align-self-start gap-4 container-padding-2 h-100">
+                                <div className="container heroSectionInfo">
+                                    <div className="d-flex flex-column justify-btw align-md-start align-sm-center align-xs-center h-100">
+                                        <div className="col-lg-4 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-center align-start align-self-start gap-4 container-padding-2 h-100">
                                             <Link
                                                 to={`/movie/${movie.id}`}
-                                                className="col-9"
+                                                className="col-lg-9 col-md-6"
                                             >
                                                 {movie.logoUrl && (
                                                     <img
@@ -103,10 +110,10 @@ export default function HeroSectionSlider() {
                                                     />
                                                 )}
                                             </Link>
-                                            <h1 className="font-xl-20 font-16 white-color">
+                                            <h1 className="font-xl-20 font-16 font-xs-14 white-color">
                                                 {movie.title || movie.name}
                                             </h1>
-                                            <div className="d-flex justify-start align-center gap-2">
+                                            <div className="d-lg-flex d-sm-none d-xs-none justify-start align-center gap-2">
                                                 <div className="d-flex justify-center align-center">
                                                     <div>
                                                         <img
@@ -142,7 +149,7 @@ export default function HeroSectionSlider() {
                                                     </p>
                                                 </div>
                                             </div>
-                                            <p className="white-color font-xl-14 font-weight-normal">
+                                            <p className="white-color font-xl-14 font-md-12 font-weight-normal d-lg-block d-sm-none d-xs-none">
                                                 {movie.overview.length > 100
                                                     ? `${movie.overview.substring(
                                                           0,
@@ -152,7 +159,7 @@ export default function HeroSectionSlider() {
                                             </p>
                                             <div className="d-flex align-center justify-evenly gap-2">
                                                 <Link
-                                                    to="/"
+                                                    to={`/movie/${movie.id}`}
                                                     className="movieInnerBtn white-bgc d-flex flex-row align-center gap-1 border-radius-12 line-height-42"
                                                 >
                                                     <svg
@@ -168,7 +175,7 @@ export default function HeroSectionSlider() {
                                                     </span>
                                                 </Link>
                                                 <Link
-                                                    to="/"
+                                                    to={`/movie/${movie.id}`}
                                                     className="movieInnerMore border-radius-12 line-height-42"
                                                 >
                                                     <span className="white-color font-12 font-weight-normal">
@@ -177,7 +184,7 @@ export default function HeroSectionSlider() {
                                                 </Link>
                                                 <Link
                                                     to={`/movie/${movie.id}`}
-                                                    className="movieInfoInnerMore d-flex flex-row align-center gap-1 border-radius-12 line-height-42"
+                                                    className="movieInfoInnerMore d-md-flex d-sm-none d-xs-none flex-row align-center gap-1 border-radius-12 line-height-42"
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
@@ -212,7 +219,7 @@ export default function HeroSectionSlider() {
                                                     </span>
                                                 </Link>
                                             </div>
-                                            <p className="light-white-font font-12 font-weight-normal">
+                                            <p className="light-white-font font-xl-12 font-10 d-md-block d-sm-none d-xs-none font-weight-normal">
                                                 ستارگان :{" "}
                                                 {movie.credits &&
                                                     movie.credits.cast &&

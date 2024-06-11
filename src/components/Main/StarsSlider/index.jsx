@@ -64,6 +64,17 @@ export default function StarsSlider({ title }) {
                         navigation={true}
                         slidesPerView={7}
                         modules={[Navigation, Keyboard]}
+                        breakpoints={{
+                                    576: {
+                                        slidesPerView: 3.1,
+                                    },
+                                    768: {
+                                        slidesPerView: 4.2,
+                                    },
+                                    992: {
+                                        slidesPerView: 7.2,
+                                    },
+                                }}
                         className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"
                     >
                         {stars.map((star, index) => (

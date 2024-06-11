@@ -36,7 +36,7 @@ export default function SliderPoster() {
                     }}
                     spaceBetween={15}
                     navigation={true}
-                    slidesPerView={3}
+                    slidesPerView={1}
                     slidesOffsetAfter={20}
                     slidesOffsetBefore={0}
                     slidesPerGroup={3}
@@ -45,10 +45,10 @@ export default function SliderPoster() {
                     modules={[Navigation, Keyboard]}
                     breakpoints={{
                         576: {
-                            slidesPerView: 3,
+                            slidesPerView: 1,
                         },
-                        768: {
-                            slidesPerView: 3,
+                        767: {
+                            slidesPerView: 2,
                         },
                         992: {
                             slidesPerView: 3,

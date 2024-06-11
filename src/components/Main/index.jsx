@@ -50,7 +50,7 @@ export default function Main() {
     }
 
     return (
-        <div className="d-flex flex-column align-start justify-evenly gap-8 container-padding-2">
+        <div className="d-flex flex-column align-start justify-evenly gap-lg-8 gap-md-6 gap-sm-4 gap-xs-2 container-padding-2">
             <ScrollToTop />
             <HeroSectionSlider />
             <SliderPoster />
