@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import classNames from "classnames";
 import PreloadStyles from "../Loading/PreLoader";
 import "./index.css";
+import SmallHeader from "./SmallHeader";
 
 export default function Header() {
     const location = useLocation();
@@ -61,7 +62,7 @@ export default function Header() {
         <Fragment>
         <PreloadStyles href='./index.css' as='style'/>
             <div
-                className={classNames("header col-12 z-3 top-0 right-0", { 'sticky': isHeaderVisible }, { 'transitioning': isTransitioning })}
+                className={classNames("header d-lg-block d-none col-12 z-3 top-0 right-0", { 'sticky': isHeaderVisible }, { 'transitioning': isTransitioning })}
                 style={{
                     backgroundImage: bgColor.backgroundImage,
                     backgroundColor: bgColor.backgroundColor,
@@ -102,32 +103,7 @@ export default function Header() {
                 </div>
             </div>
             <div className="dark-cover position-absolute z-1 top-0 right-0 d-none"></div>
-            <div className="sideMenu d-lg-none d-sm-flex d-xs-flex flex-column justify-evenly align-center gap-lg-1 gap-md-3 position-absolute top-0  bottom-0 z-3">
-                <div className="sideMenuLogo d-flex flex-row-reverse justify-start gap-2 align-center w-100">
-                    <Link to="/">
-                        <img src={require("../../images/namava-logo-white.svg").default} alt="" />
-                    </Link>
-                    <button className="hamburgerMenu d-xs-block sideMenuClose">
-                        <img src={require("../../images/hamburger-menu.svg").default} alt="" />
-                    </button>
-                </div>
-                <Link to={`/`} className="d-flex flex-row-reverse justify-start gap-2 align-center w-100">
-                    <p className={`font-12  ${isHomePage ? 'active' : ''}`}>خانه</p>
-                    <svg className={`menuItemImg d-lg-none d-sm-block d-xs-block  ${isHomePage ? 'active' : ''}`} xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fff"><path className="svg-c1" d="M14.73 16.013c1.226 0 2.223.997 2.223 2.223v4.922h-4.446v-4.922c0-1.226.997-2.223 2.223-2.223zm11.575-1.156l-8.641-8.641A4.12 4.12 0 0 0 14.73 5a4.12 4.12 0 0 0-2.934 1.215l-8.642 8.641c-.1.1-.155.232-.155.373s.055.274.155.373a.53.53 0 0 0 .747 0l1.979-1.979v8.153a2.44 2.44 0 0 0 2.436 2.436h12.826a2.44 2.44 0 0 0 2.436-2.436v-8.153l1.979 1.979a.54.54 0 0 0 .747 0c.1-.1.155-.232.155-.373s-.055-.274-.155-.373z" fill="#fff"></path></svg>
-                </Link>
-                <Link to='/' className="d-flex flex-row-reverse justify-start gap-2 align-center w-100">
-                    <p className="font-12">کودکان</p>
-                    <img className="menuItemImg d-lg-none d-sm-block d-xs-block" src={require("../../images/baby-menu.svg").default} alt="" />
-                </Link>
-                <Link to='/' className="d-flex flex-row-reverse justify-start gap-2 align-center w-100">
-                    <p className="font-12">پردیس نماوا</p>
-                    <img className="menuItemImg d-lg-none d-sm-block d-xs-block" src={require("../../images/wheel-cinema-menu.svg").default} alt="" />
-                </Link>
-                <Link to='/' className="d-flex flex-row-reverse justify-start gap-2 align-center w-100">
-                    <p className="font-12">نماوا مگ</p>
-                    <img className="menuItemImg d-lg-none d-sm-block d-xs-block" src={require("../../images/bookmark-menu.svg").default} alt='' />
-                </Link>
-            </div>
+            <SmallHeader/>
         </Fragment>
     );
 }

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Dropdown, Space, ConfigProvider } from 'antd';
-import './index.css';  // Ensure you have this CSS file for custom styling
 
 export default function FooterInfo({isFixed}) {
     const [visibleLinks, setVisibleLinks] = useState([]);
@@ -76,7 +75,7 @@ export default function FooterInfo({isFixed}) {
                                                 سایر لینک‌ها
                                             </Space>
                                             <img
-                                                src={require("../../../images/footerArrowDown.svg").default}
+                                                src={require("../../../../images/footerArrowDown.svg").default}
                                                 alt="Arrow Down"
                                                 className={`footerArrowDown ${isDropdownOpen ? 'rotate' : ''}`}
                                             />

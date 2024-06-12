@@ -84,11 +84,17 @@ export default function LatestMoviesSlider({ title }) {
                                         slidesPerView: 3.1,
                                     },
                                     768: {
-                                        slidesPerView: 4.2,
+                                        slidesPerView: 4.1,
                                     },
                                     992: {
-                                        slidesPerView: 7.2,
+                                        slidesPerView: 5.1,
                                     },
+                                    1200:{
+                                        slidesPerView: 7.1,
+                                    },
+                                    2560:{
+                                        slidesPerView: 9.1
+                                    }
                                 }}
                                 className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center"
                             >

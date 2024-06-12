@@ -66,7 +66,7 @@ export default function DirectorsSlider({ title }) {
                         }}
                         spaceBetween={30}
                         navigation={true}
-                        slidesPerView={3}
+                        slidesPerView={2.1}
                         modules={[Navigation, Keyboard]}
                         breakpoints={{
                             576: {

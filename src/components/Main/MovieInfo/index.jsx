@@ -93,7 +93,7 @@ export default function MovieInfoHomePage({ movie, buttonContent }) {
 
     return (
         <div
-            className="containerMovieInfo position-relative"
+            className="containerMovieInfo position-relative d-lg-block d-none"
             style={{
                 backgroundImage: `url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`,
                 backgroundSize: "cover",

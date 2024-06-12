@@ -25,7 +25,7 @@ export default function SliderPoster() {
     }, []);
 
     return (
-        <div className="container d-md-block d-sm-none d-xs-none">
+        <div className="container d-xl-block d-sm-none d-xs-none">
             {loading ? (
                 <Loading />
             ) : (

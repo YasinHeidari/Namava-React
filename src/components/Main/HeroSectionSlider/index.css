@@ -1,5 +1,4 @@
 .heroSectionSlider{
-  background-color: var(--footer-bgc-black);
   height: auto;
 }
 .heroSectionInfo{
@@ -32,44 +31,69 @@
 
 
 @media only screen and (max-width:576px){
-  
+  .heroSectionSlider .movieSlider{
+    background-size: cover;
+    background-position: center top;
+  }
+  .heroSectionSlider{
+    height: 65vh;
+  }
+  .heroSectionInfo{
+    padding-top: 30vh
+  }
+  .heroSectionSlider.mySwiper  .swiper-button-prev, .heroSectionSlider.mySwiper .swiper-button-next ,
+  .heroSectionSlider.mySwiper  .swiper-button-prev::after, .heroSectionSlider.mySwiper .swiper-button-next::after{
+    display :none !important;
+  }
+  .swiper-pagination{
+    display: block;
+  }
 
 }
 @media only screen and (min-width:576px){
   .heroSectionSlider{
-    height: 30vh;
-  }
-}
-@media only screen and (min-width:768px){
-  .heroSectionSlider{
-    height: 62vh !important;
-  }
-  .heroSectionInfo{
-    padding-top: 4.5rem;
-  }
-  .heroSectionSlider.mySwiper  .swiper-button-prev{
-    right: 85% !important;
-  }
-  .heroSectionSlider.mySwiper .swiper-button-next{
-    left: 4%;
+    height: 60vh;
   }
   .heroSectionSlider .movieSlider{
     background-size: contain;
   }
+  .heroSectionSlider.mySwiper  .swiper-button-prev, .heroSectionSlider.mySwiper .swiper-button-next ,
+  .heroSectionSlider.mySwiper  .swiper-button-prev::after, .heroSectionSlider.mySwiper .swiper-button-next::after{
+    display :none !important;
+  }
+  .swiper-pagination{
+    display: block;
+  }
+}
+@media only screen and (min-width:768px){
+  .heroSectionInfo{
+    padding-top: 4.5rem;
+  }
+  .heroSectionSlider .movieSlider{
+    background-position: left top;
+    background-size: cover;
+  }
 }
 @media only screen and (min-width:992px){
-  .heroSectionSlider{
-    margin-bottom: 2rem;
-  }
   .heroSectionSlider {
-    height: 100vh !important;
+    margin-bottom: -6.03125vw;
   }
   .heroSectionSlider.mySwiper  .swiper-button-prev{
-    right: 90% !important;
+    right: 87% !important;
   }
   .heroSectionSlider.mySwiper .swiper-button-next{
     left: 4%;
   }
+  .swiper-pagination{
+    display: none;
+  }
+  .heroSectionSlider.mySwiper  .swiper-button-prev, .heroSectionSlider.mySwiper .swiper-button-next {
+    display :flex !important;
+  }
+  .heroSectionSlider.mySwiper  .swiper-button-prev::after, .heroSectionSlider.mySwiper .swiper-button-next::after {
+    display :flex !important;
+  }
+  
 }
 
 @media only screen and (min-width:1280px){
@@ -80,11 +104,30 @@
   .heroSectionSlider .movieSlider{
     background-size: cover;
   }
+  .heroSectionInfo{
+    padding-top: 7rem;
+  }
   
 }
 @media only screen and (min-width: 1440px){
+  
   .heroSectionSlider.mySwiper  .swiper-button-prev, .heroSectionSlider.mySwiper .swiper-button-next{
     top: 80% !important;
-    
   }
+  .heroSectionSlider.mySwiper  .swiper-button-prev{
+    right: 90% !important;
+  }
+  .heroSectionSlider.mySwiper .swiper-button-next{
+    left: 4%;
+  }
+}
+@media only screen and (min-width : 2560px){
+  .heroSectionInfo{
+    padding-top: 9.375vw;
+  }
+  .heroSectionSlider.mySwiper  .swiper-button-prev, .heroSectionSlider.mySwiper .swiper-button-next{
+    width: 60px;
+    height: 60px;
+  }
+  
 }

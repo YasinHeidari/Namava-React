@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { EffectFade, Navigation, Autoplay , Pagination } from "swiper/modules";
-
+import getResponsiveBackgroundImage from "../../../helpers/ResponsiveBgImage";
 import Loading from "../../Loading";
 import IMDB from "../../../images/IMDB.svg";
 import ratingDecimal from "../../../helpers/ratingdecimal";
@@ -19,6 +19,7 @@ export default function HeroSectionSlider() {
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const [movies, setMovies] = useState([]);
+    const [backgroundImage, setBackgroundImage] = useState('');
 
     useEffect(() => {
         const fetchHeroData = async () => {
@@ -52,7 +53,28 @@ export default function HeroSectionSlider() {
         };
 
         fetchHeroData();
+        
     }, [id]);
+    const updateBackgroundImage = () => {
+        const slides = document.querySelectorAll('.movieSlider');
+        slides.forEach(slide => {
+            const movieId = slide.getAttribute('data-movie-id');
+            const movie = movies.find(movie => movie.id === Number(movieId));
+            if (movie) {
+                slide.style.backgroundImage = getResponsiveBackgroundImage(movie);
+            }
+        });
+    };
+
+    useEffect(() => {
+        if (!loading) {
+            updateBackgroundImage();
+            window.addEventListener('resize', updateBackgroundImage);
+            return () => {
+                window.removeEventListener('resize', updateBackgroundImage);
+            };
+        }
+    }, [loading, movies]);
     
 
     return (
@@ -64,39 +86,32 @@ export default function HeroSectionSlider() {
                 
                 <Swiper
                     grabCursor={true}
-                    navigation={false}
+                    navigation={true}
                     slidesPerView={1}
                     effect={"fade"}
-                    autoplay={{ delay: 4500 }}
+                    autoplay={{ delay: 120000 }}
                     loop={true}
                     pagination={true}
                     modules={[Navigation, EffectFade, Autoplay, Pagination]}
-                    breakpoints={{
-                                    992: {
-                                        navigation: true,
-                                        pagination: false
-                                    },
-                                }}
                     className="mySwiper heroSectionSlider col-12 d-flex flex-row justify-evenly align-center"
-                    
+
                 >
                     {movies.length > 0 ? (
                         movies.map((movie) => (
                             <SwiperSlide
                                 key={movie.id}
+                                data-movie-id={movie.id}
                                 className="w-100 movieSlider h-auto d-flex flex-column align-center"
                                 style={{
-                                    backgroundImage: `linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 46.875vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%) , url(https://media.themoviedb.org/t/p/original/${movie.backdrop_path})`,
-                                    backgroundPosition: "left top",
                                     backgroundRepeat: 'no-repeat'
                                 }}
                             >
                                 <div className="container heroSectionInfo">
                                     <div className="d-flex flex-column justify-btw align-md-start align-sm-center align-xs-center h-100">
-                                        <div className="col-lg-4 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-center align-start align-self-start gap-4 container-padding-2 h-100">
+                                        <div className=" col-md-7 col-sm-12 col-xs-12 d-flex flex-column justify-center align-md-start align-sm-center align-xs-center align-self-start gap-4 gap-xxxl-7 gap-xs-3 container-padding-2 h-100">
                                             <Link
                                                 to={`/movie/${movie.id}`}
-                                                className="col-lg-9 col-md-6"
+                                                className="col-md-5 col-sm-3 col-xs-3"
                                             >
                                                 {movie.logoUrl && (
                                                     <img
@@ -110,7 +125,7 @@ export default function HeroSectionSlider() {
                                                     />
                                                 )}
                                             </Link>
-                                            <h1 className="font-xl-20 font-16 font-xs-14 white-color">
+                                            <h1 className="font-xxxl-24 font-xl-20 font-16 font-xs-14 white-color">
                                                 {movie.title || movie.name}
                                             </h1>
                                             <div className="d-lg-flex d-sm-none d-xs-none justify-start align-center gap-2">
@@ -149,7 +164,7 @@ export default function HeroSectionSlider() {
                                                     </p>
                                                 </div>
                                             </div>
-                                            <p className="white-color font-xl-14 font-md-12 font-weight-normal d-lg-block d-sm-none d-xs-none">
+                                            <p className="white-color font-xxxl-16 font-xl-14 font-md-12 font-weight-normal d-lg-block d-sm-none d-xs-none">
                                                 {movie.overview.length > 100
                                                     ? `${movie.overview.substring(
                                                           0,
@@ -219,7 +234,7 @@ export default function HeroSectionSlider() {
                                                     </span>
                                                 </Link>
                                             </div>
-                                            <p className="light-white-font font-xl-12 font-10 d-md-block d-sm-none d-xs-none font-weight-normal">
+                                            <p className="light-white-font font-xxxl-14 font-xl-12 font-10 d-md-block d-sm-none d-xs-none font-weight-normal">
                                                 ستارگان :{" "}
                                                 {movie.credits &&
                                                     movie.credits.cast &&
