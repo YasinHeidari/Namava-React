@@ -122,28 +122,28 @@ export default function IranMoviesSlider({ title }) {
                                                         alt={movie.title}
                                                     />
                                                     <div className="darkMovieCover position-absolute z-1 top-0 right-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-5">
-                                                        <div className="d-flex justify-center align-center">
-                                                            <div>
-                                                                <img
+                                                        <div className="d-flex justify-center align-end  vertical-middle">
+                                                            
+                                                                <img className="d-inline-block"
                                                                     src={IMDB}
                                                                     alt=""
                                                                 />
-                                                            </div>
+                                                            
                                                             <p className="white-color font-14">
                                                                 {ratingDecimal(
                                                                     movie.vote_average
                                                                 )}
                                                             </p>
                                                         </div>
-                                                        <div className="d-flex justify-center align-center">
-                                                            <div>
-                                                                <img
+                                                        <div className="d-flex justify-center align-center vertical-middle">
+                                                            
+                                                                <img className="d-inline-block"
                                                                     src={
                                                                         SubScript
                                                                     }
                                                                     alt=""
                                                                 />
-                                                            </div>
+                                                            
                                                             <p className="white-color font-12">
                                                                 {" "}
                                                                 زیرنویس{" "}

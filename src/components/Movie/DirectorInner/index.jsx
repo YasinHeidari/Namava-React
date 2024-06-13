@@ -7,7 +7,6 @@ import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
 import Loading from "../../Loading";
 import { Link } from "react-router-dom";
-import "./index.css";
 
 const apiKey = '4fba95dbf46cd77d415830c228c9ef01'; // Replace with your actual API key
 
@@ -50,7 +49,24 @@ export default function DirectorInner({ movieId }) {
                     }}
                     spaceBetween={30}
                     navigation={true}
-                    slidesPerView={7}
+                    slidesPerView={3}
+                    watchOverflow={true}
+                    breakpoints={{
+                        576: {
+                            slidesPerView: 3.1,
+                        },
+                        768: {
+                            slidesPerView: 4.1,
+                            spaceBetween:20,
+                        },
+                        992: {
+                            slidesPerView: 5.1,
+                        },
+                        1440: {
+                            slidesPerView: 7.1,
+                            spaceBetween:30,
+                        },
+                    }}
                     modules={[Navigation, Keyboard]}
                     className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"
                 >
@@ -61,7 +77,7 @@ export default function DirectorInner({ movieId }) {
                                     <img loading="lazy"
                                         src={`https://image.tmdb.org/t/p/w500/${director.profile_path}`}
                                         alt={director.name}
-                                        className="DirectorImg object-cover border-radius-50"
+                                        className="col-lg-12 col-9 col-xs-12 DirectorImg object-cover border-radius-50"
                                     />
                                 ) : (
                                     <p className="white-color">No image available</p>

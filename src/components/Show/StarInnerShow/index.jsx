@@ -51,15 +51,21 @@ export default function StarInnerShow({ seriesId }) {
                     spaceBetween={30}
                     navigation={true}
                     slidesPerView={3}
+                    watchOverflow={true}
                     breakpoints={{
                         576: {
-                            slidesPerView: 3,
+                            slidesPerView: 3.1,
                         },
                         768: {
-                            slidesPerView: 4,
+                            slidesPerView: 4.1,
+                            spaceBetween:20,
                         },
                         992: {
-                            slidesPerView: 7,
+                            slidesPerView: 5.1,
+                        },
+                        1440: {
+                            slidesPerView: 7.1,
+                            spaceBetween:30,
                         },
                     }}
                     modules={[Navigation, Keyboard]}
@@ -75,7 +81,7 @@ export default function StarInnerShow({ seriesId }) {
                                     loading="lazy"
                                     src={`https://image.tmdb.org/t/p/w500/${star.profile_path}`}
                                     alt={star.name}
-                                    className="starImg border-radius-50 object-cover"
+                                    className="col-lg-12 col-9 col-xs-12 starImg border-radius-50 object-cover"
                                 />
                                 <h5 className="white-color">{star.name}</h5>
                                 <p className="font-lg-14 line-height-lg-24 light-white-font font-weight-normal">

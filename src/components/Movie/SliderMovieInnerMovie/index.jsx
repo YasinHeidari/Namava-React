@@ -83,11 +83,17 @@ export default function SliderMovieInner({ genreId, title }) {
                                         slidesPerView: 3.1,
                                     },
                                     768: {
-                                        slidesPerView: 4.2,
+                                        slidesPerView: 4.1,
                                     },
                                     992: {
-                                        slidesPerView: 7.2,
+                                        slidesPerView: 5.1,
                                     },
+                                    1200:{
+                                        slidesPerView: 7.1,
+                                    },
+                                    2560:{
+                                        slidesPerView: 9.1
+                                    }
                                 }}
                                 className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center"
                             >
@@ -117,28 +123,26 @@ export default function SliderMovieInner({ genreId, title }) {
                                                         alt={movie.title}
                                                     />
                                                     <div className="darkMovieCover position-absolute z-1 top-0 right-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-5">
-                                                        <div className="d-flex justify-center align-center">
-                                                            <div>
-                                                                <img
-                                                                    src={IMDB}
+                                                        <div className="d-flex justify-center align-end  vertical-middle">
+                                                                <img className="d-inline-block"
+                                                                    src={IMDB} 
                                                                     alt=""
                                                                 />
-                                                            </div>
+                            
                                                             <p className="white-color font-14">
                                                                 {ratingDecimal(
                                                                     movie.vote_average
                                                                 )}
                                                             </p>
                                                         </div>
-                                                        <div className="d-flex justify-center align-center">
-                                                            <div>
-                                                                <img
+                                                        <div className="d-flex justify-center align-center vertical-middle">
+                                                            
+                                                                <img className="d-inline-block"
                                                                     src={
                                                                         SubScript
                                                                     }
                                                                     alt=""
                                                                 />
-                                                            </div>
                                                             <p className="white-color font-12">
                                                                 {" "}
                                                                 زیرنویس{" "}
@@ -155,7 +159,7 @@ export default function SliderMovieInner({ genreId, title }) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h5 className="white-color line-height-28">
+                                                <h5 className="white-color font-md-12 line-height-28">
                                                     {movie.title || movie.name}
                                                 </h5>
                                                 {selectedSliderIndex ===

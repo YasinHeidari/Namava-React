@@ -6,13 +6,15 @@ import CinemaSlider from "../CinemaSlider";
 import IMDB from "../../images/IMDB.svg";
 import SubScript from "../../images/subScript.svg";
 import ScrollToTop from "../../helpers/ScrollToTop";
-import "./index.css";
 import SpinnerLoading from "../Loading/SpinnerLoading";
 import DirectorInnerShow from "./DirectorInnerShow";
 import StarInnerShow from "./StarInnerShow";
 import ShowCommentContainer from "./ShowInnerComment";
 import Episode from "./Episodes";
-import ShowTooltip from "./ShowTooltip";
+import getResponsiveBackgroundImageShow from "../../helpers/ResponsiveBgImageShow";
+import showTooltipsm from "./ShowTooltip/showTooltipsm";
+import "./index.css";
+
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
 
@@ -49,7 +51,7 @@ export default function Show() {
                 setPosters(imagesData.posters); // Set posters data
 
                 const creditsResponse = await fetch(
-                    `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,fa,jp`
+                    `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=en,fa,jp`
                 );
                 const creditsData = await creditsResponse.json();
                 const topStars = creditsData.cast.slice(0, 5).map(actor => actor.name);
@@ -72,6 +74,23 @@ export default function Show() {
         fetchSeriesData();
     }, [id]);
 
+    useEffect(() => {
+        if (!loading && series) {
+          updateBackgroundImage();
+          window.addEventListener('resize', updateBackgroundImage);
+          return () => {
+            window.removeEventListener('resize', updateBackgroundImage);
+          };
+        }
+      }, [loading, series]);
+    
+      const updateBackgroundImage = () => {
+        const heroSection = document.querySelector('.heroSectionMovie');
+        if (heroSection && series) {
+          heroSection.style.backgroundImage = getResponsiveBackgroundImageShow(series);
+        }
+      };
+
     
 
     if (loading || series === null) {
@@ -79,25 +98,27 @@ export default function Show() {
     }
 
     const getGenreNames = () => {
-        return series.genres ? series.genres.map((genre) => genre.name).join(" ، ") : '';
+        if (series.genres && series.genres.length > 0) {
+            return series.genres.map((genre) => genre.name).join(" ، ");
+        } else {
+            return 'هیچ ژانری ندارد :|';
+        }
     };
+    
     
 
     return (
         <div style={{ marginBottom: "7rem" }}>
             <ScrollToTop />
             <div
-                className="containerMovie"
-                style={{
-                    backgroundImage: ` radial-gradient(circle at 33% 40%, transparent 20%, #1a1a1a 75%),linear-gradient(rgba(18, 18, 18, 0) 10vw, rgb(18, 18, 18) 46.875vw), linear-gradient(to left, rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0) 50%),url(https://media.themoviedb.org/t/p/original/${series.backdrop_path})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "left top",
-                }}
+                className="containerMovie heroSectionMovie"
+                data-show-id={series.id}
+                
             >
                 <div className="container" style={{ paddingTop: "5rem" }}>
                     <div className="d-flex flex-column justify-btw align-start h-100">
-                        <div className="col-6 d-flex flex-column justify-center align-start align-self-start gap-2 container-padding-2 h-100">
-                            <Link to={`/show/${series.id}`} className="h-auto col-12" >
+                        <div className="col-md-6 col-12 d-flex flex-column justify-center align-lg-start align-center align-self-lg-start align-self-center gap-2 container-padding-2 h-100">
+                            <Link to={`/show/${series.id}`} className="col-xl-9 col-lg-6 d-lg-block d-none h-auto" >
                                 {logoUrl && (
                                     <img
                                         loading="lazy"
@@ -111,26 +132,26 @@ export default function Show() {
                                 {series?.title || series?.name}
                             </h1>
                             <div className="d-flex justify-start align-center gap-2">
-                                <div className="d-flex justify-center align-center">
-                                    <div>
-                                        <img
+                                <div className="d-flex justify-center align-end  vertical-middle">
+                                    
+                                        <img className="d-inline-block"
                                             loading="lazy"
                                             src={IMDB}
                                             alt="IMDB"
                                         />
-                                    </div>
+                                    
                                     <p className="white-color font-14">
                                         {ratingDecimal(series?.vote_average)}
                                     </p>
                                 </div>
-                                <div className="d-flex justify-center align-center">
-                                    <div>
-                                        <img
+                                <div className="d-flex justify-center align-center vertical-middle">
+                                    
+                                        <img className="d-inline-block"
                                             loading="lazy"
                                             src={SubScript}
                                             alt="subScript"
                                         />
-                                    </div>
+                                    
                                     <p className="white-color font-12">
                                         {" "}
                                         زیرنویس{" "}
@@ -172,7 +193,7 @@ export default function Show() {
                                         پیش نمایش
                                     </span>
                                 </Link>
-                                <ShowTooltip/>
+                                <showTooltipsm/>
                             </div>
                             <p className="light-white-font font-12 font-weight-normal">
                                 ستارگان: {stars.join(" ، ")}
@@ -180,9 +201,8 @@ export default function Show() {
                             <p className="light-white-font font-12 font-weight-normal">
                                 کارگردان: {directors.length > 0 ? directors.join(" - ") : "ندارد"}
                             </p>
-                            <p className="light-white-font font-12 font-weight-normal">
-                                دسته بندی ها: {getGenreNames()}
-                            </p>
+                            
+                            <showTooltipsm/>
                         </div>
                     </div>
                 </div>
@@ -195,7 +215,7 @@ export default function Show() {
                             تصاویر و جزییات
                         </h3>
                         <div
-                            className="d-flex justify-start align-self-start gap-2"
+                            className="d-flex align-self-start gap-xl-2 justify-lg-evenly flex-lg-nowrap flex-wrap"
                             style={{ marginBottom: "1rem" }}
                         >
                             {images.slice(0, 5).map((image) => (

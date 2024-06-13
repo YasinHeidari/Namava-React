@@ -1,11 +1,45 @@
 .commentContainer{
     background-color: var(--light-black);
-    width: 65%;
+    width: 100%;
     margin: 0 auto;
-    padding: 40px 24px;
+    padding: 40px 32px;
 }
-input[type=text]{
+.commentInputContainer input[type=text]{
     outline: none;
     padding: 12px 24px;
     font-size: 12px;
+}
+.commentInput {
+    height: 52px;
+    border: none;
+}
+
+
+@media only screen and (max-width:576px){
+    .commentContainer{
+        width: 100%;
+        margin: 0;
+        padding: 32px 20px;
+    }
+    .commentInputContainer{
+        margin-top: .5rem;
+    }
+    .commentInput{
+        height: 40px;
+    }
+}
+@media only screen and (min-width:768px){
+    .commentContainer{
+        width: 100%;
+        margin: 0 auto;
+        padding: 40px 32px;
+    }
+}
+@media only screen and (min-width:1280px){
+    .commentContainer{
+        width: 65%;
+        margin: 0 auto;
+        padding: 40px 24px;
+        border-radius: 12px;
+    }
 }

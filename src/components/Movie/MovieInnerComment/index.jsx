@@ -32,23 +32,22 @@ export default function CommentContainer({ movieId }) {
     }, [movieId]);
 
     return (
-        <div className="commentContainer border-radius-12">
-            <div className="d-flex flex-column w-100 gap-7">
+        <div className="commentContainer">
+            <div className="d-flex flex-column w-100 gap-md-7 gap-2">
                 <h3 className="font-lg-18 white-color text-center">نظرات کاربران</h3>
                 <div className="d-flex justify-center align-start gap-2">
                     <div className="d-flex justify-start" style={{ marginTop: '.5rem' }}>
                         <img
                             style={{ width: '40px', height: '40px' }}
-                            className="w-50 h-auto object-cover border-radius-50"
+                            className=" w-50 h-auto object-cover border-radius-50"
                             src="https://static.namava.ir/Content/Upload/Images/e9b409a9-88d8-4ee5-a81e-6cddc50782b0.png?anchor=middlecenter&crop=auto&scale=both&w=300&h=300"
                             alt="man"
                         />
                     </div>
                     <div className="col-12 d-flex justify-btw align-start gap-2">
-                        <div className="col-12 d-flex flex-column align-stretch gap-2">
+                        <div className="col-12 d-flex flex-column align-stretch gap-2 commentInputContainer">
                             <input
-                                className="w-100 border-radius-12 white-bgc"
-                                style={{ height: '52px', border: 'none' }}
+                                className="w-100 border-radius-12 white-bgc commentInput"
                                 placeholder="نظرتان درباره این فیلم چیست؟"
                                 type="text"
                             />

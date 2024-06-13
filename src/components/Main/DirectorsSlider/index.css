@@ -1,7 +1,22 @@
 .DirectorsSlider{
     width: 100px;
 }
+
 .DirectorImg{
-    width: 100%;
-    height: 12rem;
+    height: 5rem;
+}
+@media only screen and (min-width:576px) {
+    .DirectorImg{
+        height: 8rem;
+    }
+}
+@media only screen and (min-width:768px) {
+    .DirectorImg{
+        height: 8rem;
+    }
+}
+@media only screen and (min-width:992px) {
+    .DirectorImg{
+        height: 12rem;
+    }
 }

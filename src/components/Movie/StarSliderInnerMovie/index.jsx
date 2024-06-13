@@ -7,7 +7,6 @@ import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
 import Loading from "../../Loading";
 import { Link } from "react-router-dom";
-import "./index.css";
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
 //?input-dependent effect
@@ -20,7 +19,7 @@ export default function StarInner({ movieId }) {
             try {
                 // Fetch cast for the given movie ID
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=fa`
+                    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=fa`
                 );
                 const data = await response.json();
                 const cast = data.cast.filter(
@@ -49,18 +48,24 @@ export default function StarInner({ movieId }) {
                     keyboard={{
                         enabled: true,
                     }}
-                    spaceBetween={30}
+                    spaceBetween={15}
                     navigation={true}
                     slidesPerView={3}
+                    watchOverflow={true}
                     breakpoints={{
                         576: {
-                            slidesPerView: 3,
+                            slidesPerView: 3.1,
                         },
                         768: {
-                            slidesPerView: 4,
+                            slidesPerView: 4.1,
+                            spaceBetween:20,
                         },
                         992: {
-                            slidesPerView: 7,
+                            slidesPerView: 5.1,
+                        },
+                        1440: {
+                            slidesPerView: 7.1,
+                            spaceBetween:30,
                         },
                     }}
                     modules={[Navigation, Keyboard]}
@@ -76,7 +81,7 @@ export default function StarInner({ movieId }) {
                                     loading="lazy"
                                     src={`https://image.tmdb.org/t/p/w500/${star.profile_path}`}
                                     alt={star.name}
-                                    className="starImg border-radius-50 object-cover"
+                                    className="col-lg-12 col-9 col-xs-12 starImg border-radius-50 object-cover"
                                 />
                                 <h5 className="white-color">{star.name}</h5>
                                 <p className="font-lg-14 line-height-lg-24 light-white-font font-weight-normal">

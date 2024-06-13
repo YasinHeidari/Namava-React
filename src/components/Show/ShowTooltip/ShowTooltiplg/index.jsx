@@ -1,10 +1,10 @@
 import { Tooltip } from "antd";
-import movieInnerLike from "../../../images/movieInnerLike.svg";
-import movieInnerDisLike from "../../../images/movieInnerDisLike.svg";
+import movieInnerLike from "../../../../images/movieInnerLike.svg";
+import movieInnerDisLike from "../../../../images/movieInnerDisLike.svg";
 
-export default function ShowTooltip(){
+export default function showTooltiplg(){
     return(
-        <div className="d-flex align-center justify-evenly gap-2">
+        <div className="d-lg-flex d-none align-center justify-evenly gap-2">
             <div className="d-flex justify-center align-center border-radius-50 movieInnerIconHover">
                 <Tooltip
                     placement="bottom"

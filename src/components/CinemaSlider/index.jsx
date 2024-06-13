@@ -34,7 +34,7 @@ export default function CinemaSlider() {
                             }}
                             spaceBetween={15}
                             navigation={true}
-                            slidesPerView={3}
+                            slidesPerView={1}
                             slidesOffsetAfter={20}
                             slidesOffsetBefore={0}
                             slidesPerGroup={2}
@@ -42,15 +42,12 @@ export default function CinemaSlider() {
                             speed={800}
                             modules={[Navigation, Keyboard]}
                             breakpoints={{
-                                1: {
-                                    slidesPerView: 1,
-                                },
                                 576: {
-                                    slidesPerView: 1,
+                                    slidesPerView: 2.1,
                                 },
-                                768: {
-                                    slidesPerView: 3,
-                                },
+                                1280:{
+                                    slidesPerView:3,
+                                }
                             }}
                             className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center"
                         >

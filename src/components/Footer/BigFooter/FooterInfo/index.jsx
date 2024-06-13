@@ -24,7 +24,7 @@ export default function FooterInfo({isFixed}) {
     ];
 
     const updateLinks = () => {
-        const maxVisibleItems = window.innerWidth < 768 ? 4 : 8;
+        const maxVisibleItems = window.innerWidth < 1280 ? 5 : 8;
         setVisibleLinks(footerLinks.slice(0, maxVisibleItems));
         setDropdownItems(footerLinks.slice(maxVisibleItems));
     };

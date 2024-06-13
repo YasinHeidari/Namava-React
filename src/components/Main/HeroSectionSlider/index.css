@@ -1,3 +1,6 @@
+.heroSectionSlider .movieSlider{
+  background-repeat: no-repeat;
+}
 .heroSectionSlider{
   height: auto;
 }

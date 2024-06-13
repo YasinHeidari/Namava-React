@@ -57,7 +57,7 @@ export default function BigFooter() {
             {!isSearchMoviePage && (
                 <div>
                 <div className="footerInfo" ref={footerRef}>
-                <div className="container-xxl">
+                <div className="container-xxl container">
                     <div className="d-flex flex-column gap-3">
                         <div className="footerDownload d-flex flex-row flex-xs-column justify-btw align-center border-radius-5 gap-1 gap-xs-2">
                             <div className="footerLogo d-flex justify-start gap-2 align-center col-xl-7 col-lg-9 col-12">
@@ -172,7 +172,7 @@ export default function BigFooter() {
                     </div>
                 </div>
             </div>
-            <div className="container-xxl" >
+            <div className="container-xxl container" >
                 <div className="footerDescription d-flex flex-lg-row flex-column-reverse justify-lg-btw justify-center gap-1">
                     <div className="footerDescriptionText col-lg-9 col-12">
                         <p className="font-10">

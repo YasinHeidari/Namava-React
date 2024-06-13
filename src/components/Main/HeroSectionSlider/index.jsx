@@ -19,7 +19,6 @@ export default function HeroSectionSlider() {
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const [movies, setMovies] = useState([]);
-    const [backgroundImage, setBackgroundImage] = useState('');
 
     useEffect(() => {
         const fetchHeroData = async () => {
@@ -89,7 +88,7 @@ export default function HeroSectionSlider() {
                     navigation={true}
                     slidesPerView={1}
                     effect={"fade"}
-                    autoplay={{ delay: 120000 }}
+                    autoplay={{ delay: 4500 }}
                     loop={true}
                     pagination={true}
                     modules={[Navigation, EffectFade, Autoplay, Pagination]}
@@ -102,9 +101,6 @@ export default function HeroSectionSlider() {
                                 key={movie.id}
                                 data-movie-id={movie.id}
                                 className="w-100 movieSlider h-auto d-flex flex-column align-center"
-                                style={{
-                                    backgroundRepeat: 'no-repeat'
-                                }}
                             >
                                 <div className="container heroSectionInfo">
                                     <div className="d-flex flex-column justify-btw align-md-start align-sm-center align-xs-center h-100">
@@ -129,13 +125,13 @@ export default function HeroSectionSlider() {
                                                 {movie.title || movie.name}
                                             </h1>
                                             <div className="d-lg-flex d-sm-none d-xs-none justify-start align-center gap-2">
-                                                <div className="d-flex justify-center align-center">
-                                                    <div>
-                                                        <img
+                                                <div className="d-flex justify-center align-end  vertical-middle">
+                                                    
+                                                        <img className="d-inline-block"
                                                             src={IMDB}
                                                             alt="IMDB"
                                                         />
-                                                    </div>
+                                                    
                                                     <p className="white-color font-14">
                                                         {ratingDecimal(
                                                             movie.vote_average
