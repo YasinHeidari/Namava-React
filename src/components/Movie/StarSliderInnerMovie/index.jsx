@@ -51,6 +51,7 @@ export default function StarInner({ movieId }) {
                     spaceBetween={15}
                     navigation={true}
                     slidesPerView={3}
+                    slidesPerGroupAuto={true}
                     watchOverflow={true}
                     breakpoints={{
                         576: {

@@ -31,7 +31,7 @@ export default function ShowCommentContainer({ seriesId }) {
 
     return (
         <div className="commentContainer border-radius-12">
-            <div className="d-flex flex-column w-100 gap-7">
+            <div className="d-flex flex-column w-100 gap-md-7 gap-2">
                 <h3 className="font-lg-18 white-color text-center">نظرات کاربران</h3>
                 <div className="d-flex justify-center align-start gap-2">
                     <div className="d-flex justify-start" style={{ marginTop: '.5rem' }}>
@@ -43,10 +43,9 @@ export default function ShowCommentContainer({ seriesId }) {
                         />
                     </div>
                     <div className="col-12 d-flex justify-btw align-start gap-2">
-                        <div className="col-12 d-flex flex-column align-stretch gap-2">
+                        <div className="col-12 d-flex flex-column align-stretch gap-2 commentInputContainer">
                             <input
-                                className="w-100 border-radius-12 white-bgc"
-                                style={{ height: '52px', border: 'none' }}
+                                className="w-100 border-radius-12 white-bgc commentInput"
                                 placeholder="نظرتان درباره این سریال چیست؟"
                                 type="text"
                             />

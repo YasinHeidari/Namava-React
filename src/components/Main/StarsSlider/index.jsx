@@ -62,7 +62,8 @@ export default function StarsSlider({ title }) {
                         }}
                         spaceBetween={30}
                         navigation={true}
-                        slidesPerView={2.1}
+                        slidesPerView={3.1}
+                        slidesPerGroupAuto={true}
                         modules={[Navigation, Keyboard]}
                         breakpoints={{
                             576: {
@@ -90,7 +91,7 @@ export default function StarsSlider({ title }) {
                                         loading="lazy"
                                         src={`https://image.tmdb.org/t/p/w500/${star.profile_path}`}
                                         alt={star.name}
-                                        className="starImg border-radius-50 object-cover"
+                                        className="col-lg-12 col-9 starImg border-radius-50 object-cover"
                                     />
                                     <h5 className="white-color">{star.name}</h5>
                                 </Link>

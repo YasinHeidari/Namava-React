@@ -32,7 +32,7 @@ export default function CommentContainer({ movieId }) {
     }, [movieId]);
 
     return (
-        <div className="commentContainer">
+        <div className="commentContainer">  
             <div className="d-flex flex-column w-100 gap-md-7 gap-2">
                 <h3 className="font-lg-18 white-color text-center">نظرات کاربران</h3>
                 <div className="d-flex justify-center align-start gap-2">

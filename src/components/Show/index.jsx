@@ -12,7 +12,9 @@ import StarInnerShow from "./StarInnerShow";
 import ShowCommentContainer from "./ShowInnerComment";
 import Episode from "./Episodes";
 import getResponsiveBackgroundImageShow from "../../helpers/ResponsiveBgImageShow";
-import showTooltipsm from "./ShowTooltip/showTooltipsm";
+import MovieToolTiplg from "../Movie/MovieTooltip/MovieTooltiplg";
+import MovieToolTipsm from "../Movie/MovieTooltip/MovieTooltipsm";
+import Error from "../Error";
 import "./index.css";
 
 
@@ -29,6 +31,7 @@ export default function Show() {
     const [loading, setLoading] = useState(true);
     const [numberOfSeasons, setNumberOfSeasons] = useState(null);
     const [popularity, setPopularity] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchSeriesData = async () => {
@@ -65,10 +68,15 @@ export default function Show() {
 
                 setLoading(false); // Set loading to false after fetching data
             } catch (error) {
+                setError(error);
                 console.error('Error fetching series data:', error);
                 setLoading(false); // Set loading to false in case of error
             }
         };
+
+        if (error) {
+            return <Error/>;
+          }
 
         document.title = `سریال ${series?.name || series?.title}`;
         fetchSeriesData();
@@ -116,7 +124,7 @@ export default function Show() {
                 
             >
                 <div className="container" style={{ paddingTop: "5rem" }}>
-                    <div className="d-flex flex-column justify-btw align-start h-100">
+                    <div className="heroSectionMovieInfo d-flex flex-column justify-btw align-start h-100">
                         <div className="col-md-6 col-12 d-flex flex-column justify-center align-lg-start align-center align-self-lg-start align-self-center gap-2 container-padding-2 h-100">
                             <Link to={`/show/${series.id}`} className="col-xl-9 col-lg-6 d-lg-block d-none h-auto" >
                                 {logoUrl && (
@@ -128,7 +136,7 @@ export default function Show() {
                                     />
                                 )}
                             </Link>
-                            <h1 className="font-xl-20 white-color">
+                            <h1 className="font-xl-20 font-md-18 font-14 white-color">
                                 {series?.title || series?.name}
                             </h1>
                             <div className="d-flex justify-start align-center gap-2">
@@ -152,18 +160,18 @@ export default function Show() {
                                             alt="subScript"
                                         />
                                     
-                                    <p className="white-color font-12">
+                                    <p className="white-color font-xl-12 font-xs-10 font-sm-10">
                                         {" "}
                                         زیرنویس{" "}
                                     </p>
                                 </div>
                                 <div className="d-flex justify-center align-center">
-                                    <p className="white-color font-12">
+                                    <p className="white-color font-xl-12 font-xs-10 font-sm-10">
                                         {series.first_air_date?.substring(0, 4)}
                                     </p>
                                 </div>
                             </div>
-                            <p className="white-color font-12 font-weight-normal">
+                            <p className="white-color font-12 font-weight-normal" style={{ lineHeight: '1.75' }}>
                             {series.overview && series.overview.length > 50
                                 ? `${series.overview?.substring(0, 50)}...`
                                 : series.overview}
@@ -193,16 +201,16 @@ export default function Show() {
                                         پیش نمایش
                                     </span>
                                 </Link>
-                                <showTooltipsm/>
+                                <MovieToolTiplg/>
                             </div>
-                            <p className="light-white-font font-12 font-weight-normal">
+                            <p className="d-md-block d-none light-white-font font-12 font-weight-normal">
                                 ستارگان: {stars.join(" ، ")}
                             </p>
-                            <p className="light-white-font font-12 font-weight-normal">
+                            <p className="d-md-block d-none light-white-font font-12 font-weight-normal">
                                 کارگردان: {directors.length > 0 ? directors.join(" - ") : "ندارد"}
                             </p>
                             
-                            <showTooltipsm/>
+                            <MovieToolTipsm/>
                         </div>
                     </div>
                 </div>
@@ -215,11 +223,10 @@ export default function Show() {
                             تصاویر و جزییات
                         </h3>
                         <div
-                            className="d-flex align-self-start gap-xl-2 justify-lg-evenly flex-lg-nowrap flex-wrap"
-                            style={{ marginBottom: "1rem" }}
+                            className="d-flex align-self-start gap-xl-2 justify-lg-evenly flex-lg-nowrap flex-wrap" style={{ marginBottom: "1rem" }}
                         >
                             {images.slice(0, 5).map((image) => (
-                                <div className="col-2" key={image.file_path}>
+                                <div className="col-md-3 col-4" key={image.file_path}>
                                     <img
                                         loading="lazy"
                                         className="w-100 h-auto object-cover"
@@ -232,19 +239,19 @@ export default function Show() {
                         </div>
                     </div>
                     <div className="d-flex flex-column gap-4">
-                        <h2 className="white-color font-md-14 font-weight-normal">
+                        <h2 className="white-color font-md-14 font-12 font-weight-normal">
                             {series?.name || series?.title}
                         </h2>
-                        <h2 className="white-color font-lg-18 font-weight-normal">
+                        <h2 className="white-color font-lg-18 font-16 font-weight-normal">
                             درباره فیلم {series?.name || series?.title}
                         </h2>
                         <p
-                            className="light-white-font font-md-14 font-weight-normal"
+                            className="light-white-font font-md-14 font-12 font-weight-normal"
                             style={{ lineHeight: "2" }}
                         >
                             {series?.overview}
                         </p>
-                        <p className="white-color font-14 font-weight-normal">
+                        <p className="white-color font-lg-14 font-12 font-weight-normal">
                             دسته بندی ها: {getGenreNames()}
                         </p>
                         <div className="d-flex justify-start align-start gap-3">
@@ -260,13 +267,13 @@ export default function Show() {
 
                 <div className="d-flex flex-column gap-4">
                     <div className="d-flex flex-column justify-center align-start gap-3">
-                        <h3 className="white-color containerInnerMovie">
+                        <h3 className="white-color containerInnerMovie font-md-18 font-16">
                             بازیگران فیلم {series?.name || series?.title}
                         </h3>
                         <StarInnerShow seriesId={id} />
                     </div>
                     <div className="d-flex flex-column justify-center align-start gap-3">
-                        <h3 className="white-color containerInnerMovie">
+                        <h3 className="white-color containerInnerMovie font-md-18 font-16">
                             عوامل فیلم {series?.name || series?.title}
                         </h3>
                         <DirectorInnerShow seriesId={id} />
@@ -275,7 +282,7 @@ export default function Show() {
                         <CinemaSlider />
                     </div>
                     <div className="d-flex flex-column justify-center align-start gap-3">
-                        <h3 className="white-color containerInnerMovie">
+                        <h3 className="white-color containerInnerMovie font-md-18 font-16">
                             بر اساس "{series?.name || series?.title}"
                         </h3>
                         <SliderMovieInner movies={series} genreId={28} />

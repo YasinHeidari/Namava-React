@@ -24,6 +24,23 @@
     background: var(--light-black);
     padding: 6px 16px;
 }
+.episodeBgc{
+    background: var(--light-black);
+}
+.episodeBgcAccordion{
+    background: var(--light-black);
+    border-top: 1px solid var(--lighter-white-font);
+}
+.episodeImgGradient{
+    background-image: linear-gradient(-90deg, rgb(34, 35, 39) 0%, rgba(34, 35, 39, 0) 100%);
+}
 .overviewEpisode{
     color: var(--lighter-white-font);
+}
+.arrowDownBgEpisode{
+    background: rgba(255, 255, 255, .2);
+    width: 24px;
+    height: 24px;
+    bottom: 10px;
+    left: 10px;
 }

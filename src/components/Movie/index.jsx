@@ -14,6 +14,7 @@ import SpinnerLoading from "../Loading/SpinnerLoading";
 import MovieToolTiplg from "./MovieTooltip/MovieTooltiplg";
 import MovieToolTipsm from "./MovieTooltip/MovieTooltipsm";
 import getResponsiveBackgroundImageMovie from "../../helpers/ResponsiveBgImageMovie";
+import Error from "../Error";
 
 const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
 
@@ -27,6 +28,7 @@ export default function Movie() {
   const [posters, setPosters] = useState([]);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchMovieData = async () => {
@@ -52,13 +54,20 @@ export default function Movie() {
 
         setLoading(false);
       } catch (error) {
+        setError(error);
         console.error('Error fetching movie data:', error);
         setLoading(false);
       }
     };
 
+    if (error) {
+      return <Error/>;
+    }
+
     fetchMovieData();
   }, [id]);
+
+
 
   useEffect(() => {
     if (!loading && movie) {

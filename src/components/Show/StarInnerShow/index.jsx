@@ -51,6 +51,7 @@ export default function StarInnerShow({ seriesId }) {
                     spaceBetween={30}
                     navigation={true}
                     slidesPerView={3}
+                    slidesPerGroupAuto={true}
                     watchOverflow={true}
                     breakpoints={{
                         576: {
@@ -81,10 +82,10 @@ export default function StarInnerShow({ seriesId }) {
                                     loading="lazy"
                                     src={`https://image.tmdb.org/t/p/w500/${star.profile_path}`}
                                     alt={star.name}
-                                    className="col-lg-12 col-9 col-xs-12 starImg border-radius-50 object-cover"
+                                    className="col-lg-12 col-9  starImg border-radius-50 object-cover"
                                 />
                                 <h5 className="white-color">{star.name}</h5>
-                                <p className="font-lg-14 line-height-lg-24 light-white-font font-weight-normal">
+                                <p className="font-lg-14 font-12 line-height-lg-24 light-white-font font-weight-normal">
                                     Actor
                                 </p>
                             </Link>

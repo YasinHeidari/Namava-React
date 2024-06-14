@@ -66,7 +66,8 @@ export default function DirectorsSlider({ title }) {
                         }}
                         spaceBetween={30}
                         navigation={true}
-                        slidesPerView={2.1}
+                        slidesPerView={3.1}
+                        slidesPerGroupAuto={true}
                         modules={[Navigation, Keyboard]}
                         breakpoints={{
                             576: {
@@ -95,7 +96,7 @@ export default function DirectorsSlider({ title }) {
                                             loading="lazy"
                                             src={`https://image.tmdb.org/t/p/w500/${director.profile_path}`}
                                             alt={director.name}
-                                            className="DirectorImg object-cover border-radius-50"
+                                            className="col-lg-12 col-9  DirectorImg object-cover border-radius-50"
                                         />
                                     ) : (
                                         <p className="white-color">

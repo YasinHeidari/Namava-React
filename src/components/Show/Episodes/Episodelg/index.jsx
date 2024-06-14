@@ -62,7 +62,7 @@ export default function Episodelg({ seriesId, showName , numberOfSeasons , popul
                 },
             }}
         >
-        <div className="d-flex flex-column align-start gap-3">
+        <div className="d-lg-flex d-none flex-column align-start gap-3">
             <div className='d-flex justify-start align-center gap-5'>
             <Dropdown overlay={<Menu onClick={handleMenuClick} items={menuItems} />} trigger={['click']} placement='bottom'>
                     <Link onClick={(e) => e.preventDefault()}>

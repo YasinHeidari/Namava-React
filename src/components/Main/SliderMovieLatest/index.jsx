@@ -75,7 +75,7 @@ export default function LatestMoviesSlider({ title }) {
                                 slidesPerView={3.1}
                                 slidesOffsetAfter={20}
                                 slidesOffsetBefore={0}
-                                slidesPerGroup={7}
+                                slidesPerGroupAuto={true}
                                 watchOverflow={true}
                                 speed={800}
                                 modules={[Navigation, Keyboard]}

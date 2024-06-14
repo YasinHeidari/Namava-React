@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React, { Fragment , useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes , Navigate , useParams} from "react-router-dom";
 import "./index.css";
 import "./font.css";
 import Header from "./components/Header";
@@ -12,6 +12,28 @@ import ContactUs from "./components/ContactUs";
 import AboutUs from "./components/AboutUs";
 import  Search from "./components/SearchMovie";
 import Show from "./components/Show";
+import { isValidMovie, isValidShow } from "./helpers/validator";
+import SpinnerLoading from "./components/Loading/SpinnerLoading";
+
+const ValidatedRoute = ({ component: Component, validator, ...rest }) => {
+  const { id } = useParams();
+  const [isValid, setIsValid] = useState(null);
+
+  useEffect(() => {
+    const validate = async () => {
+      const result = await validator(id);
+      setIsValid(result);
+    };
+
+    validate();
+  }, [id, validator]);
+
+  if (isValid === null) {
+    return <div>Loading...</div>; // You can show a loading spinner here
+  }
+
+  return isValid ? <Component {...rest} /> : <Navigate to="/error" />;
+};
 
 
 const App = () => {
@@ -21,8 +43,8 @@ const App = () => {
         <Header isContactUsComponent={true}/>
         <Routes>
           <Route path="/"  element={<Main/>} exact/>
-          <Route path="/movie/:id" element={<Movie/>} />
-          <Route path="/show/:id" element={<Show/>} />
+          <Route path="/movie/:id" element={<ValidatedRoute component={Movie} validator={isValidMovie}/>} />
+          <Route path="/show/:id" element={<ValidatedRoute component={Show} validator={isValidShow}/>} />
           <Route path="/ContactUs" element={<ContactUs/>}/>
           <Route path="/AboutUs" element={<AboutUs/>}/>
           <Route path="/SearchMovie" element={<Search/>}/>

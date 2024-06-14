@@ -1,0 +1,87 @@
+.containerMovie{
+    margin-bottom: 2rem;
+}
+.heroSectionMovie{
+    background-size: cover;
+    background-position: left top;
+    box-shadow: rgb(18, 18, 18) 0px -5px 5px inset;
+    background-repeat: no-repeat;
+}
+.heroSectionMovieInfo{
+    padding-top: 5rem;
+}
+.movieInnerBtn{
+    padding:0 16px 0 20px;
+}
+.movieInnerBtn:hover{
+    background-color: var(--heroSection-active-color);
+}
+.movieInnerBtn:hover svg,
+.movieInnerBtn:hover span {
+    fill: var(--white-color);
+    color: var(--white-color);
+}
+.movieInnerMore {
+    padding: 0 16px 0 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.movieInnerIconHover{
+    width:42px;
+     height: 42px;
+      background-color: rgba(255, 255, 255, 0.2);
+}
+.movieInnerMore:hover , .movieInnerIconHover:hover{
+    background-color: rgba(255, 255, 255, 0.4);
+}
+@media only screen and (max-width:576px){
+    .heroSectionMovie{
+        background-position: center top;
+    }
+    .heroSectionMovieInfo{
+        padding-top: 40vh;
+    }
+}
+@media only screen and (min-width:576px){
+    .heroSectionMovie{
+        background-position: center top;
+    }
+    .heroSectionMovieInfo{
+        padding-top: 35vh;
+    }
+}
+@media only screen and (min-width:768px){
+    .heroSectionMovie{
+        background-size: cover;
+        background-position: left top;
+        height: 60vh;
+    }
+    .heroSectionMovieInfo{
+        padding-top: 25vh;
+    }
+    .containerMovie{
+        margin-bottom: 8rem;
+    }
+  
+}
+@media only screen and (min-width:992px){
+    .heroSectionMovie{
+        height: auto;
+    }
+    .heroSectionMovieInfo{
+        padding-top: 5rem;
+    }
+    .containerMovie{
+        margin-bottom: 2rem;
+    }
+}
+
+@media only screen and (min-width:1280px){
+    .containerMovie{
+        min-height: 44.875vw;
+        margin-bottom: -7.03125vw;
+    }
+}
+@media only screen and (min-width: 1440px){
+  
+}
+
