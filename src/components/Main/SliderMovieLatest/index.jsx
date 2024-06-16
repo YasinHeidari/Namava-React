@@ -13,6 +13,7 @@ import MovieInfoHomePage from "../MovieInfo";
 import IMDB from "../../../images/IMDB.svg";
 import SubScript from "../../../images/subScript.svg";
 import PreloadStyles from "../../Loading/PreLoader";
+import { useNavigate } from "react-router";
 import "./index.css";
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
@@ -23,6 +24,8 @@ export default function LatestMoviesSlider({ title }) {
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [isInfoVisible, setIsInfoVisible] = useState(false); // State to control visibility of movie info
     const [selectedSliderIndex, setSelectedSliderIndex] = useState(null);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth); // State for screen width
+    const navigate = useNavigate(); // Initialize navigate
 
     useEffect(() => {
         async function fetchLatestMovies() {
@@ -43,16 +46,29 @@ export default function LatestMoviesSlider({ title }) {
         fetchLatestMovies();
     }, []);
     // Empty dependency array to ensure the effect runs only once
+    useEffect(() => {
+        const handleResize = () => setScreenWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleMovieSelect = (movie, index) => {
-        setSelectedMovie(movie);
-        setIsInfoVisible(true); // Show movie info when a movie is selected
-        setSelectedSliderIndex(index);
+        if (screenWidth < 992) {
+            navigate(`/movie/${movie.id}`); // Navigate to movie details
+        } else {
+            setSelectedMovie(movie);
+            setIsInfoVisible(true);
+            setSelectedSliderIndex(index);
+        }
     };
+    
 
     const handleInfoToggle = () => {
         setIsInfoVisible(false); // Hide movie info when the button is clicked
         setSelectedSliderIndex(null);
+    };
+    const handleSeeAllClick = () => {
+        navigate('/SeeAll', { state: { movies, title } });
     };
 
     return (
@@ -64,7 +80,13 @@ export default function LatestMoviesSlider({ title }) {
                         <Loading />
                     ) : (
                         <div className="d-flex flex-column justify-center align-start gap-2">
-                            <h3 className="white-color">{title}</h3>
+                        <div className="sliderTitle col-md-5 col-12 d-flex justify-start align-center gap-1">
+                                <h3 className="col-xl-4 col-md-6 col-4 white-color">{title}</h3>
+                                <button onClick={handleSeeAllClick} className="seeAllButton col-md-5 d-flex align-center gap-1">
+                                    <p>مشاهده همه</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="10 0 20 40" fill="#fff"><path d="M14.77 18.793c0-.493.196-.967.545-1.315l6.2-6.2a1.86 1.86 0 0 1 2.626 2.633l-4.88 4.882 4.88 4.88a1.86 1.86 0 0 1-2.63 2.63l-6.2-6.2c-.347-.348-.54-.82-.54-1.31z" style={{transform: 'translateY(2px)',}}></path></svg>
+                                </button>
+                            </div>
                             <Swiper
                                 grabCursor={true}
                                 keyboard={{
@@ -103,9 +125,7 @@ export default function LatestMoviesSlider({ title }) {
                                         <SwiperSlide
                                             key={movie.id}
                                             className={`movieSlider h-auto d-flex flex-column align-center ${
-                                                selectedSliderIndex === index
-                                                    ? "selected"
-                                                    : ""
+                                                screenWidth >= 992 && selectedSliderIndex === index ? "selected" : ""
                                             }`}
                                             onClick={() =>
                                                 handleMovieSelect(movie, index)
@@ -188,7 +208,7 @@ export default function LatestMoviesSlider({ title }) {
                     )}
                 </div>
             </div>
-            {selectedMovie && isInfoVisible && (
+            {selectedMovie && isInfoVisible && screenWidth >= 992 && (
                 <MovieInfoHomePage movie={selectedMovie} />
             )}
         </div>

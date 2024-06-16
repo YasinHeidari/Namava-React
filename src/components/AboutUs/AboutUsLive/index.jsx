@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom"
 export default function AboutUsLive(){
     return(
-        <div className="aboutUsLive d-flex justify-btw align-center gap-8">
-                <div className="col-md-5">
+        <div className="aboutUsLive  d-flex flex-md-row flex-column justify-btw align-center gap-8">
+                <div className="container col-md-5">
                     <img
                         className="object-cover w-100 h-auto"
                         src="https://static.namava.ir/Content/Upload/Images/5be40514-52aa-483e-a4d0-903e9928b8b9.jpg"
                         alt="Namava Live"
                     />
                 </div>
-                <div className="col-md-7 d-flex flex-column justify-center align-start gap-4">
+                <div className="col-md-7 container d-flex flex-column justify-center align-md-start align-center gap-4">
                     <div>
                         <img
                             className="object-cover aboutUsLiveSvg "
@@ -22,7 +22,7 @@ export default function AboutUsLive(){
                     <h3 className="white-color font-xl-28 font-16">
                         پخش زنده مهم‌ترین رویدادهای ورزشی در نماوا
                     </h3>
-                    <p className="white-color font-xl-18 font-md-16 font-14">
+                    <p className="white-color font-xl-18 font-md-16 font-14 line-height-24 line-height-md-28 text-md-right text-center">
                         امکان پخش زنده مسابقات و رویدادهای ورزشی فوتبال،
                         والیبال، بسکتبال، فرمول 1، بیلیارد، اسنوکر و... بدون
                         نیاز به خرید اشتراک در نماوا

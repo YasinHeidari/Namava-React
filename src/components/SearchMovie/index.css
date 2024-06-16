@@ -33,7 +33,16 @@
     top: 11%;
     overflow-x: hidden;
 }
-
+.searchFiltersContainerSm{
+    background-color: var(--footer-download-link-bgc);
+    overflow-x: hidden;
+    padding: 20px;
+    transition:  all .5s ease;
+    right: -150%;
+}
+.searchFiltersContainerSm.visible {
+    right: 0;
+}
 .searchFiltersContainer input[type=checkbox]{
    accent-color: var(--footer-download-link-bgc);
 }
@@ -51,8 +60,6 @@
     color: var(--active-color);
     fill: var(--active-color);
 }
-
-
 
 .movieResultContainer .darkMovieCover{
     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9));
@@ -78,8 +85,10 @@
     border-radius: 5px;
     cursor: pointer;
 }
-
-@media only screen  and (min-width:1280px) {
+.filterSmallToggle{
+    padding: 11px 16px;
+}
+@media only screen  and (min-width:992px) {
     .searchFiltersContainer{
         width: 307px;
     }
@@ -94,5 +103,9 @@
         width: 140px;
         height: 140px;
         min-width: 140px;
+    }
+    .searchContainer{
+        margin-right: 22em;
+        padding-top:80px
     }
 }

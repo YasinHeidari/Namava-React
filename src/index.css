@@ -617,7 +617,15 @@ button{
     .font-xs-42{
         font-size: 42px;
     }
-    
+    .text-xs-center{
+        text-align: center;
+    }
+    .text-xs-left{
+        text-align: left;
+    }
+    .text-xs-right{
+        text-align: right;
+    }
     .container-small{
         width: 95%;
         margin: 0 auto;
@@ -789,6 +797,15 @@ button{
 @media only screen and (min-width: 576px) {
     .container-padding-2{
         padding: 0 0 2rem;
+    }
+    .text-sm-center{
+        text-align: center;
+    }
+    .text-sm-left{
+        text-align: left;
+    }
+    .text-sm-right{
+        text-align: right;
     }
     .col-sm-1{
         width: 8.33%;
@@ -1060,6 +1077,15 @@ button{
         width: 78%;
         margin: 0 auto;
     }
+    .text-md-center{
+        text-align: center;
+    }
+    .text-md-left{
+        text-align: left;
+    }
+    .text-md-right{
+        text-align: right;
+    }
     
     .col-md-1{
         width: 8.33%;
@@ -1328,6 +1354,15 @@ button{
     }
 }
 @media only screen and (min-width: 992px) {
+    .text-lg-center{
+        text-align: center;
+    }
+    .text-lg-left{
+        text-align: left;
+    }
+    .text-lg-right{
+        text-align: right;
+    }
     .col-lg-1{
         width: 8.33%;
     }
@@ -1425,6 +1460,9 @@ button{
     }
     .h-lg-auto{
         height: auto;
+    }
+    .h-lg-100{
+        height: 100%;
     }
     .top-lg-0{
         top: 0;
@@ -1605,6 +1643,15 @@ button{
 
 }
 @media only screen and (min-width: 1200px) {
+    .text-xl-center{
+        text-align: center;
+    }
+    .text-xl-left{
+        text-align: left;
+    }
+    .text-xl-right{
+        text-align: right;
+    }
     .col-xl-1{
         width: 8.33%;
     }
@@ -1862,6 +1909,15 @@ button{
     }
 }
 @media only screen and (min-width: 1440px) {
+    .text-xxl-center{
+        text-align: center;
+    }
+    .text-xxl-left{
+        text-align: left;
+    }
+    .text-xxl-right{
+        text-align: right;
+    }
     .col-xxl-1{
         width: 8.33%;
     }
@@ -2127,6 +2183,15 @@ button{
     }
 }
 @media only screen and (min-width: 2560px) {
+    .text-xxxl-center{
+        text-align: center;
+    }
+    .text-xxxl-left{
+        text-align: left;
+    }
+    .text-xxxl-right{
+        text-align: right;
+    }
     .col-xxxl-1{
         width: 8.33%;
     }

@@ -8,7 +8,7 @@ import PreResult from "../PreResult";
 import DotsLoader from '../../Loading/DotsLoader';
 import './index.css';
 
-export default function SearchInput({ selectedGenres, selectedCountries, isFilmSelected, isSerialSelected }) {
+export default function SearchInput({ selectedGenres, selectedCountries, isFilmSelected, isSerialSelected , toggleMenuVisibility}) {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState({ persons: [], movies: [], keywords: [], collections: [], shows: [] });
   const [searchActive, setSearchActive] = useState(false);
@@ -107,8 +107,9 @@ useEffect(() => {
   };
 
   return (
-    <div className="col-12 d-flex flex-column justify-center gap-4" style={{ marginRight: '22em', paddingTop:'80px' }}>
-      <div className="searchInputContainer col-12 d-flex justify-sm-start align-center gap-1 font-xl-14 font-12 border-radius-12 line-height-xl-24 line-height-21">
+    <div className="searchContainer col-12 d-flex flex-column justify-center gap-4">
+    <div className="col-12 d-flex flex-row-reverse align-center gap-1">
+      <div className="searchInputContainer col-10 d-flex justify-sm-start align-center gap-1 font-xl-14 font-12 border-radius-12 line-height-xl-24 line-height-21">
         <img src={searchIcon} alt='searchIcon' />
         <input
           className="searchInput col-12 line-height-xl-24 font-12 line-height-21 font-weight-normal"
@@ -119,31 +120,35 @@ useEffect(() => {
           setCurrentPage(1)}}
         />
       </div>
-      <div className="d-flex flex-column justify-center">
+      <button className='black-color white-bgc border-radius-12 col-2 h-100 d-lg-none d-block filterSmallToggle' onClick={toggleMenuVisibility}>فیلتر</button>
+    </div>
+      <div className="d-flex flex-column justify-center col-12">
         {searchActive ? (
-          <div className='d-flex flex-column gap-6'>
+          <div className='d-flex flex-column gap-6 flex-wrap'>
             {searchResults.persons.length > 0 && (
               <div className='d-flex flex-column gap-2  align-start'>
-                <div className=' font-md-14 font-12 white-color d-flex flex-wrap gap-2'>
+                <div className=' font-md-14 font-12 white-color d-flex flex-wrap gap-lg-2'>
                   <p className='lighter-white-font font-weight-normal'>کلمات مشابه:</p>
                   {searchResults.persons.slice(1, 10).map((person, index) => (
                     <div key={person.id} className="person d-flex align-center">
                       <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.5 2C9.88 2 7.75 4.13 7.75 6.75c0 2.57 2.01 4.65 4.63 4.74.08-.01.16-.01.22 0h.07a4.738 4.738 0 0 0 4.58-4.74C17.25 4.13 15.12 2 12.5 2Zm5.08 12.15c-2.79-1.86-7.34-1.86-10.15 0-1.27.85-1.97 2-1.97 3.23s.7 2.37 1.96 3.21c1.4.94 3.24 1.41 5.08 1.41 1.84 0 3.68-.47 5.08-1.41 1.26-.85 1.96-1.99 1.96-3.23-.01-1.23-.7-2.37-1.96-3.21Z" fill="#CCC"></path>
                       </svg>
-                      <span className="personName">{person.name}</span>
+                      <span className="personName">{person?.name}</span>
                     </div>
                   ))}
                 </div>
                 {searchResults.persons[0].profile_path && (
-                  <div key={searchResults.persons[0].id} className="col-12 d-flex align-start  gap-2 border-radius-12 personContainer">
+                  <div key={searchResults.persons[0].id} className="col-12 d-lg-flex d-none align-start  gap-2 border-radius-12 personContainer">
                     <div className='personImgContainer'>
-                      <img className='col-12 h-auto border-radius-50' src={`https://image.tmdb.org/t/p/w200${searchResults.persons[0].profile_path}`} alt={searchResults.persons[0].name} />
+                      <img className='col-12 h-auto border-radius-50' src={`https://image.tmdb.org/t/p/w200${searchResults?.persons[0]?.profile_path}`} alt={searchResults.persons[0].name} />
                     </div>
                     <div className='d-flex flex-column gap-2'>
                       <p className='white-color font-xxl-24'>{searchResults.persons[0].name}</p>
                       {searchResults.persons[0].known_for.map((item, index) => (
-                        <p key={index} className='white-color font-xxl-16 ltr' style={{ lineHeight: '1.75' }}>{item.overview}</p>
+                        <p key={index} className='white-color font-xxl-16 ltr' style={{ lineHeight: '1.75' }}>{item.overview && item.overview.length > 50
+                                ? `${item.overview?.substring(0, 50)}...`
+                                : item.overview}</p>
                       ))}
                     </div>
                   </div>
@@ -151,14 +156,14 @@ useEffect(() => {
               </div>
             )}
 
-            <div className='d-flex flex-wrap gap-6 justify-start align-stretch '>
+            <div className='d-flex flex-wrap  justify-start align-stretch'>
             {searchResults.movies
               .filter(item => item.poster_path) // Filter out entries with null or undefined poster_path
               .map(item => (
                 <Link
                   key={item.id}
                   to={`/movie/${item.id}`}
-                      className='movieResultContainer col-2 d-flex flex-column gap-2'
+                      className='movieResultContainer col-lg-2 col-md-3 col-4 h-100 d-flex flex-column gap-2'
                       style={{ marginBottom: '4rem' }}
                     >
                       <div className='position-relative w-100 h-100'>
@@ -177,7 +182,7 @@ useEffect(() => {
                 <Link
                   key={item.id}
                   to={`/show/${item.id}`} 
-                      className='showResultContainer col-2 d-flex flex-column gap-2'
+                      className='showResultContainer col-lg-2 col-md-3 col-4 h-100 d-flex flex-column gap-2'
                       style={{ marginBottom: '4rem' }}
                     >
                       <div className='position-relative w-100 h-100'>
@@ -195,11 +200,11 @@ useEffect(() => {
 
 
             {displayedResults().length > 0 && (
-              <div className='d-flex flex-wrap gap-6 justify-start align-stretch'>
+              <div className='d-flex flex-wrap  justify-start align-stretch'>
                 {displayedResults()
                   .filter(item => item.poster_path)
                   .map(item => (
-                    <Link to={`/${item.media_type}/${item.id}`} key={item.id} className="searchResultContainer col-2 d-flex flex-column gap-2 " style={{ marginBottom: '4rem' }}>
+                    <Link to={`/${item.media_type}/${item.id}`} key={item.id} className="searchResultContainer col-lg-2 col-md-3 col-4 h-100  d-flex flex-column gap-2 " style={{ marginBottom: '4rem' }}>
                       <div className='position-relative w-100 h-100'>
                         <img className='w-100 h-100 border-radius-5 object-cover' src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item?.title || item?.name} />
                         <div className="darkCover position-absolute z-1 top-0 right-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-2">

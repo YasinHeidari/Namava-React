@@ -72,7 +72,7 @@
 #namavaMagPic{
     top: 0;
 }
-@media (min-width: 1280px){
+@media only screen and (min-width: 1280px){
     .aboutUsDisplayOptionsSvg{
         transform: scale(1.64)
     }
@@ -99,7 +99,7 @@
         padding: 12px 32px;
     }
 }
-@media (min-width:768px){
+@media only screen and (min-width:768px){
     .aboutUsLiveLink{
         width: 175px;
     }

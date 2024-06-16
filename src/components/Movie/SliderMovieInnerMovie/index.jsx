@@ -13,6 +13,7 @@ import MovieInfoHomePage from "../../Main/MovieInfo";
 import IMDB from "../../../images/IMDB.svg";
 import SubScript from "../../../images/subScript.svg";
 import PreloadStyles from '../../Loading/PreLoader';
+import { useNavigate } from "react-router";
 import "./index.css";
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
@@ -23,6 +24,8 @@ export default function SliderMovieInner({ genreId, title }) {
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [isInfoVisible, setIsInfoVisible] = useState(false); // State to control visibility of movie info
     const [selectedSliderIndex, setSelectedSliderIndex] = useState(null);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth); // State for screen width
+    const navigate = useNavigate(); // Initialize navigate
 
     useEffect(() => {
         async function fetchMovies() {
@@ -43,11 +46,22 @@ export default function SliderMovieInner({ genreId, title }) {
         fetchMovies();
     }, [genreId]);
 
+    useEffect(() => {
+        const handleResize = () => setScreenWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const handleMovieSelect = (movie, index) => {
-        setSelectedMovie(movie);
-        setIsInfoVisible(true); // Show movie info when a movie is selected
-        setSelectedSliderIndex(index);
+        if (screenWidth < 992) {
+            navigate(`/movie/${movie.id}`); // Navigate to movie details
+        } else {
+            setSelectedMovie(movie);
+            setIsInfoVisible(true);
+            setSelectedSliderIndex(index);
+        }
     };
+    
 
     const handleInfoToggle = () => {
         setIsInfoVisible(false); // Hide movie info when the button is clicked
@@ -102,9 +116,7 @@ export default function SliderMovieInner({ genreId, title }) {
                                         <SwiperSlide
                                             key={movie.id}
                                             className={`movieSlider h-auto d-flex flex-column align-center ${
-                                                selectedSliderIndex === index
-                                                    ? "selected"
-                                                    : ""
+                                                screenWidth >= 992 && selectedSliderIndex === index ? "selected" : ""
                                             }`}
                                             onClick={() =>
                                                 handleMovieSelect(movie, index)

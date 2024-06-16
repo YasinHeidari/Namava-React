@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu ,Dropdown, ConfigProvider } from 'antd';
+import { Menu, Dropdown, ConfigProvider } from 'antd';
 
-export default function SmallFooterInfo({isFixed}) {
-    
-    
+export default function SmallFooterInfo({ isFixed }) {
+    const [clicked, setClicked] = useState(false);
 
     const footerLinks = [
         { label: "اپلیکیشن‌ها", to: "/" },
@@ -22,36 +21,38 @@ export default function SmallFooterInfo({isFixed}) {
         { label: "دانلود‌ها", to: "/" },
     ];
 
-    const menu = (<Menu>
-        {footerLinks.map((link, index) => (
-          <Menu.Item key={index}>
-            <Link to={link.to}>{link.label}</Link>
-          </Menu.Item>
-        ))}
-      </Menu>);
+    const menu = (
+        <Menu>
+            {footerLinks.map((link, index) => (
+                <Menu.Item key={index}>
+                    <Link to={link.to}>{link.label}</Link>
+                </Menu.Item>
+            ))}
+        </Menu>
+    );
+
+    const handleClick = () => {
+        setClicked(!clicked); // Toggle clicked state
+    };
 
     return (
         <ConfigProvider
             theme={{
                 token: {
-                    colorBgBase: '#222327',  // Setting background color to black
+                    colorBgBase: '#222327', // Setting background color to black
                     colorText: '#ccc',
                 },
             }}
         >
-                    
-                    <Dropdown overlay={menu} placement="top" className="col-2 h-100">
-                        <Link className="d-flex flex-column gap-1 justify-center align-center" onClick={(e) => e.preventDefault()}>
-                            <img
-                                src={require("../../../../images/ThreeDotsMoreFooter.svg").default}
-                                alt="Dots"
-                            />
-                            <p className="lighter-white-font font-10 font-weight-normal">بیشتر</p>
-                        </Link>
-                    </Dropdown>
-
-                    
-                
+            <Dropdown overlay={menu} placement="top" className="col-2 h-100">
+                <Link
+                    className="d-flex flex-column gap-1 justify-center align-center"
+                    onClick={handleClick}
+                >
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16.5" cy="12.5" r="1.5" transform="rotate(90 16.5 12.5)" fill={clicked ? '#fff' : '#AAAAAA'}></circle><circle cx="12" cy="12.5" r="1.5" transform="rotate(90 12 12.5)" fill={clicked ? '#fff' : '#AAAAAA'}></circle><circle cx="7.5" cy="12.5" r="1.5" transform="rotate(90 7.5 12.5)" fill={clicked ? '#fff' : '#AAAAAA'}></circle></svg>
+                        <p className="lighter-white-font font-10 font-weight-normal" style={{ color: clicked ? '#fff' : '#aaa' }}>بیشتر</p>
+                </Link>
+            </Dropdown>
         </ConfigProvider>
     );
 }

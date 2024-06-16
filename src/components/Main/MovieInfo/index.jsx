@@ -14,10 +14,21 @@ export default function MovieInfoHomePage({ movie, buttonContent }) {
     const [directors, setDirectors] = useState([]);
     const [genres, setGenres] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [showSpinner, setShowSpinner] = useState(false);
 
     let navigate = useNavigate();
 
+
+    useEffect(() => {
+        const handleResize = () => setScreenWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+
+
+    
     useEffect(() => {
         const fetchMovieData = async () => {
             if (movie && movie.id) {
@@ -141,7 +152,7 @@ export default function MovieInfoHomePage({ movie, buttonContent }) {
                                     </div>
                                 </div>
                                 <p className="white-color font-12 font-weight-normal">
-                                    {movie.overview}
+                                {movie.overview.length > 50 ? `${movie.overview.substring(0, 50)}...` : movie.overview}
                                 </p>
                                 <div className="d-flex justify-evenly align-center gap-2">
                                     {buttonContent && (

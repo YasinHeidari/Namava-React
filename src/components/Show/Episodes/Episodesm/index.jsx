@@ -12,9 +12,7 @@ export default function Episodesm({ seriesId, showName, numberOfSeasons, popular
     const [loading, setLoading] = useState(true);
     const [seasonNumber, setSeasonNumber] = useState(1); 
     const [dropdownVisible, setDropdownVisible] = useState(false); 
-    const [isOpen, setIsOpen] = useState(false);
-    const [openIndexes, setOpenIndexes] = useState(episodes.map(() => false));
-
+    const [openIndexes, setOpenIndexes] = useState([]);
 
     useEffect(() => {
         const fetchEpisodes = async () => {
@@ -25,6 +23,7 @@ export default function Episodesm({ seriesId, showName, numberOfSeasons, popular
                 );
                 const data = await response.json();
                 setEpisodes(data.episodes || []);
+                setOpenIndexes(data.episodes ? data.episodes.map(() => false) : []);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching episodes:", error);
@@ -49,6 +48,12 @@ export default function Episodesm({ seriesId, showName, numberOfSeasons, popular
         setDropdownVisible(false); // Hide dropdown after selecting a season
     };
 
+    const toggleAccordion = (index) => {
+        setOpenIndexes((prevState) =>
+            prevState.map((isOpen, i) => (i === index ? !isOpen : isOpen))
+        );
+    };
+
     if (loading) {
         return <DotsLoader />;
     }
@@ -56,12 +61,6 @@ export default function Episodesm({ seriesId, showName, numberOfSeasons, popular
     if (episodes.length === 0) {
         return <div>No episodes available.</div>;
     }
-    const toggleAccordion = (index) => {
-        setOpenIndexes((prevState) =>
-          prevState.map((isOpen, i) => (i === index ? !isOpen : isOpen))
-        );
-      };
-      
 
     return (
         <ConfigProvider
@@ -101,56 +100,55 @@ export default function Episodesm({ seriesId, showName, numberOfSeasons, popular
                 </div>
 
                 <div className='d-lg-none d-flex flex-column justify-center align-center gap-2 col-12'>
-                    {episodes.map((episode) => {
+                    {episodes.map((episode, index) => {
                         if (!episode.still_path) {
                             return null;
                         }
 
                         return (
-                            <div key={episode.id} className='col-12'>
-                                <div  className="position-relative col-12">
-                                    <Link to="/" className="col-12 d-flex flex-row-reverse border-radius-12 episodeBgc">
+                            <div key={episode.id} className='col-12  border-radius-12 episodeBgc'>
+                                <div className="position-relative col-12">
+                                    <Link to="/" className='col-12 d-flex flex-row-reverse ' >
                                         <div className="col-5 position-relative">
-                                        <div className="position-absolute col-10 h-100 top-0 right-0 z-1 episodeImgGradient"></div>
-                                        <img
-                                            src={`https://image.tmdb.org/t/p/w300/${episode?.still_path}`}
-                                            alt={episode?.name}
-                                            className="col-12 h-100 object-cover position-absolute top-0 left-0 z-0 border-radius-12"
-                                        />
+                                            <div className="position-absolute col-10 h-100 top-0 right-0 z-1 episodeImgGradient"></div>
+                                            <img
+                                                src={`https://image.tmdb.org/t/p/w300/${episode?.still_path}`}
+                                                alt={episode?.name}
+                                                className={`col-12 h-100 object-cover position-absolute top-0 left-0 z-0 ${openIndexes[index] ? 'episodeBorderRadiusTop': 'border-radius-12'}`}
+                                            />
                                         </div>
                                         <div className="col-7 d-flex flex-column justify-start align-start" style={{ padding: '1.5rem 1rem 2.5rem 0' }}>
-                                        <div className="d-flex justify-start align-center gap-1">
-                                            <h2 className="white-color font-lg-14 font-12 font-weight-normal" style={{ lineHeight: '1.79' }}>
-                                            {showName} -
-                                            </h2>
-                                            <p className="white-color font-12">فصل {episode?.season_number}</p>
-                                            <p className="white-color font-12">قسمت {episode?.episode_number}</p>
-                                        </div>
-                                        <div className="timeEpisode border-radius-12">
-                                            <span className="font-12 line-height-21 light-white-font font-weight-normal">{episode?.runtime} دقیقه</span>
-                                        </div>
+                                            <div className="d-flex justify-start align-center gap-1">
+                                                <h2 className="white-color font-lg-14 font-12 font-weight-normal" style={{ lineHeight: '1.79' }}>
+                                                    {showName} -
+                                                </h2>
+                                                <p className="white-color font-12">فصل {episode?.season_number}</p>
+                                                <p className="white-color font-12">قسمت {episode?.episode_number}</p>
+                                            </div>
+                                            <div className="timeEpisode border-radius-12">
+                                                <span className="font-12 line-height-21 light-white-font font-weight-normal">{episode?.runtime} دقیقه</span>
+                                            </div>
                                         </div>
                                     </Link>
-                                    <div
-                                        className="arrowDownBgEpisode border-radius-50 position-absolute z-2 d-flex justify-center align-center"
-                                        onClick={() => toggleAccordion(episode.id)}
-                                        style={{ transform: openIndexes[episode.id] ? 'rotate(-180deg)' : 'rotate(0)', transition: 'transform 0.3s ease' , cursor:'pointer' }}
+                                    <div className="arrowDownBgEpisode border-radius-50 position-absolute z-2 d-flex justify-center align-center"
+                                        onClick={() => toggleAccordion(index)}
+                                        style={{ transform: openIndexes[index] ? 'rotate(-180deg)' : 'rotate(0)', transition: 'transform 0.3s ease', cursor: 'pointer' }}
                                     >
                                         <img src={arrowDownEpisodeSm} alt={episode?.id} />
                                     </div>
                                 </div>
                                 
-                                <div className="episodeMenu d-flex flex-column gap-1 episodeBgcAccordion" style={{ maxHeight: isOpen ? '100%' : '0', overflow: 'hidden', transition: 'max-height 0.3s ease-in-out'}}>
-                                    <div className={`${ episode?.overview && episode?.overview.length > 0 ? 'text-left' : 'text-right' } font-12 overviewEpisode font-weight-normal`} style={{ lineHeight: '2' }}>
+                                <div className={`episodeMenu ${openIndexes[index] ? 'open' : ''} d-flex flex-column gap-1 episodeBorderRadiusBottom ${openIndexes[index] ? 'episodeBgcAccordion' : ''}`}>
+                                    <div className={`${episode?.overview && episode?.overview.length > 0 ? 'text-left' : 'text-right'} font-12 overviewEpisode font-weight-normal`} style={{ lineHeight: '2' }}>
                                         {episode?.overview && episode?.overview.length > 0 ? episode?.overview : 'توضیحی ندارد :|'}
                                     </div>
 
                                     <div className="col-12 d-flex justify-btw align-center">
                                         <div className="d-flex justify-start">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20" fill="#fff">
-                                            <path d="M13.548 3a4.55 4.55 0 0 0-3.486 1.642C9.2 3.605 7.925 3.003 6.577 3A4.58 4.58 0 0 0 2 7.577c0 6.2 4.852 10.388 8.062 10.388s8.063-4.184 8.063-10.388A4.58 4.58 0 0 0 13.548 3z"></path>
+                                                <path d="M13.548 3a4.55 4.55 0 0 0-3.486 1.642C9.2 3.605 7.925 3.003 6.577 3A4.58 4.58 0 0 0 2 7.577c0 6.2 4.852 10.388 8.062 10.388s8.063-4.184 8.063-10.388A4.58 4.58 0 0 0 13.548 3z"></path>
                                             </svg>
-                                            <p className="white-color">{popularity ? popularity.toString().slice(0, 2) : episode?.vote_average}%</p>
+                                            <p className="white-color font-12">{popularity ? popularity.toString().slice(0, 2) : episode?.vote_average}%</p>
                                         </div>
                                         <EpisodeTooltip />
                                     </div>

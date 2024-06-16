@@ -21,7 +21,7 @@ export default function DirectorInner({ movieId }) {
 
                 // Fetch credits for the given movie ID
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=fa-IR`
+                    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=en-US`
                 );
                 const data = await response.json();
                 const directorsInMovie = data.crew.filter(member => member.job  && member.profile_path !== null);
@@ -77,7 +77,7 @@ export default function DirectorInner({ movieId }) {
                                     <img loading="lazy"
                                         src={`https://image.tmdb.org/t/p/w500/${director.profile_path}`}
                                         alt={director.name}
-                                        className="col-lg-12 col-9 col-xs-12 DirectorImg object-cover border-radius-50"
+                                        className="col-lg-12 col-9  DirectorImg object-cover border-radius-50"
                                     />
                                 ) : (
                                     <p className="white-color">No image available</p>

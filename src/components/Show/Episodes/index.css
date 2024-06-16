@@ -24,12 +24,37 @@
     background: var(--light-black);
     padding: 6px 16px;
 }
+.episodeMenu {
+    transition: max-height 0.5s ease-in-out,padding opacity 0.01s ease-in-out;
+    max-height: 0;
+    padding: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.episodeMenu.open {
+    max-height: 300px; /* Adjust as needed */
+    padding: 0.8rem 1rem;
+    opacity: 1;
+}
 .episodeBgc{
     background: var(--light-black);
 }
 .episodeBgcAccordion{
     background: var(--light-black);
-    border-top: 1px solid var(--lighter-white-font);
+    border-top: 1px solid var(--contactUs-form-title);
+}
+.episodeBorderRadiusTop{
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.episodeBorderRadiusBottom{
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
 }
 .episodeImgGradient{
     background-image: linear-gradient(-90deg, rgb(34, 35, 39) 0%, rgba(34, 35, 39, 0) 100%);

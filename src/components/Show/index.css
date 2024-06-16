@@ -25,17 +25,17 @@
     padding: 0 16px 0 20px;
     background-color: rgba(255, 255, 255, 0.2);
 }
-.movieInnerIconHover{
-    width:42px;
-     height: 42px;
-      background-color: rgba(255, 255, 255, 0.2);
+.showInnerIconHover{
+    width:24px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 .movieInnerMore:hover , .movieInnerIconHover:hover{
     background-color: rgba(255, 255, 255, 0.4);
 }
 @media only screen and (max-width:576px){
     .heroSectionMovie{
-        background-position: center top;
+        background-position: 86% 0;
     }
     .heroSectionMovieInfo{
         padding-top: 40vh;
@@ -60,6 +60,10 @@
     }
     .containerMovie{
         margin-bottom: 8rem;
+    }
+    .showInnerIconHover{
+        width:42px;
+        height: 42px;
     }
   
 }

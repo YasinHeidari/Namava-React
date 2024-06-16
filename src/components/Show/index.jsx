@@ -54,7 +54,7 @@ export default function Show() {
                 setPosters(imagesData.posters); // Set posters data
 
                 const creditsResponse = await fetch(
-                    `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=en,fa,jp`
+                    `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en`
                 );
                 const creditsData = await creditsResponse.json();
                 const topStars = creditsData.cast.slice(0, 5).map(actor => actor.name);

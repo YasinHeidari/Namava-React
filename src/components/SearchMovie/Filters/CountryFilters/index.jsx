@@ -37,7 +37,7 @@ export default function CountryFilter({ checkboxes, setCheckboxes, handleCountry
     };
 
     return (
-        <div className={`searchFilterBorder d-flex flex-column select-box ${isActive ? 'active' : ''}`}>
+        <div className={`searchFilterBorder d-flex flex-column  select-box ${isActive ? 'active' : ''}`}>
             <div className="select-option d-flex justify-btw align-center" onClick={() => setIsActive(!isActive)}>
                 <input type="text" placeholder="کشور سازنده" readOnly name="soValue" />
                 <img src={searchArrowDown} alt='arrow down' className={`searchArrowDown ${isActive ? 'rotate' : ''}`} />

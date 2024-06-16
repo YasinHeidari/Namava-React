@@ -24,3 +24,10 @@
     height: 4px;
     background-color: var(--grey-color-font);
 }
+.seeAllButton{
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+.sliderTitle:hover .seeAllButton{
+    opacity: 1;
+}

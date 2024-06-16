@@ -19,7 +19,7 @@ export default function StarInnerShow({ seriesId }) {
         async function fetchStars() {
             try {
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/tv/${seriesId}/credits?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=en,fa`
+                    `https://api.themoviedb.org/3/tv/${seriesId}/credits?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,fa`
                 );
                 const data = await response.json();
                 const cast = data.cast.filter(

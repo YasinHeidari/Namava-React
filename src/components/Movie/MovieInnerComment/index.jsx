@@ -17,7 +17,7 @@ export default function CommentContainer({ movieId }) {
             }
 
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${apiKey}&language=fa-IR`);
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${apiKey}&language=en-US`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -34,7 +34,7 @@ export default function CommentContainer({ movieId }) {
     return (
         <div className="commentContainer">  
             <div className="d-flex flex-column w-100 gap-md-7 gap-2">
-                <h3 className="font-lg-18 white-color text-center">نظرات کاربران</h3>
+                <h3 className="font-lg-18 font-16 white-color text-center">نظرات کاربران</h3>
                 <div className="d-flex justify-center align-start gap-2">
                     <div className="d-flex justify-start" style={{ marginTop: '.5rem' }}>
                         <img
@@ -76,7 +76,7 @@ export default function CommentContainer({ movieId }) {
                         author={comment.author}
                         created_at={comment.created_at}
                         content={comment.content}
-                        likes={comment.likes}
+                        rating={comment.rating}
                         dislikes={comment.dislikes}
                     />
                 ))}

@@ -37,8 +37,7 @@ export default function AboutUsSlider() {
       <Swiper
         a11y={false}
         freeMode= {true}
-        slidesPerView='auto' // Number of slides visible at once
-        spaceBetween={5} // Space between slides
+        slidesPerView={5} // Number of slides visible at once
         loop={true}
         autoplay={{
           delay: 0.5, // Delay between transitions
@@ -48,23 +47,20 @@ export default function AboutUsSlider() {
         modules={[Autoplay]}
         loopAdditionalSlides={25}
         breakpoints={{
-          0: {
-            spaceBetween: 30,
+          576: {
+            slidesPerView:5,
           },
-          480: {
-            spaceBetween: 30,
-          },
-          767: {
-            spaceBetween: 40,
+          768: {
+            slidesPerView:6,
           },
           992: {
-            spaceBetween: 40,
+            slidesPerView:7,
           },
         }}
         className="mySwiper aboutUsSliderContainer col-12 d-flex justify-evenly align-center gap-2"
       >
         {movies.map((item) => (
-          <SwiperSlide key={item.id} className='h-auto' style={{ width: '200px' }}>
+          <SwiperSlide key={item.id} className='h-auto aboutUsSliderItem'>
             <Link to={item.media_type === 'movie' ? `/movie/${item.id}` : `/show/${item.id}`}>
               <img className='w-100 h-auto' src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title || item.name} />
             </Link>

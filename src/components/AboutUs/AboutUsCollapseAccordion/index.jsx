@@ -20,7 +20,7 @@ export default function AboutUsAccordion(){
         padding:'24px 0',
     }
     return(
-    <div className="container-md">
+    <div className="container-md container">
         <ConfigProvider
             theme={{
                 components: {
@@ -34,7 +34,7 @@ export default function AboutUsAccordion(){
                 },
             }}
         >
-        <Space direction="vertical" className="w-100"> 
+        <Space direction="vertical" className="col-12"> 
     {/*expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}*/}
             <Collapse className="d-flex flex-column gap-1" style={{padding: '12px 0' , backgroundColor:'#121212'}}  bordered={false}>
                 <Panel  onClick={() => changeBorderTop(1)} header="۱. آیا برای تماشای محتوای نماوا نیاز به خرید اشتراک وجود دارد؟ " key="1" style={PanelStyle}>

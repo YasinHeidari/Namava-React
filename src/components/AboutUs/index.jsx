@@ -17,7 +17,7 @@ export default function AboutUs() {
         document.title = 'درباره نماوا'
     })
     return (
-        <div className="d-flex flex-column justify-evenly gap-12 light-black-bgc container-padding-2">
+        <div className="d-flex flex-column justify-evenly gap-md-12 gap-6 light-black-bgc container-padding-2" style={{marginBottom:'6rem'}}>
         <ScrollToTop/>
             <AboutUsHeroSection/>
             <AboutUsDisplayOptions/>

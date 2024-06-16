@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import { img_300 } from "../../../helpers/api";
 import { unavailable } from "../../../helpers/api";
 import Loading from "../../Loading";
@@ -17,6 +17,7 @@ const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
 export default function LatestShow({ title }) {
     const [loading, setLoading] = useState(true);
     const [shows, setShows] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchAiringTodayShows() {
@@ -35,7 +36,10 @@ export default function LatestShow({ title }) {
             }
         }
         fetchAiringTodayShows();
-    }, []); // Empty dependency array to ensure the effect runs only once
+    }, []); // Empty dependency array to ensure the effect runs only 
+    const handleSeeAllClick = () => {
+        navigate('/SeeAllShows', { state: { shows, title } });
+    };
 
     return (
         <div className="w-100">
@@ -45,8 +49,14 @@ export default function LatestShow({ title }) {
                     {loading ? (
                         <Loading />
                     ) : (
-                        <div className="d-flex flex-column justify-center align-start gap-2">
-                            <h3 className="white-color">{title}</h3>
+                        <div className="d-flex flex-column justify-center align-start gap-3">
+                        <div className="sliderTitle col-md-5 col-12 d-flex justify-start align-center gap-1">
+                                <h3 className="col-xl-4 col-md-6 col-4 white-color">{title}</h3>
+                                <button onClick={handleSeeAllClick} className="seeAllButton col-md-5 d-flex align-center gap-1">
+                                    <p>مشاهده همه</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="10 0 20 40" fill="#fff"><path d="M14.77 18.793c0-.493.196-.967.545-1.315l6.2-6.2a1.86 1.86 0 0 1 2.626 2.633l-4.88 4.882 4.88 4.88a1.86 1.86 0 0 1-2.63 2.63l-6.2-6.2c-.347-.348-.54-.82-.54-1.31z" style={{transform: 'translateY(2px)',}}></path></svg>
+                                </button>
+                            </div>
                             <Swiper
                                 grabCursor={true}
                                 keyboard={{

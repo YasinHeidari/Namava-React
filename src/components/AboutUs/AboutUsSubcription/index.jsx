@@ -8,7 +8,7 @@ export default function AboutUsSubscription(){
                                 اشتراک ها
                             </h3>
                         </div>
-                        <div className="d-flex justify-center align-stretch gap-4 ">
+                        <div className="d-flex flex-md-row flex-column justify-center align-stretch gap-4 ">
                             <div className="aboutUsSubscriptionCard col-md-6 border-radius-12">
                                 <div className="d-flex flex-column justify-evenly align-center gap-5 text-center">
                                     <div>

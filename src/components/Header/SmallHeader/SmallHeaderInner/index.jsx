@@ -5,7 +5,8 @@ import classNames from "classnames";
 export default function SmallHeaderInner() {
     const location = useLocation();
     const navigate = useNavigate();
-    const isMovieOrShowPage = /^\/(movie|show)\/\d+$/.test(location.pathname);
+    const isMovieOrShowPage = /^\/(movie\/\d+|show\/\d+|SearchMovie)$/.test(location.pathname);
+
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [isTransitioning, setTransitioning] = useState(false);
     const [isHeaderVisible, setHeaderVisible] = useState(true);

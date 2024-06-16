@@ -1,8 +1,12 @@
+.select-option{
+    margin-bottom: 1rem;
+}
 .select-option input{
     width: 100%;
     background-color: var(--footer-download-link-bgc);
     border: none;
     cursor: pointer;
+    
 }
 .select-option input[type=text]{
     outline: none;
@@ -34,6 +38,8 @@
 }
 .search input{
     background-color: var(--light-white-font);
+    height: 40px;
+    padding: 8px 16px;
 }
 .search input[type=text]{
     outline: none;

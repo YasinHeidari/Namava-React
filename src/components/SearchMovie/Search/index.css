@@ -9,3 +9,9 @@
 .showResultContainer:hover .darkShowCover{
     opacity: 1 ;
 }
+.movieResultContainer , .searchResultContainer , .showResultContainer{
+   padding: 0 5px; 
+}
+.searchContainer{
+    margin: 0;
+}

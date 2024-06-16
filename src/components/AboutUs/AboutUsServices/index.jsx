@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 export default function AboutUsServices(){
     return(
-        <div className="container-md">
-            <div className="d-flex justify-content align-center gap-4">
-                <div className="col-3 d-flex flex-column justify-center align-center gap-5">
+        <div className="container-md container">
+            <div className="d-flex justify-evenly flex-wrap align-center ">
+                <div className="col-lg-3 col-sm-6 col-9 d-flex flex-column justify-center align-center gap-md-5 gap-1" style={{marginBottom:'2rem'}}>
                     <div>
                         <img
                             className="object-cover w-100 h-auto"
@@ -28,7 +28,7 @@ export default function AboutUsServices(){
                         بیشتر بدانید
                     </Link>
                 </div>
-                <div className="col-3 d-flex flex-column justify-center align-center gap-5">
+                <div className="col-lg-3 col-sm-6 col-9 d-flex flex-column justify-center align-center gap-md-5 gap-1" style={{marginBottom:'2rem'}}>
                     <div>
                         <img
                             className="object-cover w-100 h-auto"
@@ -52,7 +52,7 @@ export default function AboutUsServices(){
                         بیشتر بدانید
                     </Link>
                 </div>
-                <div className="col-3 d-flex flex-column justify-center align-center gap-5">
+                <div className="col-lg-3 col-sm-6 col-9 d-flex flex-column justify-center align-center gap-md-5 gap-1" style={{marginBottom:'2rem'}}>
                     <div>
                         <img
                             className="object-cover w-100 h-auto"
@@ -71,7 +71,7 @@ export default function AboutUsServices(){
                         فیلم‌های تماشا شده‌ی شما
                     </p>
                 </div>
-                <div className="col-3 d-flex flex-column justify-center align-center gap-5">
+                <div className="col-lg-3 col-sm-6 col-9 d-flex flex-column justify-center align-center gap-md-5 gap-1" style={{marginBottom:'2rem'}}>
                     <div>
                         <img
                             className="object-cover w-100 h-auto"

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { img_300 } from "../../../helpers/api";
-import { unavailable } from "../../../helpers/api";
+import { img_300, unavailable } from "../../../helpers/api";
 import Loading from "../../Loading";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -14,15 +13,19 @@ import MovieInfoHomePage from "../MovieInfo";
 import IMDB from "../../../images/IMDB.svg";
 import PreloadStyles from "../../Loading/PreLoader";
 import SubScript from "../../../images/subScript.svg";
+import { useNavigate, Link } from "react-router-dom";
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
 
 export default function SliderMovie({ genreId, title }) {
     const [loading, setLoading] = useState(true);
+    const [expanded, setExpanded] = useState(true);
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
-    const [isInfoVisible, setIsInfoVisible] = useState(false); // State to control visibility of movie info
+    const [isInfoVisible, setIsInfoVisible] = useState(false);
     const [selectedSliderIndex, setSelectedSliderIndex] = useState(null);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchMovies() {
@@ -43,27 +46,52 @@ export default function SliderMovie({ genreId, title }) {
         fetchMovies();
     }, [genreId]);
 
+    useEffect(() => {
+        const handleResize = () => setScreenWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const handleMovieSelect = (movie, index) => {
-        setSelectedMovie(movie);
-        setIsInfoVisible(true); // Show movie info when a movie is selected
-        setSelectedSliderIndex(index);
+        if (screenWidth < 992) {
+            navigate(`/movie/${movie.id}`);
+        } else {
+            setSelectedMovie(movie);
+            setIsInfoVisible(true);
+            setSelectedSliderIndex(index);
+        }
     };
 
+    const toggleHeight = () => {
+        setExpanded((prevExpanded) => !prevExpanded);
+        console.log("Button clicked. Expanded:", !expanded);
+    };
     const handleInfoToggle = () => {
-        setIsInfoVisible(false); // Hide movie info when the button is clicked
+        setIsInfoVisible(false);
+        setSelectedMovie(null);
         setSelectedSliderIndex(null);
+    };
+
+    const handleSeeAllClick = () => {
+        navigate('/SeeAll', { state: { movies, title } });
     };
 
     return (
         <div className="w-100">
-            <PreloadStyles href='./index.css' as='style'/>
+            <PreloadStyles href='./index.css' as='style' />
             <div className="d-flex flex-column align-center gap-2">
                 <div className="container">
                     {loading ? (
                         <Loading />
                     ) : (
                         <div className="d-flex flex-column justify-center align-start gap-2">
-                            <h3 className="white-color">{title}</h3>
+                        <div className="sliderTitle col-md-5 col-12 d-flex justify-start align-center gap-1">
+                                <h3 className="col-xl-4 col-md-6 col-4 white-color">{title}</h3>
+                                <button onClick={handleSeeAllClick} className="seeAllButton col-md-5 d-flex align-center gap-1">
+                                    <p>مشاهده همه</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="10 0 20 40" fill="#fff"><path d="M14.77 18.793c0-.493.196-.967.545-1.315l6.2-6.2a1.86 1.86 0 0 1 2.626 2.633l-4.88 4.882 4.88 4.88a1.86 1.86 0 0 1-2.63 2.63l-6.2-6.2c-.347-.348-.54-.82-.54-1.31z" style={{transform: 'translateY(2px)',}}></path></svg>
+                                </button>
+                            </div>
                             <Swiper
                                 grabCursor={true}
                                 keyboard={{
@@ -88,11 +116,11 @@ export default function SliderMovie({ genreId, title }) {
                                     992: {
                                         slidesPerView: 5.1,
                                     },
-                                    1200:{
+                                    1200: {
                                         slidesPerView: 7.1,
                                     },
-                                    2560:{
-                                        slidesPerView: 9.1
+                                    2560: {
+                                        slidesPerView: 9.1,
                                     }
                                 }}
                                 className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center"
@@ -101,80 +129,40 @@ export default function SliderMovie({ genreId, title }) {
                                     movies.map((movie, index) => (
                                         <SwiperSlide
                                             key={movie.id}
-                                            className={`movieSlider h-auto d-flex flex-column align-center ${
-                                                selectedSliderIndex === index
-                                                    ? "selected"
-                                                    : ""
-                                            }`}
-                                            onClick={() =>
-                                                handleMovieSelect(movie, index)
-                                            }
+                                            className={`movieSlider h-auto d-flex flex-column align-center ${screenWidth >= 992 && selectedSliderIndex === index ? "selected" : ""}`}
+                                            onClick={() => handleMovieSelect(movie, index)}
                                         >
                                             <div className="movieSliderLink d-flex flex-column gap-1 position-relative">
                                                 <div className="movieSliderItem w-100 h-100 position-relative z-0">
                                                     <img
                                                         loading="lazy"
                                                         className="w-100 h-100 border-radius-5 object-cover"
-                                                        src={
-                                                            movie.poster_path
-                                                                ? `${img_300}/${movie.poster_path}`
-                                                                : unavailable
-                                                        }
-                                                        alt={movie.title}
+                                                        src={movie?.poster_path ? `${img_300}/${movie?.poster_path}` : unavailable}
+                                                        alt={movie?.title}
                                                     />
                                                     <div className="darkMovieCover position-absolute z-1 top-0 right-0 w-100 h-100 d-flex flex-column justify-end align-start gap-1 border-radius-5">
                                                         <div className="d-flex justify-center align-end  vertical-middle">
-                                                            
-                                                                <img className="d-inline-block"
-                                                                    src={IMDB}
-                                                                    alt=""
-                                                                />
-                                                            
+                                                            <img className="d-inline-block" src={IMDB} alt="" />
                                                             <p className="white-color font-14">
-                                                                {ratingDecimal(
-                                                                    movie.vote_average
-                                                                )}
+                                                                {ratingDecimal(movie?.vote_average)}
                                                             </p>
                                                         </div>
                                                         <div className="d-flex justify-center align-center vertical-middle">
-                                                            
-                                                                <img className="d-inline-block"
-                                                                    src={
-                                                                        SubScript
-                                                                    }
-                                                                    alt=""
-                                                                />
-                                                            
-                                                            <p className="white-color font-12">
-                                                                {" "}
-                                                                زیرنویس{" "}
-                                                            </p>
+                                                            <img className="d-inline-block" src={SubScript} alt="" />
+                                                            <p className="white-color font-12"> زیرنویس </p>
                                                         </div>
                                                         <div className="d-flex justify-center align-center">
                                                             <p className="white-color font-12">
-                                                                فیلم -{" "}
-                                                                {movie.release_date.substring(
-                                                                    0,
-                                                                    4
-                                                                )}
+                                                                فیلم - {movie?.release_date.substring(0, 4)}
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <h5 className="white-color line-height-28">
-                                                    {movie.title}
+                                                    {movie?.title || movie?.name}
                                                 </h5>
-                                                {selectedSliderIndex ===
-                                                    index && (
-                                                    <button
-                                                        onClick={
-                                                            handleInfoToggle
-                                                        }
-                                                        className="hideInfoButton border-radius-4 d-flex align-self-center"
-                                                        style={{
-                                                            margin: "2.5rem 0 2rem",
-                                                        }}
-                                                    ></button>
+                                                {selectedSliderIndex === index && (
+                                                    <button onClick={toggleHeight} className="hideInfoButton border-radius-4 d-flex align-self-center" style={{ margin: "2.5rem 0 2rem" }}></button>
                                                 )}
                                             </div>
                                         </SwiperSlide>
@@ -187,9 +175,10 @@ export default function SliderMovie({ genreId, title }) {
                     )}
                 </div>
             </div>
-            {selectedMovie && isInfoVisible && (
+            {selectedMovie && isInfoVisible && screenWidth >= 992 && (
                 <MovieInfoHomePage movie={selectedMovie} />
             )}
         </div>
     );
 }
+

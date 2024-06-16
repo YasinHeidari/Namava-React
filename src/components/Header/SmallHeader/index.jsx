@@ -12,7 +12,8 @@ export default function SmallHeader() {
     const location = useLocation();
     const isHomePage = location.pathname === "/";
     const isContactUsPage = location.pathname === "/ContactUs";
-    const isMovieOrShowPage = /\/movie\/\d+/.test(location.pathname) || /\/show\/\d+/.test(location.pathname);
+    const isMovieOrShowPage = /^\/(movie\/\d+|show\/\d+|SearchMovie)$/.test(location.pathname);
+
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [isTransitioning, setTransitioning] = useState(false);
     const [isHeaderVisible, setHeaderVisible] = useState(true);

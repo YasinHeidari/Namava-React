@@ -1,8 +1,8 @@
 export default function AboutUsKids(){
     return(
-        <div className="container-md">
-                    <div className="aboutUsKids d-flex justify-center align-center ">
-                        <div className="aboutUsKidsInfo col-md-6  d-flex flex-column justify-center align-start gap-3">
+        <div className="container-lg">
+                    <div className="aboutUsKids d-flex flex-md-row flex-column  justify-md-center justify-evenly align-center ">
+                        <div className="aboutUsKidsInfo col-md-6 col-12  d-flex flex-column justify-center align-md-start align-center gap-3">
                             <div>
                                 <img
                                     src={
@@ -34,7 +34,7 @@ export default function AboutUsKids(){
                                 </p>
                             </div>
                         </div>
-                        <div className="col-md-6 d-flex justify-end align-center">
+                        <div className="col-md-6 col-12 d-flex justify-md-end justify-center align-center">
                             <img
                                 className="object-cover aboutUsKidsImg max-w-100 "
                                 src="https://static.namava.ir/Content/Upload/Images/65032a0d-97ba-43e7-8d7b-fe236abacea1.jpg"
