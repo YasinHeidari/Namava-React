@@ -109,7 +109,7 @@ useEffect(() => {
   return (
     <div className="searchContainer col-12 d-flex flex-column justify-center gap-4">
     <div className="col-12 d-flex flex-row-reverse align-center gap-1">
-      <div className="searchInputContainer col-10 d-flex justify-sm-start align-center gap-1 font-xl-14 font-12 border-radius-12 line-height-xl-24 line-height-21">
+      <div className="searchInputContainer col-12 d-flex justify-sm-start align-center gap-1 font-xl-14 font-12 border-radius-12 line-height-xl-24 line-height-21">
         <img src={searchIcon} alt='searchIcon' />
         <input
           className="searchInput col-12 line-height-xl-24 font-12 line-height-21 font-weight-normal"

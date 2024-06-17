@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react";
 import ScrollToTop from "../../helpers/ScrollToTop";
-import "./index.css";
 import CountrySelect from "./ContactCountrySelect";
 import RelativitySelect from "./ContactRelativitySelect";
+import "./index.css";
 
 export default function ContactUs() {
     const [showSelect, setShowSelect] = useState(false);
-
-    useEffect(()=>{
-        document.title = 'تماس با ما'
-    })
-
+    
+    useEffect(() => {
+        document.title = 'تماس با ما';
+    }, []);
+    
     const toggleSelect = () => {
         setShowSelect(!showSelect);
     };
-    const [nameInputValue, setNameInputValue] = useState(""); 
+    
+    
+    const [nameInputValue, setNameInputValue] = useState("");
     const [emailInputValue, setEmailInputValue] = useState("");
     const [numberInputValue, setNumberInputValue] = useState("");
     const [subscriptionInputValue, setSubscriptionInputValue] = useState("");
     const [explainInputValue, setExplainInputValue] = useState("");
+    const [selectedValue, setSelectedValue] = useState(null);
+    const [selectedCountryValue, setSelectedCountryValue] = useState(null);
 
     const handleNameInputChange = (event) => {
         setNameInputValue(event.target.value);
@@ -27,22 +31,28 @@ export default function ContactUs() {
     const handleEmailInputChange = (event) => {
         setEmailInputValue(event.target.value);
     };
+
     const handleNumberInputChange = (event) => {
         setNumberInputValue(event.target.value);
     };
-    const emailInputClass = emailInputValue ? "ltr" : "";
 
     const handleSubscriptionInputChange = (event) => {
         setSubscriptionInputValue(event.target.value);
     };
+
     const handleExplainInputChange = (event) => {
         setExplainInputValue(event.target.value);
     };
-    
+    const handleSelectChange = (value) => {
+        setSelectedValue(value);
+    };
+    const handleSelectCountryChange = (value) => {
+        setSelectedCountryValue(value);
+    };
 
     return (
-        <div className="contactSection container-padding-2" style={{paddingTop:'80px'}}>
-        <ScrollToTop/>
+        <div className="contactSection container-padding-2" style={{ paddingTop: '80px' }}>
+            <ScrollToTop />
             <div className="container">
                 <div className="contactContainer d-flex flex-column justify-center align-center gap-4 position-relative">
                     <p className="contactTitle text-center font-xl-20 font-weight-normal">
@@ -68,11 +78,7 @@ export default function ContactUs() {
                             نیز استفاده نمایید.
                         </p>
                         <label
-                            className={`labelName font-12 font-weight-normal align-self-start ${
-                                nameInputValue
-                                    ? "contactVisible"
-                                    : "contactLabel"
-                            }`}
+                            className={`labelName font-12 font-weight-normal align-self-start ${nameInputValue ? "contactVisible" : "contactLabel"}`}
                         >
                             نام و نام خانوادگی
                         </label>
@@ -82,34 +88,25 @@ export default function ContactUs() {
                             className="border-radius-12 w-100 inputName"
                             value={nameInputValue}
                             onChange={handleNameInputChange}
-                            dir="rtl"
-                        />
+                            dir="rtl"/>
                         <label
-                            className={`labelEmail font-12 font-weight-normal align-self-start ${
-                                emailInputValue
-                                    ? "contactVisible"
-                                    : "contactLabel"
-                            }`}
+                            className={`labelEmail font-12 font-weight-normal align-self-start ${emailInputValue ? "contactVisible" : "contactLabel"}`}
                         >
                             ایمیل
                         </label>
                         <input
                             type="email"
                             placeholder="ایمیل"
-                            className={`border-radius-12 w-100 inputEmail ${emailInputClass}`}
+                            className={`border-radius-12 w-100 inputEmail ${emailInputValue ? "ltr" : ""}`}
                             value={emailInputValue}
                             onChange={handleEmailInputChange}
                         />
-                        <label className="font-12 font-weight-normal align-self-start">
+                        <label className={`font-12 font-weight-normal align-self-start ${selectedCountryValue ? "contactVisible" : "contactLabel"}`}>
                             کشور
                         </label>
-                            <CountrySelect/>
+                        <CountrySelect onChange={handleSelectCountryChange}/>
                         <label
-                            className={`labelNumber font-12 font-weight-normal align-self-start ${
-                                numberInputValue
-                                    ? "contactVisible"
-                                    : "contactLabel"
-                            }`}
+                            className={`labelNumber font-12 font-weight-normal align-self-start ${numberInputValue ? "contactVisible" : "contactLabel"}`}
                         >
                             شماره تلفن همراه
                         </label>
@@ -121,11 +118,7 @@ export default function ContactUs() {
                             onChange={handleNumberInputChange}
                         />
                         <label
-                            className={`labeluSubscription font-12 font-weight-normal align-self-start ${
-                                subscriptionInputValue
-                                    ? "contactVisible"
-                                    : "contactLabel"
-                            }`}
+                            className={`labelSubscription font-12 font-weight-normal align-self-start ${subscriptionInputValue ? "contactVisible" : "contactLabel"}`}
                         >
                             کد اشتراک/شناسه کاربری شاتلی
                         </label>
@@ -136,14 +129,14 @@ export default function ContactUs() {
                             value={subscriptionInputValue}
                             onChange={handleSubscriptionInputChange}
                         />
-                        <label className="labelss font-12 font-weight-normal align-self-start">دسته بندی مرتبط را انتخاب کنید</label>
-                        <RelativitySelect/>
                         <label
-                            className={`labelExplain font-12 font-weight-normal align-self-start ${
-                                explainInputValue
-                                    ? "contactVisible"
-                                    : "contactLabel"
-                            }`}
+                            className={`font-12 font-weight-normal align-self-start ${selectedValue ? "contactVisible" : "contactLabel"}`}
+                        >
+                            دسته بندی مرتبط را انتخاب کنید
+                        </label>
+                        <RelativitySelect onChange={handleSelectChange} />
+                        <label
+                            className={`labelExplain font-12 font-weight-normal align-self-start ${explainInputValue ? "contactVisible" : "contactLabel"}`}
                         >
                             توضیحات
                         </label>
