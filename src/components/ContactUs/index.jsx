@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import CountryPopup from "./ContactCountryPopUp";
-import "./index.css";
 import ScrollToTop from "../../helpers/ScrollToTop";
+import "./index.css";
+import CountrySelect from "./ContactCountrySelect";
+import RelativitySelect from "./ContactRelativitySelect";
 
 export default function ContactUs() {
     const [showSelect, setShowSelect] = useState(false);
@@ -13,7 +14,7 @@ export default function ContactUs() {
     const toggleSelect = () => {
         setShowSelect(!showSelect);
     };
-    const [nameInputValue, setNameInputValue] = useState("");
+    const [nameInputValue, setNameInputValue] = useState(""); 
     const [emailInputValue, setEmailInputValue] = useState("");
     const [numberInputValue, setNumberInputValue] = useState("");
     const [subscriptionInputValue, setSubscriptionInputValue] = useState("");
@@ -37,20 +38,8 @@ export default function ContactUs() {
     const handleExplainInputChange = (event) => {
         setExplainInputValue(event.target.value);
     };
+    
 
-    const [selectedValue, setSelectedValue] = useState("IR Iran (+98)");
-    const [showOptions, setShowOptions] = useState(false);
-
-    const handleOptionSelect = (value) => {
-        setSelectedValue(value);
-        setShowOptions(false);
-    };
-
-    const handleOutsideClick = (e) => {
-        if (!e.target.closest(".popup-select-options")) {
-            setShowOptions(false);
-        }
-    };
     return (
         <div className="contactSection container-padding-2" style={{paddingTop:'80px'}}>
         <ScrollToTop/>
@@ -59,7 +48,7 @@ export default function ContactUs() {
                     <p className="contactTitle text-center font-xl-20 font-weight-normal">
                         تماس با پشتیبانی نماوا
                     </p>
-                    <div className="contactText w-100  d-flex flex-column justify-evenly align-start gap-2 border-radius-12">
+                    <div className="contactText col-12  d-flex flex-column justify-evenly align-start gap-2 border-radius-12">
                         <h2 className="white-color font-16 font-weight-normal">
                             هفت روز هفته، ۲۴ ساعت شبانه‌روز پاسخگوی شما هستیم.
                         </h2>
@@ -114,30 +103,7 @@ export default function ContactUs() {
                         <label className="font-12 font-weight-normal align-self-start">
                             کشور
                         </label>
-                        <input type="text" className="border-radius-12 w-100" />
-                        <button
-                            type="button"
-                            className="select border-radius-12"
-                            onClick={() => setShowOptions(!showOptions)}
-                        >
-                            {selectedValue}
-                        </button>
-                            <CountryPopup onClick={() => setShowOptions(!showOptions)} handleOutsideClick={handleOutsideClick}/>
-                        {/*<button
-                            type="button"
-                            className="select border-radius-12"
-                            onClick={() => setShowOptions(!showOptions)}
-                        >
-                            {selectedValue}
-                        </button>
-                        {showOptions && (
-                            <CountryPopup
-                                options={options}
-                                onSelect={handleOptionSelect}
-                                
-                            />
-                        )}*/}
-
+                            <CountrySelect/>
                         <label
                             className={`labelNumber font-12 font-weight-normal align-self-start ${
                                 numberInputValue
@@ -170,18 +136,8 @@ export default function ContactUs() {
                             value={subscriptionInputValue}
                             onChange={handleSubscriptionInputChange}
                         />
-                        <button onClick={toggleSelect}>
-                            Show Select Option
-                        </button>
-                        {showSelect && (
-                            <div className="overlay">
-                                <select className="w-100 border-radius-12">
-                                    <option value="option1">Option 1</option>
-                                    <option value="option2">Option 2</option>
-                                    <option value="option3">Option 3</option>
-                                </select>
-                            </div>
-                        )}
+                        <label className="labelss font-12 font-weight-normal align-self-start">دسته بندی مرتبط را انتخاب کنید</label>
+                        <RelativitySelect/>
                         <label
                             className={`labelExplain font-12 font-weight-normal align-self-start ${
                                 explainInputValue
