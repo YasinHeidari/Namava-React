@@ -1,7 +1,7 @@
 # **Namava (Home made)**
 My project is a copy of the real [navama.ir](https://www.namava.ir/home) website and I am using the TMDB api for dispalying everything including movies and shows.
 
-#Technologies
+# Technologies
 react 
 PWA
 axios
