@@ -27,7 +27,6 @@ npm i react-helmet
  ## DEMO
  The Namave Home made is an up to date and dynamic movie and show website where you can watch what new movies/shows have been dropped or movies/shows in diffrent genres or iranian movies . there are detailed pages for each movie and show so you could figure out what stars have played in the movie or what genres the movie has and even what people think about the movie . 
  ![NamavaHeroSection](https://github.com/YasinHeidari/Namava-React/assets/146878495/7a025732-1a08-45be-b45c-dfb132e8ad01)
-oads/NamavaHeroSection.png)
 
 
  ## my feelings about the website 
