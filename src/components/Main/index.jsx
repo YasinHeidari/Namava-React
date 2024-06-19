@@ -40,7 +40,7 @@ export default function Main() {
         // Use setTimeout for simulating loading delay
         const timer = setTimeout(() => {
             fetchMovies();
-        }, 5000);
+        }, 3000);
 
         return () => clearTimeout(timer);
     }, []);

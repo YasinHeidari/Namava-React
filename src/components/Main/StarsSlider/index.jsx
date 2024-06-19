@@ -73,9 +73,15 @@ export default function StarsSlider({ title }) {
                                 slidesPerView: 4,
                             },
                             992: {
-                                slidesPerView: 7,
+                                slidesPerView: 5,
                             },
-                                }}
+                            1440:{
+                                slidesPerView:7,
+                            },
+                            2560:{
+                                slidesPerView:11,
+                            }
+                            }}
                         className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"
                     >
                         {stars.map((star, index) => (

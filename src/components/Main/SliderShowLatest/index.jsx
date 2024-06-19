@@ -9,7 +9,6 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
-import PreloadStyles from "../../Loading/PreLoader";
 import "./index.css";
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
@@ -43,7 +42,6 @@ export default function LatestShow({ title }) {
 
     return (
         <div className="w-100">
-        <PreloadStyles href='./index.css' as='style'/>
             <div className="d-flex flex-column align-center gap-2">
                 <div className="container">
                     {loading ? (

@@ -174,7 +174,7 @@ export default function Show() {
                             <p className="white-color font-12 font-weight-normal" style={{ lineHeight: '1.75' }}>
                             {series.overview && series.overview.length > 50
                                 ? `${series.overview?.substring(0, 50)}...`
-                                : series.overview}
+                                : series.overview}{/** yh */}
                             </p>
                             <div className="d-flex align-center justify-evenly gap-2">
                                 <Link

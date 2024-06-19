@@ -1,17 +1,20 @@
-.showResultContainer .darkShowCover{
+.showResultContainer .darkShowCover , .movieResultContainer .darkMovieCover, .searchResultContainer .darkSearchCover{
     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9));
     opacity: 0;
     transition: opacity .3s ease ;
     padding: 1rem;
-    transform: scaleY(1.01);
-    margin-top: -.05rem;
+    height: 20rem !important;
 }
 .showResultContainer:hover .darkShowCover{
     opacity: 1 ;
 }
 .movieResultContainer , .searchResultContainer , .showResultContainer{
    padding: 0 5px; 
+   
 }
 .searchContainer{
     margin: 0;
+}
+.movieResultImage , .showResultImage ,.searchResultImage{
+    height: 20rem !important;
 }

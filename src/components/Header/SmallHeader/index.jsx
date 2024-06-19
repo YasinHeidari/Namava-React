@@ -1,9 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import classNames from "classnames";
-import PreloadStyles from "../../Loading/PreLoader";
 import { Menu, Dropdown, Button, ConfigProvider } from 'antd';
-import { DownOutlined } from '@ant-design/icons'; // Import Ant Design components
+import { DownOutlined } from "@ant-design/icons";
 import "../index.css";
 
 const { Item } = Menu;
@@ -13,7 +12,6 @@ export default function SmallHeader() {
     const isHomePage = location.pathname === "/";
     const isContactUsPage = location.pathname === "/ContactUs";
     const isMovieOrShowPage = /^\/(movie\/\d+|show\/\d+|SearchMovie)$/.test(location.pathname);
-
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [isTransitioning, setTransitioning] = useState(false);
     const [isHeaderVisible, setHeaderVisible] = useState(true);
@@ -110,7 +108,7 @@ export default function SmallHeader() {
             }}
         >
             <div className="d-lg-none d-block">
-                <PreloadStyles href='./index.css' as='style' />
+                
                 <div
                     className={classNames("header col-12 z-3 top-0 right-0", { 'sticky': isHeaderVisible }, { 'transitioning': isTransitioning })}
                     style={{
@@ -132,7 +130,7 @@ export default function SmallHeader() {
                                 <Dropdown overlay={menu} trigger={['click']} placement="bottom" >
                                     <Button className="d-flex gap-1 align-center" style={{ height: '2rem', border: 'none', background: 'transparent' }}>
                                         <p className="font-12 white-color font-weight-normal" >خانه</p>
-                                        <DownOutlined />
+                                        <DownOutlined/>
                                     </Button>
                                 </Dropdown>
                             </div>

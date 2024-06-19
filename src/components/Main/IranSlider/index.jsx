@@ -11,7 +11,6 @@ import ratingDecimal from "../../../helpers/ratingdecimal";
 import MovieInfoHomePage from "../MovieInfo";
 import IMDB from "../../../images/IMDB.svg";
 import SubScript from "../../../images/subScript.svg";
-import PreloadStyles from "../../Loading/PreLoader";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 
@@ -71,7 +70,6 @@ export default function IranMoviesSlider({ title }) {
 
     return (
         <div className="w-100">
-            <PreloadStyles href='./index.css' as='style'/>
             <div className="d-flex flex-column align-center gap-2">
                 <div className="container">
                     {loading ? (

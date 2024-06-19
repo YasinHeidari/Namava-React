@@ -10,7 +10,6 @@ import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
 import ratingDecimal from "../../../helpers/ratingdecimal";
 import MovieInfoHomePage from "../MovieInfo";
-import PreloadStyles from "../../Loading/PreLoader";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 
@@ -68,7 +67,6 @@ export default function SliderMovieTrending({ title }) {
 
     return (
         <div className="w-100">
-        <PreloadStyles href='./index.css' as='style'/>
             <div className="d-flex flex-column align-center gap-2">
                 <div className="container">
                     {loading ? (

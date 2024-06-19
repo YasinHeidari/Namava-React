@@ -55,19 +55,20 @@ export default function StarInnerShow({ seriesId }) {
                     watchOverflow={true}
                     breakpoints={{
                         576: {
-                            slidesPerView: 3.1,
+                            slidesPerView: 3,
                         },
                         768: {
-                            slidesPerView: 4.1,
-                            spaceBetween:20,
+                            slidesPerView: 4,
                         },
                         992: {
-                            slidesPerView: 5.1,
+                            slidesPerView: 5,
                         },
-                        1440: {
-                            slidesPerView: 7.1,
-                            spaceBetween:30,
+                        1440:{
+                            slidesPerView:7,
                         },
+                        2560:{
+                            slidesPerView:11,
+                        }
                     }}
                     modules={[Navigation, Keyboard]}
                     className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"

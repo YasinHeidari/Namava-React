@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -6,8 +7,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Keyboard, Navigation } from "swiper/modules";
 import Loading from "../../Loading";
-import { unavailable } from "../../../helpers/api";
-import { Link } from "react-router-dom";
 import "./index.css";
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01"; // Replace with your actual API key
@@ -77,8 +76,14 @@ export default function DirectorsSlider({ title }) {
                                 slidesPerView: 4,
                             },
                             992: {
-                                slidesPerView: 7,
+                                slidesPerView: 5,
                             },
+                            1440:{
+                                slidesPerView:7,
+                            },
+                            2560:{
+                                slidesPerView:11,
+                            }
                         }}
                         className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"
                     >

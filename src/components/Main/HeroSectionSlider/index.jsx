@@ -10,7 +10,6 @@ import getResponsiveBackgroundImage from "../../../helpers/ResponsiveBgImage";
 import Loading from "../../Loading";
 import IMDB from "../../../images/IMDB.svg";
 import ratingDecimal from "../../../helpers/ratingdecimal";
-import PreloadStyles from '../../Loading/PreLoader';
 import "./index.css";
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
@@ -78,7 +77,7 @@ export default function HeroSectionSlider() {
 
     return (
         <div className="w-100 h-100">
-        <PreloadStyles href='./index.css' as='style'/>
+        
             {loading ? (
                 <Loading />
             ) : (

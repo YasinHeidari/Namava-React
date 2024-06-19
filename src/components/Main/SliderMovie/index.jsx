@@ -11,7 +11,6 @@ import ratingDecimal from "../../../helpers/ratingdecimal";
 import "./index.css";
 import MovieInfoHomePage from "../MovieInfo";
 import IMDB from "../../../images/IMDB.svg";
-import PreloadStyles from "../../Loading/PreLoader";
 import SubScript from "../../../images/subScript.svg";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -78,7 +77,6 @@ export default function SliderMovie({ genreId, title }) {
 
     return (
         <div className="w-100">
-            <PreloadStyles href='./index.css' as='style' />
             <div className="d-flex flex-column align-center gap-2">
                 <div className="container">
                     {loading ? (

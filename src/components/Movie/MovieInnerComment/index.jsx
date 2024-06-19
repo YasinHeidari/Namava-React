@@ -76,7 +76,7 @@ export default function CommentContainer({ movieId }) {
                         author={comment.author}
                         created_at={comment.created_at}
                         content={comment.content}
-                        rating={comment.rating}
+                        rating={comment.author_details.rating}
                         dislikes={comment.dislikes}
                     />
                 ))}
