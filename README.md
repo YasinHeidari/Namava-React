@@ -2,12 +2,12 @@
 My project is a copy of the real [navama.ir](https://www.namava.ir/home) website and I am using the TMDB api for dispalying everything including movies and shows.
 
 # Technologies
-+react 
-+PWA
-+axios
-+ant-design / @ant-design/icons
-+classnames
-+swiper 
++ react 
++ PWA
++ axios
++ ant-design / @ant-design/icons
++ classnames
++ swiper 
 
 
 # Usage 
