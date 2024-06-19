@@ -30,6 +30,6 @@ npm i react-helmet
 
 
  ## my feelings about the website 
- this is big scale project which i have dedicated alot of time , energy and sleepless nights . This my first official project as an inter react developer and it was a really big one for me and way above my skills but i achieved my goal and created it . i hope all of you enjoy it 
+ this is big scale project which i have dedicated alot of time , energy and sleepless nights . This my first official project as an  Junior Front-end Developer and it was a really big one for me and way above my skills but i achieved my goal and created it . i hope all of you enjoy it 
 
  ### Follow me on my Linkedin page [Yasin Heidari](https://www.linkedin.com/in/yasin-heidari-797975230/)
