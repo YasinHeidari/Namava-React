@@ -9,12 +9,12 @@ import CommentContainer from "./MovieInnerComment";
 import IMDB from '../../images/IMDB.svg';
 import SubScript from '../../images/subScript.svg';
 import ScrollToTop from "../../helpers/ScrollToTop";
-import "./index.css";
 import SpinnerLoading from "../Loading/SpinnerLoading";
 import MovieToolTiplg from "./MovieTooltip/MovieTooltiplg";
 import MovieToolTipsm from "./MovieTooltip/MovieTooltipsm";
 import getResponsiveBackgroundImageMovie from "../../helpers/ResponsiveBgImageMovie";
 import Error from "../Error";
+import "./index.css";
 
 const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
 
@@ -33,7 +33,7 @@ export default function Movie() {
   useEffect(() => {
     const fetchMovieData = async () => {
       try {
-        const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,fa,jp,null`);
+        const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=en,null`);
         const movieData = await movieResponse.json();
         setMovie(movieData);
 
@@ -45,7 +45,7 @@ export default function Movie() {
         setLogoUrl(firstNonNullLogoUrl);
         setPosters(imagesData.posters);
 
-        const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=fa,jp`);
+        const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,jp`);
         const creditsData = await creditsResponse.json();
         const topStars = creditsData.cast.slice(0, 5).map(actor => actor.name);
         setStars(topStars);
@@ -122,7 +122,7 @@ export default function Movie() {
                 <p className="white-color font-xl-14 font-sm-12 font-xs-12 font-weight-normal">{movie?.runtime} دقیقه</p>
               </div>
               <p className="white-color font-12 font-weight-normal" style={{ lineHeight: '1.75' }}>
-                {movie.overview.length > 50 ? `${movie.overview.substring(0, 50)}...` : movie.overview}
+                {movie.overview.length > 50 ? `${movie.overview.substring(0, 50)}...` : 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.'}
               </p>
               <div className="d-flex align-center justify-evenly gap-2">
                 <Link to="/" className="movieInnerBtn white-bgc d-flex flex-row align-center gap-1 border-radius-12 line-height-42">
@@ -163,7 +163,7 @@ export default function Movie() {
           <div className="d-flex flex-column gap-4">
             <h2 className="white-color font-md-14 font-12 font-weight-normal">{movie?.name || movie?.title}</h2>
             <h2 className="white-color font-lg-18 font-16 font-weight-normal">درباره فیلم {movie?.name || movie?.title}</h2>
-            <p className="light-white-font font-md-14 font-12 font-weight-normal" style={{ lineHeight: '2' }}>{movie?.overview}</p>
+            <p className="light-white-font font-md-14 font-12 font-weight-normal" style={{ lineHeight: '2' }}>{movie?.overview.length > 0 ? movie.overview : 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.'}</p>
             <p className="white-color font-lg-14 font-12 font-weight-normal">
               دسته بندی ها: {getGenreNames()}
             </p>

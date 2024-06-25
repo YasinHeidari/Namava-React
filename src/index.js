@@ -31,7 +31,7 @@ const ValidatedRoute = ({ component: Component, validator, ...rest }) => {
   }, [id, validator]);
 
   if (isValid === null) {
-    return <div>Loading...</div>; // You can show a loading spinner here
+    return <SpinnerLoading/>; 
   }
 
   return isValid ? <Component {...rest} /> : <Navigate to="/error" />;
