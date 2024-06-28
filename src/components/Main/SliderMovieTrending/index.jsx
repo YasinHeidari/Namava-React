@@ -19,10 +19,10 @@ export default function SliderMovieTrending({ title }) {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState(null);
-    const [isInfoVisible, setIsInfoVisible] = useState(false); // State to control visibility of movie info
+    const [isInfoVisible, setIsInfoVisible] = useState(false); 
     const [selectedSliderIndex, setSelectedSliderIndex] = useState(null);
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth); // State for screen width
-    const navigate = useNavigate(); // Initialize navigate
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth); 
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         async function getApi() {
@@ -46,9 +46,11 @@ export default function SliderMovieTrending({ title }) {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const handleMovieSelect = (movie, index) => {
+    const handleMovieSelect = (movie,show,index) => {
+        const mediaType = movie.media_type;
+        const urlPath = mediaType === 'movie' ? `/movie/${movie.id}` : `/show/${show.id}`;
         if (screenWidth < 992) {
-            navigate(`/movie/${movie.id}`); // Navigate to movie details
+            navigate(urlPath); // Navigate to movie details
         } else {
             setSelectedMovie(movie);
             setIsInfoVisible(true);
@@ -77,7 +79,7 @@ export default function SliderMovieTrending({ title }) {
                                 <h3 className="col-xl-4 col-md-6 col-4 white-color">{title}</h3>
                                 <button onClick={handleSeeAllClick} className="seeAllButton col-md-5 d-flex align-center gap-1">
                                     <p>مشاهده همه</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="10 0 20 40" fill="#fff"><path d="M14.77 18.793c0-.493.196-.967.545-1.315l6.2-6.2a1.86 1.86 0 0 1 2.626 2.633l-4.88 4.882 4.88 4.88a1.86 1.86 0 0 1-2.63 2.63l-6.2-6.2c-.347-.348-.54-.82-.54-1.31z" style={{transform: 'translateY(2px)',}}></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="10 0 20 40" fill="#fff"><path d="M14.77 18.793c0-.493.196-.967.545-1.315l6.2-6.2a1.86 1.86 0 0 1 2.626 2.633l-4.88 4.882 4.88 4.88a1.86 1.86 0 0 1-2.63 2.63l-6.2-6.2c-.347-.348-.54-.82-.54-1.31z" style={{transform: 'translateY(2px)'}}></path></svg>
                                 </button>
                             </div>
                             <Swiper

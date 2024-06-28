@@ -76,7 +76,7 @@ export default function HeroSectionSlider() {
     
 
     return (
-        <div className="w-100 h-100">
+        <div className="heroSectionContainer w-100 h-100">
         
             {loading ? (
                 <Loading />

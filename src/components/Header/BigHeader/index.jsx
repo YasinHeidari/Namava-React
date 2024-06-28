@@ -103,8 +103,3 @@ export default function BigHeader() {
         </Fragment>
     );
 }
-
-
-
-
-
