@@ -75,6 +75,7 @@
   .heroSectionSlider .movieSlider{
     background-position: left top;
     background-size: cover;
+    
   }
 }
 @media only screen and (min-width:992px){

@@ -82,7 +82,7 @@ export default function BigHeader() {
                                 <Link to={"/"}><p className={`font-12 font-weight-normal ${isHomePage ? 'active' : ''}`}>خانه</p></Link>
                                 <Link to={"/"} className="font-12 font-weight-normal">کودکان</Link>
                                 <Link to={"/"} className="font-12 font-weight-normal">پردیس نماوا</Link>
-                                <Link to={"/"} className="font-12 font-weight-normal">نماوا مگ</Link>
+                                <Link to={"/"} className="font-12 font-weight-normal">نماوا مگ</Link> 
                             </div>
                         </div>
                         <div className="d-flex justify-center align-center gap-2 gap-xs-1">

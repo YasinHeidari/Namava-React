@@ -38,13 +38,13 @@ export default function SmallHeaderInner() {
         };
     }, [prevScrollPos]);
 
+    // Render null early if it's not a movie or show page
     if (!isMovieOrShowPage) {
         return null;
     }
 
     return (
         <div className="d-lg-none d-block">
-            
             <div
                 className={classNames("header col-12 z-3 top-0 right-0", { 'sticky': isHeaderVisible }, { 'transitioning': isTransitioning })}
                 style={{
@@ -76,5 +76,4 @@ export default function SmallHeaderInner() {
         </div>
     );
 }
-
 

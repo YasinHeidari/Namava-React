@@ -20,7 +20,7 @@ export default function StarsSlider({ title }) {
             try {
                 // Fetch a list of movies
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`
+                    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=fa-IR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`
                 );
                 const data = await response.json();
                 const movies = data.results;

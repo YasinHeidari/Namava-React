@@ -23,14 +23,14 @@ export default function HeroSectionSlider() {
         const fetchHeroData = async () => {
             try {
                 const upcomingResponse = await fetch(
-                    `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&append_to_response=images,credits&include_image_language=en,jp,null`
+                    `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=fa-IR&append_to_response=images,credits&include_image_language=en,fa,null`
                 );
                 const upcomingData = await upcomingResponse.json();
 
                 const moviesWithDetails = await Promise.all(
                     upcomingData.results.map(async (movie) => {
                         const movieResponse = await fetch(
-                            `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}&language=en-US&append_to_response=images,credits&include_image_language=en,jp,null`
+                            `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}&language=fa-IR&append_to_response=images,credits&include_image_language=en,fa,null`
                         );
                         const movieData = await movieResponse.json();
                         const logo = movieData.images?.logos[0]?.file_path;
@@ -87,11 +87,11 @@ export default function HeroSectionSlider() {
                     navigation={true}
                     slidesPerView={1}
                     effect={"fade"}
-                    autoplay={{ delay: 4500 }}
+                    autoplay={{ delay: 214500 }}
                     loop={true}
                     pagination={true}
                     modules={[Navigation, EffectFade, Autoplay, Pagination]}
-                    className="mySwiper heroSectionSlider col-12 d-flex flex-row justify-evenly align-center"
+                    className="mySwiper heroSectionSlider col-12 h-auto d-flex flex-row justify-evenly align-center"
 
                 >
                     {movies.length > 0 ? (

@@ -9,33 +9,34 @@ export default function BigFooter() {
     const [isFixed, setIsFixed] = useState(false);
     const footerRef = useRef(null);
 
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            setIsFixed(!entry.isIntersecting);
+        });
+    };
+    
     useEffect(() => {
         const observerOptions = {
             root: null,
             rootMargin: "0px",
             threshold: 1.0 
         };
-
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                setIsFixed(!entry.isIntersecting);
-            });
-        };
-
+    
         const observer = new IntersectionObserver(observerCallback, observerOptions);
         const footerElement = footerRef.current;
-
+    
         if (footerElement) {
             observer.observe(footerElement);
         }
-
+    
         return () => {
             if (footerElement) {
                 observer.unobserve(footerElement);
             }
             observer.disconnect();
         };
-    }, []);
+    }, []); 
+
 
     return (
         <div className={`footer d-lg-flex d-sm-none d-xs-none flex-column gap-3 justify-evenly ${isSearchMoviePage ? 'FixedFooter' : ''}`}>

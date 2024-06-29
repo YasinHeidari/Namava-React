@@ -29,7 +29,7 @@ export default function SliderMovieTrending({ title }) {
             setLoading(true);
             try {
                 const response = await fetch(
-                    `${baseUrl}/trending/all/day?${apiKey}`
+                    `${baseUrl}/trending/movie/week?${apiKey}&language=fa-IR`
                 );
                 const jsonData = await response.json();
                 setMovies(jsonData.results);
@@ -69,14 +69,14 @@ export default function SliderMovieTrending({ title }) {
 
     return (
         <div className="w-100">
-            <div className="d-flex flex-column align-center gap-2">
+            
                 <div className="container">
                     {loading ? (
                         <Loading />
                     ) : (
                         <div className="d-flex flex-column justify-center align-start gap-2">
                         <div className="sliderTitle col-md-5 col-12 d-flex justify-start align-center gap-1">
-                                <h3 className="col-xl-4 col-md-6 col-4 white-color">{title}</h3>
+                                <h3 className="col-xl-4 col-md-6 col-sm-4 col-6 white-color">{title}</h3>
                                 <button onClick={handleSeeAllClick} className="seeAllButton col-md-5 d-flex align-center gap-1">
                                     <p>مشاهده همه</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="10 0 20 40" fill="#fff"><path d="M14.77 18.793c0-.493.196-.967.545-1.315l6.2-6.2a1.86 1.86 0 0 1 2.626 2.633l-4.88 4.882 4.88 4.88a1.86 1.86 0 0 1-2.63 2.63l-6.2-6.2c-.347-.348-.54-.82-.54-1.31z" style={{transform: 'translateY(2px)'}}></path></svg>
@@ -205,7 +205,7 @@ export default function SliderMovieTrending({ title }) {
                         </div>
                     )}
                 </div>
-            </div>
+            
             {selectedMovie && isInfoVisible && screenWidth >= 992 && (
                 <MovieInfoHomePage movie={selectedMovie} />
             )}
