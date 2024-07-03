@@ -69,6 +69,9 @@
   }
 }
 @media only screen and (min-width:768px){
+  .heroSectionSlider{
+    height: 49vh;
+  }
   .heroSectionInfo{
     padding-top: 4.5rem;
   }
@@ -84,6 +87,7 @@
   }
   .heroSectionSlider {
     margin-bottom: -6.03125vw;
+    height: 60vh;
   }
   .heroSectionSlider.mySwiper  .swiper-button-prev{
     right: 87% !important;

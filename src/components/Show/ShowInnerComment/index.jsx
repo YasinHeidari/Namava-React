@@ -30,7 +30,7 @@ export default function ShowCommentContainer({ seriesId }) {
     }, [seriesId]);
 
     return (
-        <div className="commentContainer border-radius-12">
+        <div className="commentContainer ">
             <div className="d-flex flex-column w-100 gap-md-7 gap-2">
                 <h3 className="font-lg-18 font-16 white-color text-center">نظرات کاربران</h3>
                 <div className="d-flex justify-center align-start gap-2">
