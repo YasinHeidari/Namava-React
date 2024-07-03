@@ -87,7 +87,7 @@ export default function HeroSectionSlider() {
                     navigation={true}
                     slidesPerView={1}
                     effect={"fade"}
-                    autoplay={{ delay: 214500 }}
+                    autoplay={{ delay: 4500 }}
                     loop={true}
                     pagination={true}
                     modules={[Navigation, EffectFade, Autoplay, Pagination]}
@@ -160,12 +160,12 @@ export default function HeroSectionSlider() {
                                                 </div>
                                             </div>
                                             <p className="white-color font-xxxl-16 font-xl-14 font-md-12 font-weight-normal d-lg-block d-sm-none d-xs-none">
-                                                {movie.overview.length > 100
+                                                {movie.overview.length > 0
                                                     ? `${movie.overview.substring(
                                                           0,
                                                           150
                                                       )}...`
-                                                    : movie.overview}
+                                                    : 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.'}
                                             </p>
                                             <div className="d-flex align-center justify-evenly gap-2">
                                                 <Link

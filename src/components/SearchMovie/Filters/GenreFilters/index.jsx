@@ -40,20 +40,23 @@ export default function GenreFilter({ checkboxes, setCheckboxes, handleGenreChan
                 </div>
                 <span className='lighter-white-font line-height-24 font-14 font-weight-normal'>همه ژانرها</span>
                 <ul className="options">
-                    {availableGenres.filter(option => option.name.toUpperCase().includes(filter)).map((option) => (
-                        <li key={option.id} className='white-color font-weight-normal'>
-                            <div className='d-flex gap-1'>
-                                <Checkbox
-                                    checked={checkboxes[option.id]}
-                                    onChange={(e) => handleCheckboxChange(option.id, e.target.checked)}
-                                    onClick={(e) => e.stopPropagation()}
-                                />
-                                <p className='font-14 font-weight-normal'>{option.name}</p>
-                            </div>
-                        </li>
-                    ))}
+                    {availableGenres
+                        .filter(option => option.name && option.name.toUpperCase().includes(filter))
+                        .map((option) => (
+                            <li key={option.id} className='white-color font-weight-normal'>
+                                <div className='d-flex gap-1'>
+                                    <Checkbox
+                                        checked={checkboxes[option.id]}
+                                        onChange={(e) => handleCheckboxChange(option.id, e.target.checked)}
+                                        onClick={(e) => e.stopPropagation()}
+                                    />
+                                    <p className='font-14 font-weight-normal'>{option.name}</p>
+                                </div>
+                            </li>
+                        ))}
                 </ul>
             </div>
         </div>
     );
 }
+

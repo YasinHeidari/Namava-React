@@ -16,7 +16,7 @@ export default function Filters({ onGenresChange, onCountriesChange }) {
     const fetchGenres = async () => {
       try {
         const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
-        const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`);
+        const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=fa-IR`);
         const data = await response.json();
         const genres = data.genres.reduce((acc, genre) => {
           acc[genre.id] = false;

@@ -40,6 +40,9 @@
     .heroSectionMovieInfo{
         padding-top: 40vh;
     }
+    .commentContainer{
+        border-radius: 0;
+    }
 }
 @media only screen and (min-width:576px){
     .heroSectionMovie{
@@ -47,6 +50,9 @@
     }
     .heroSectionMovieInfo{
         padding-top: 35vh;
+    }
+    .commentContainer{
+        border-radius: 0;
     }
 }
 @media only screen and (min-width:768px){
@@ -77,12 +83,16 @@
     .containerMovie{
         margin-bottom: 2rem;
     }
+    
 }
 
 @media only screen and (min-width:1280px){
     .containerMovie{
         min-height: 44.875vw;
         margin-bottom: -7.03125vw;
+    }
+    .commentContainer{
+        border-radius: 12px;
     }
 }
 @media only screen and (min-width: 1440px){

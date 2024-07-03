@@ -19,7 +19,7 @@ export default function Episodesm({ seriesId, showName, numberOfSeasons, popular
             setLoading(true);
             try {
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/tv/${seriesId}/season/${seasonNumber}?api_key=${apiKey}&language=en-US`
+                    `https://api.themoviedb.org/3/tv/${seriesId}/season/${seasonNumber}?api_key=${apiKey}&language=fa-IR`
                 );
                 const data = await response.json();
                 setEpisodes(data.episodes || []);
@@ -118,7 +118,7 @@ export default function Episodesm({ seriesId, showName, numberOfSeasons, popular
                                             />
                                         </div>
                                         <div className="col-7 d-flex flex-column justify-start align-start" style={{ padding: '1.5rem 1rem 2.5rem 0' }}>
-                                            <div className="d-flex justify-start align-center gap-1">
+                                            <div className="d-flex justify-start align-center flex-wrap gap-1">
                                                 <h2 className="white-color font-lg-14 font-12 font-weight-normal" style={{ lineHeight: '1.79' }}>
                                                     {showName} -
                                                 </h2>

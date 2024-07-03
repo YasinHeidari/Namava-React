@@ -9,95 +9,100 @@ import './index.css';
 
 export default function SearchInput({ selectedGenres, selectedCountries, isFilmSelected, isSerialSelected, toggleMenuVisibility }) {
   const [searchInput, setSearchInput] = useState('');
-  const [searchResults, setSearchResults] = useState({ persons: [], movies: [], keywords: [], collections: [], shows: [] });
-  const [searchActive, setSearchActive] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [allResultsLoaded, setAllResultsLoaded] = useState(false);
+const [searchResults, setSearchResults] = useState({ persons: [], movies: [], keywords: [], collections: [], shows: [] });
+const [searchActive, setSearchActive] = useState(false);
+const [loading, setLoading] = useState(false);
+const [allResultsLoaded, setAllResultsLoaded] = useState(false);
+const [currentPage, setCurrentPage] = useState(1);
 
-  const fetchSearchResults = async (page = 1) => {
-    const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
-    const query = encodeURIComponent(searchInput);
-    const endpoints = [
-      `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${query}&language=en-US&page=${page}`,
-      `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&language=en-US&page=${page}`,
-      `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&language=en-US&page=${page}`,
-      `https://api.themoviedb.org/3/search/collection?api_key=${apiKey}&query=${query}&language=en-US&page=${page}`
-    ];
+const fetchSearchResults = async (page = 1) => {
+  const apiKey = '4fba95dbf46cd77d415830c228c9ef01';
+  const query = encodeURIComponent(searchInput);
+  const endpoints = [
+    `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${query}&language=fa-IR&page=${page}`,
+    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&language=fa-IR&page=${page}`,
+    `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&language=fa-IR&page=${page}`,
+    `https://api.themoviedb.org/3/search/collection?api_key=${apiKey}&query=${query}&language=fa-IR&page=${page}`
+  ];
 
-    try {
-      const responses = await Promise.all(
-        endpoints.map(endpoint => fetch(endpoint).then(res => res.json()))
-      );
-
-      const [personsRes, moviesRes, showsRes, collectionsRes] = responses;
-
-      setSearchResults(prevResults => ({
-        persons: page === 1 ? personsRes.results : [...prevResults.persons, ...personsRes.results],
-        movies: page === 1 ? moviesRes.results : [...prevResults.movies, ...moviesRes.results],
-        collections: page === 1 ? collectionsRes.results : [...prevResults.collections, ...collectionsRes.results],
-        shows: page === 1 ? showsRes.results : [...prevResults.shows, ...showsRes.results],
-      }));
-
-      setAllResultsLoaded(
-        !personsRes.total_pages ||
-        !moviesRes.total_pages ||
-        !showsRes.total_pages ||
-        !collectionsRes.total_pages ||
-        page >= personsRes.total_pages && page >= moviesRes.total_pages && page >= showsRes.total_pages && page >= collectionsRes.total_pages
-      );
-
-      setSearchActive(true);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching search results:', error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (searchInput.length >= 3) {
-      fetchSearchResults();
-    }
-  }, [searchInput]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight && !loading && !allResultsLoaded) {
-        setLoading(true);
-        setTimeout(() => {
-          setCurrentPage(prevPage => prevPage + 1);
-          fetchSearchResults(currentPage + 1);
-        }, 1000);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [loading, currentPage, allResultsLoaded]);
-
-  const filterResults = (items, genres, countries) => {
-    return items.filter(item => 
-      item.genre_ids?.some(genre_id => genres[genre_id]) && 
-      item.production_countries?.some(country => countries[country.iso_3166_1])
+  try {
+    const responses = await Promise.all(
+      endpoints.map(endpoint => fetch(endpoint).then(res => res.json()))
     );
-  };
-  
 
-  const filteredMovies = filterResults(searchResults.movies, selectedGenres, selectedCountries);
-  const filteredShows = filterResults(searchResults.shows, selectedGenres, selectedCountries);
+    const [personsRes, moviesRes, showsRes, collectionsRes] = responses;
 
-  const displayedResults = () => {
-    if (isFilmSelected) {
-      return filterResults(searchResults.movies, selectedGenres, selectedCountries);
-    } else if (isSerialSelected) {
-      return filterResults(searchResults.shows, selectedGenres, selectedCountries);
+    setSearchResults(prevResults => ({
+      persons: page === 1 ? personsRes.results : [...prevResults.persons, ...personsRes.results],
+      movies: page === 1 ? moviesRes.results : [...prevResults.movies, ...moviesRes.results],
+      collections: page === 1 ? collectionsRes.results : [...prevResults.collections, ...collectionsRes.results],
+      shows: page === 1 ? showsRes.results : [...prevResults.shows, ...showsRes.results],
+    }));
+
+    const allLoaded = 
+      page >= personsRes.total_pages &&
+      page >= moviesRes.total_pages &&
+      page >= showsRes.total_pages &&
+      page >= collectionsRes.total_pages;
+
+    if (!allLoaded) {
+      setCurrentPage(page + 1); // Update currentPage before next fetch
     } else {
-      const filteredMovies = filterResults(searchResults.movies, selectedGenres, selectedCountries);
-      const filteredShows = filterResults(searchResults.shows, selectedGenres, selectedCountries);
-      return [...filteredMovies, ...filteredShows];
+      setAllResultsLoaded(true);
+    }
+
+    setSearchActive(true);
+    setLoading(false);
+  } catch (error) {
+    console.error('Error fetching search results:', error);
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  if (searchInput.length >= 3) {
+    setAllResultsLoaded(false);
+    setCurrentPage(1);
+    fetchSearchResults(1);
+  } else {
+    setSearchActive(false);
+  }
+}, [searchInput]);
+
+useEffect(() => {
+  const handleScroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight && !loading && !allResultsLoaded) {
+      setLoading(true);
+      setTimeout(() => {
+        fetchSearchResults(currentPage + 1);
+      }, 1000);
     }
   };
+
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, [loading, currentPage, allResultsLoaded]);
+
+const filterResults = (items) => {
+  return items.filter(item => {
+    const genreMatch = Object.keys(selectedGenres).every(genre => !selectedGenres[genre] || item.genre_ids.includes(parseInt(genre)));
+    const countryMatch = Object.keys(selectedCountries).every(country => !selectedCountries[country] || (item.production_countries && item.production_countries.some(c => c.iso_3166_1 === country)));
+    return genreMatch && countryMatch;
+  });
+};
+
+const displayedResults = () => {
+  const filteredMovies = filterResults(searchResults.movies);
+  const filteredShows = filterResults(searchResults.shows);
+
+  if (isFilmSelected) {
+    return filteredMovies;
+  } else if (isSerialSelected) {
+    return filteredShows;
+  } else {
+    return [...filteredMovies, ...filteredShows];
+  }
+};
   
 
   console.log('searchInput:', searchInput);
@@ -106,8 +111,7 @@ export default function SearchInput({ selectedGenres, selectedCountries, isFilmS
   console.log('currentPage:', currentPage);
   console.log('loading:', loading);
   console.log('allResultsLoaded:', allResultsLoaded);
-  console.log('filteredMovies:', filteredMovies);
-  console.log('filteredShows:', filteredShows);
+ 
 
   return (
     <div className="searchContainer col-12 d-flex flex-column justify-center gap-4">

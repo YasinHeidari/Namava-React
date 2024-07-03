@@ -37,7 +37,7 @@ export default function Show() {
         const fetchSeriesData = async () => {
             try {
                 const seriesResponse = await fetch(
-                    `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=en-US&append_to_response=images&include_image_language=en,fa,jp,null`
+                    `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=fa-IR&append_to_response=images&include_image_language=en,fa,null`
                 );
                 const seriesData = await seriesResponse.json();
                 setSeries(seriesData);
@@ -174,7 +174,7 @@ export default function Show() {
                             <p className="white-color font-12 font-weight-normal" style={{ lineHeight: '1.75' }}>
                             {series.overview && series.overview.length > 50
                                 ? `${series.overview?.substring(0, 50)}...`
-                                : series.overview}{/** yh */}
+                                : 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.'}{/** yh */}
                             </p>
                             <div className="d-flex align-center justify-evenly gap-2">
                                 <Link
@@ -249,7 +249,7 @@ export default function Show() {
                             className="light-white-font font-md-14 font-12 font-weight-normal"
                             style={{ lineHeight: "2" }}
                         >
-                            {series?.overview}
+                            {series?.overview.length > 0 ? series?.overview : 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.'}
                         </p>
                         <p className="white-color font-lg-14 font-12 font-weight-normal">
                             دسته بندی ها: {getGenreNames()}
