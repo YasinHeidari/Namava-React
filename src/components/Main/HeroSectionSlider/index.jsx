@@ -18,6 +18,8 @@ export default function HeroSectionSlider() {
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const [movies, setMovies] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
 
     useEffect(() => {
         const fetchHeroData = async () => {

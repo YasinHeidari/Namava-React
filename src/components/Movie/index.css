@@ -80,6 +80,9 @@
         min-height: 44.875vw;
         margin-bottom: -7.03125vw;
     }
+    .logoImg{
+        width: 25rem;
+    }
 }
 @media only screen and (min-width: 1440px){
   

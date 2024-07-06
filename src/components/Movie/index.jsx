@@ -102,7 +102,7 @@ export default function Movie() {
           <div className="heroSectionMovieInfo d-flex flex-column justify-btw align-start h-100">
             <div className="col-md-6 col-12 d-flex flex-column justify-center align-lg-start align-center align-self-lg-start align-self-center gap-2 container-padding-2 h-100">
               <Link to={`/movie/${movie.id}`} className="col-xl-9 col-lg-6 d-lg-block d-none h-auto">
-                {logoUrl && <img loading="lazy" className="logoImg w-100" src={`https://image.tmdb.org/t/p/w300/${logoUrl}`} alt={movie?.name || movie?.title} />}
+                {logoUrl && <img loading="lazy" className="logoImg col-12" src={`https://image.tmdb.org/t/p/w300/${logoUrl}`} alt={movie?.name || movie?.title}/>}
               </Link>
               <h1 className="font-xl-20 font-md-18 font-14 white-color">{movie?.title || movie?.name}</h1>
               <div className="d-flex justify-start align-center gap-2">
