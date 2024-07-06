@@ -1,6 +1,11 @@
 # **Namava (Home made)**
 My project is a copy of the real [navama.ir](https://www.namava.ir/home) website and I am using the TMDB api for dispalying every Movie , Show , Actor and Producer.
 
+
+# **Website Address**
+here´s my website address(if you live in IRAN please use VPN to enter the website)<br>
+[HomeMadeNamava.com](https://homemadenamava.com/)
+
 # Technologies
 + React 
 + axios
@@ -8,9 +13,6 @@ My project is a copy of the real [navama.ir](https://www.namava.ir/home) website
 + classnames
 + swiper
 + PWA 
-+ workbox
-+ vite
-+ Express.js
 
 
 # Usage 
@@ -25,8 +27,7 @@ npm i swiper
 npm i classnames
 npm i axios
 npm i react-helmet
-npm i -D vite
-npm i workbox-build
+
 ```
 
  ## DEMO
