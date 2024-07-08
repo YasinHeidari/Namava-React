@@ -172,7 +172,7 @@ const displayedResults = () => {
                     className='movieResultContainer col-lg-2 col-md-3 col-4 h-100 d-flex flex-column gap-2'
                     style={{ marginBottom: '4rem' }}
                   >
-                    <div className='position-relative w-100 h-100'>
+                    <div className='resultHeight position-relative w-100 h-100'>
                       <img className='movieResultImage w-100  border-radius-5 object-cover' src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item?.title || item?.name} />
                       <div className='darkMovieCover position-absolute z-1 top-0 right-0 w-100  d-flex flex-column justify-end align-start gap-1 border-radius-5'>
                         <div className="d-flex justify-center align-center"><div><img src={IMDB} alt="IMDB" /></div><p className="white-color font-14">{ratingDecimal(item.vote_average)}</p></div>
@@ -191,7 +191,7 @@ const displayedResults = () => {
                     className='showResultContainer col-lg-2 col-md-3 col-4  d-flex flex-column gap-2'
                     style={{ marginBottom: '4rem' }}
                   >
-                    <div className='position-relative w-100 '>
+                    <div className='resultHeight position-relative w-100 '>
                       <img className='showResultImage w-100  border-radius-5 object-cover' src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item?.title || item?.name} />
                       <div className='darkShowCover position-absolute z-1 top-0 right-0 w-100  d-flex flex-column justify-end align-start gap-1 border-radius-5'>
                         <div className="d-flex justify-center align-center"><div><img src={IMDB} alt="IMDB" /></div><p className="white-color font-14">{ratingDecimal(item.vote_average)}</p></div>
@@ -209,7 +209,7 @@ const displayedResults = () => {
                   .filter(item => item.poster_path)
                   .map(item => (
                     <Link to={`/${item.media_type}/${item.id}`} key={item.id} className="searchResultContainer col-lg-2 col-md-3 col-4 h-100  d-flex flex-column gap-2 " style={{ marginBottom: '4rem' }}>
-                      <div className='position-relative w-100 h-100'>
+                      <div className='resultHeight position-relative w-100 h-100'>
                         <img className='searchResultImage w-100  border-radius-5 object-cover' src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt={item?.title || item?.name} />
                         <div className="darkSearchCover position-absolute z-1 top-0 right-0 w-100 d-flex flex-column justify-end align-start gap-1 border-radius-5">
                           <div className="d-flex justify-center align-center"><div><img src={IMDB} alt="IMDB" /></div><p className="white-color font-14">{ratingDecimal(item.vote_average)}</p></div>

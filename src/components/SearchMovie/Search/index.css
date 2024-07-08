@@ -3,7 +3,7 @@
     opacity: 0;
     transition: opacity .3s ease ;
     padding: 1rem;
-    height: 20rem !important;
+    height: 15rem !important;
 }
 .showResultContainer:hover .darkShowCover{
     opacity: 1 ;
@@ -16,5 +16,19 @@
     margin: 0;
 }
 .movieResultImage , .showResultImage ,.searchResultImage{
-    height: 20rem !important;
+    height: 15rem !important;
+}
+.resultHeight{
+    height: 15rem
+}
+@media only screen and (min-width: 992px){
+    .resultHeight{
+        height: 100%;
+    }
+    .movieResultImage , .showResultImage ,.searchResultImage{
+        height: 20rem !important;
+    }
+    .showResultContainer .darkShowCover , .movieResultContainer .darkMovieCover, .searchResultContainer .darkSearchCover{
+        height: 20rem !important;
+    }
 }

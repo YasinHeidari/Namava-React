@@ -8,7 +8,6 @@ here´s my website address(if you live in IRAN please use VPN to enter the websi
 
 # Technologies
 + React 
-+ axios
 + ant-design / @ant-design/icons
 + classnames
 + swiper
@@ -25,7 +24,6 @@ npm i antd
 npm i @ant-design/icons
 npm i swiper
 npm i classnames
-npm i axios
 npm i react-helmet
 
 ```

@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import axios from 'axios';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './index.css';
 import { Link } from 'react-router-dom';
 
+const api_key = '4fba95dbf46cd77d415830c228c9ef01';
 export default function AboutUsSlider() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     async function fetchMoviesAndGenres() {
       try {
-        const movieResponse = await axios.get('https://api.themoviedb.org/3/trending/all/week', {
-          params: {
-            api_key: '4fba95dbf46cd77d415830c228c9ef01',
-          },
-        });
-
-        setMovies(movieResponse.data.results);
+        const response = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${api_key}`);
+        const data = await response.json();
+        setMovies(data.results);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -28,6 +24,7 @@ export default function AboutUsSlider() {
 
     fetchMoviesAndGenres();
   }, []);
+
 
   return (
       <div className='col-12 d-flex flex-column justify-start align-start gap-2 aboutUsSlider'>
