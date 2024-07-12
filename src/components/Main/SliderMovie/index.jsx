@@ -30,7 +30,7 @@ export default function SliderMovie({ genreId, title }) {
         async function fetchMovies() {
             try {
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=fa-IR&with_genres=${genreId}`
+                    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=fa-IR&language=en-US&with_genres=${genreId}`
                 );
                 if (!response.ok) {
                     throw new Error("Failed to fetch movies");

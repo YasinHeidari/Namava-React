@@ -152,7 +152,7 @@ export default function Movie() {
         <div className="container">
           <div className="d-flex flex-column gap-3">
             <h3 className="white-color font-lg-18 font-16">تصاویر و جزییات</h3>
-            <div className="d-flex align-self-start gap-xl-2 justify-lg-evenly flex-lg-nowrap flex-wrap" style={{ marginBottom: "1rem" }}>
+            <div className="d-flex align-self-start gap-xl-2 justify-lg-start justify-evenly flex-lg-nowrap flex-wrap" style={{ marginBottom: "1rem" }}>
               {images.slice(0, 5).map(image => (
                 <div className="col-md-3 col-4" key={image.file_path} style={{ padding: '.2rem' }}>
                   <img loading="lazy" className="w-100 h-auto object-cover border-radius-4" key={movie.id} src={`https://image.tmdb.org/t/p/original${image.file_path}`} alt={image.file_path} />

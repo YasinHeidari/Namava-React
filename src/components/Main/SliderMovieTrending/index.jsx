@@ -198,7 +198,7 @@ export default function SliderMovieTrending({ title }) {
                                             </div>
                                         </SwiperSlide>
                                     ))
-                                ) : (
+                                ) : ( 
                                     <p>No movies available for this genre</p>
                                 )}
                             </Swiper>
