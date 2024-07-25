@@ -16,6 +16,7 @@ import { isValidMovie, isValidShow } from "./helpers/validator";
 import SpinnerLoading from "./components/Loading/SpinnerLoading";
 import SeeAllShows from "./components/Main/SeeAllShow";
 import SeeAll from "./components/Main/SeeAll";
+import Stars from "./components/Stars";
 
 const ValidatedRoute = ({ component: Component, validator, ...rest }) => {
   const { id } = useParams();
@@ -52,6 +53,7 @@ const App = () => {
           <Route path="/SearchMovie" element={<Search/>}/>
           <Route path="/SeeAll" element={<SeeAll/>}/>
           <Route path="/SeeAllShows" element={<SeeAllShows/>}/>
+          <Route path="/stars/:id" element={<Stars/>}/>
           <Route path="*" element={<Error/>} />
         </Routes>
         <Footer />
