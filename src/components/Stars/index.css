@@ -1,0 +1,82 @@
+.starMovieSlider{
+    transition: all .3s ease;
+}
+.starMovieSliderLink .darkMovieCover{
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9));
+    opacity: 0;
+    transition: opacity .3s ease ;
+    padding: 1rem;
+    transform: scaleY(1);
+    
+}
+.starMovieSliderLink:hover .darkMovieCover{
+    opacity: 1 ;
+    
+}
+
+.star-img{
+    height: 14rem;
+}
+.starSliderLink{
+
+}
+.starsMovieContainer{
+    display: grid;
+}
+
+@media only screen  and (min-width : 576px){
+    .star-img{
+        height: 12rem;
+    }
+}
+@media only screen  and (min-width : 768px){
+    .star-img{
+        height: 12rem;
+    }
+    .starSliderLink{
+        width: 10rem;
+        height: 17rem;
+    }
+    .starSliderLinkContainer{
+        width: 10rem;
+        height: 19rem;
+        margin: 1.5rem 0;
+    }
+    .starsMovieContainer{
+        grid-template-columns: 1fr 1fr 1fr 1fr ; 
+        grid-template-rows: auto;
+    }
+}
+@media only screen  and (min-width : 992px){
+    .starSliderLink{
+        width: 11rem;
+        height: 17rem;
+    }
+    .starSliderLinkContainer{
+        width: 11rem;
+        height: 19rem;
+        margin: 1.5rem 0;
+    }
+    .starsMovieContainer{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+        grid-template-rows: auto;
+    }
+}
+@media only screen  and (min-width : 1280px){
+    .star-img{
+        height: 14rem;
+    }
+    .starSliderLink{
+        width: 12rem;
+        height: 19rem;
+    }
+    .starSliderLinkContainer{
+        width: 12rem;
+        height: 21rem;
+        margin: 1.5rem 0;
+    }
+    .starsMovieContainer{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+        grid-template-rows: auto;
+    }
+}

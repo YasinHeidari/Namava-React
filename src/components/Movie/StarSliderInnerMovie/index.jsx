@@ -39,61 +39,61 @@ export default function StarInner({ movieId }) {
     }, [movieId]);
 
     return (
-        <div className="container">
-            {loading ? (
-                <Loading />
-            ) : (
-                <Swiper
-                    grabCursor={true}
-                    keyboard={{
-                        enabled: true,
-                    }}
-                    spaceBetween={15}
-                    navigation={true}
-                    slidesPerView={3}
-                    slidesPerGroupAuto={true}
-                    watchOverflow={true}
-                    breakpoints={{
-                        576: {
-                            slidesPerView: 3,
-                        },
-                        768: {
-                            slidesPerView: 4,
-                        },
-                        992: {
-                            slidesPerView: 5,
-                        },
-                        1440:{
-                            slidesPerView:7,
-                        },
-                        2560:{
-                            slidesPerView:11,
-                        }
-                    }}
-                    modules={[Navigation, Keyboard]}
-                    className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"
+      <div className="container">
+        {loading ? (
+          <Loading />
+        ) : (
+          <Swiper
+            grabCursor={true}
+            keyboard={{
+              enabled: true,
+            }}
+            spaceBetween={15}
+            navigation={true}
+            slidesPerView={3}
+            slidesPerGroupAuto={true}
+            watchOverflow={true}
+            breakpoints={{
+              576: {
+                slidesPerView: 3,
+              },
+              768: {
+                slidesPerView: 4,
+              },
+              992: {
+                slidesPerView: 5,
+              },
+              1440: {
+                slidesPerView: 7,
+              },
+              2560: {
+                slidesPerView: 11,
+              },
+            }}
+            modules={[Navigation, Keyboard]}
+            className="mySwiper SliderContainer col-12 d-flex flex-row justify-evenly align-center gap-4"
+          >
+            {stars.map((star, index) => (
+              <SwiperSlide key={index} className="StarsSlider h-100">
+                <Link
+                  to={`/stars/${star.id}`}
+                  className="d-flex flex-column align-center gap-2"
                 >
-                    {stars.map((star, index) => (
-                        <SwiperSlide key={index} className="StarsSlider h-100">
-                            <Link
-                                to="/"
-                                className="d-flex flex-column align-center gap-2"
-                            >
-                                <img
-                                    loading="lazy"
-                                    src={`https://image.tmdb.org/t/p/w500/${star.profile_path}`}
-                                    alt={star.name}
-                                    className="col-lg-12 col-9  starImg border-radius-50 object-cover"
-                                />
-                                <h5 className="white-color">{star.name}</h5>
-                                <p className="font-lg-14 line-height-lg-24 light-white-font font-weight-normal">
-                                    بازیگر
-                                </p>
-                            </Link>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            )}
-        </div>
+                  <img
+                    loading="lazy"
+                    src={`https://image.tmdb.org/t/p/w500/${star.profile_path}`}
+                    alt={star.name}
+                    className="col-lg-12 col-9  starImg border-radius-50 object-cover"
+                  />
+                  <h5 className="white-color">{star.name}</h5>
+                  <p className="font-lg-14 line-height-lg-24 light-white-font font-weight-normal">
+                    بازیگر
+                  </p>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+      </div>
     );
 }

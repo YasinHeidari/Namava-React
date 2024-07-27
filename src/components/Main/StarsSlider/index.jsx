@@ -90,7 +90,7 @@ export default function StarsSlider({ title }) {
                                 className="StarsSlider h-100"
                             >
                                 <Link
-                                    to="/"
+                                    to={`/stars/${star.id}`}
                                     className="d-flex flex-column align-center gap-2"
                                 >
                                     <img
