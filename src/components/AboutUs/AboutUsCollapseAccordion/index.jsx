@@ -121,7 +121,7 @@ export default function AboutUsAccordion(){
                                 </Link>
                             </p>
                 </Panel>
-            </Collapse>,
+            </Collapse>
             
             </Space>
         </ConfigProvider>

@@ -9,7 +9,13 @@ export default function SmallHeader() {
     const location = useLocation();
     const isHomePage = location.pathname === "/";
     const isContactUsPage = location.pathname === "/ContactUs";
-    const isMovieOrShowPage = /^\/(movie\/\d+|show\/\d+|SearchMovie)$/.test(location.pathname);
+    const isFAQPage = location.pathname === "/FAQ";
+    const isTermAndConditionsPage = location.pathname === "/termsandconditions";
+    const isMovieOrShowPage =
+      /^\/(movie\/\d+|show\/\d+|SearchMovie|termsandconditions)$/.test(
+        location.pathname
+      );
+
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [isTransitioning, setTransitioning] = useState(false);
     const [isHeaderVisible, setHeaderVisible] = useState(true);
@@ -23,11 +29,15 @@ export default function SmallHeader() {
 
     const ContactUsStyle = {
         backgroundColor: 'rgba(18, 18, 18, 1)',
-        backgroundImage: 'linear-gradient(to bottom, rgba(18, 18, 18, 1), rgba(18, 18, 18, 0))',
+        
         boxShadow: '0 0 0 rgba(0, 0, 0, 0)'
     };
 
-    const [bgColor, setBgColor] = useState(isContactUsPage ? ContactUsStyle : HomeStyle);
+    const [bgColor, setBgColor] = useState(
+      isContactUsPage || isFAQPage || isTermAndConditionsPage 
+        ? ContactUsStyle
+        : HomeStyle
+    );
 
     useEffect(() => {
         const handleScroll = () => {
@@ -56,10 +66,13 @@ export default function SmallHeader() {
     }, [prevScrollPos]);
 
     useEffect(() => {
-        setBgColor(isContactUsPage ? ContactUsStyle : HomeStyle);
+        setBgColor(
+          isContactUsPage || isFAQPage || isTermAndConditionsPage 
+            ? ContactUsStyle
+            : HomeStyle
+        );
     }, [location.pathname]);
-
-    // Dropdown menu items
+    
     const menuItems = [
         {
             key: '0',
@@ -152,7 +165,7 @@ export default function SmallHeader() {
                                     <Link className="signInImg" to='/'>
                                         <img className="w-100" src={require("../../../images/sign-in-mobile.svg").default} alt="" />
                                     </Link>
-                                    <Link className="d-md-inline-block d-xs-none signIn border-radius-5 font-md-12 font-weight-normal" to='/'>ورود/ثبت نام</Link>
+                                    <Link className="d-md-inline-block d-xs-none signIn border-radius-5 font-12 font-weight-normal" to='/'>ورود/ثبت نام</Link>
                                 </div>
                             </div>
                         </div>

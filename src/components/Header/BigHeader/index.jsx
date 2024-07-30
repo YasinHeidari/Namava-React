@@ -6,6 +6,8 @@ export default function BigHeader() {
     const location = useLocation();
     const isHomePage = location.pathname === "/";
     const isContactUsPage = location.pathname === "/ContactUs";
+    const isFAQPage = location.pathname === "/FAQ";
+    const isTermAndConditionsPage = location.pathname === "/termsandconditions";
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [isTransitioning, setTransitioning] = useState(false);
     const [isHeaderVisible, setHeaderVisible] = useState(true);
@@ -23,7 +25,7 @@ export default function BigHeader() {
         boxShadow: '0 0 0 rgba(0, 0, 0, 0)'
     };
 
-    const [bgColor, setBgColor] = useState(isContactUsPage ? ContactUsStyle : HomeStyle);
+    const [bgColor, setBgColor] = useState(isContactUsPage || isFAQPage || isTermAndConditionsPage ? ContactUsStyle : HomeStyle);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -52,8 +54,13 @@ export default function BigHeader() {
     }, [prevScrollPos]);
 
     useEffect(() => {
-        setBgColor(isContactUsPage ? ContactUsStyle : HomeStyle);
+        setBgColor(
+          isContactUsPage || isFAQPage || isTermAndConditionsPage
+            ? ContactUsStyle
+            : HomeStyle
+        );
     }, [location.pathname]);
+
 
     return (
         <Fragment>

@@ -1,11 +1,8 @@
-.contactSection{
-    background-color: var(--contactUs-white);
-}
+
 .contactContainer{
-    width: 83%;
+    width: 100%;
     margin: 0 auto;
     padding-top: 5vh;
-    
 }
 .contactText{
     background-color: var(--heroSection-active-color);
@@ -91,6 +88,12 @@ form .select{
 @media only screen and (min-width:768px){
     .ContactSection{
         box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    }
+    .contactContainer{
+        width: 83%;
+    }
+    .contactForm{
+        border-radius: 12px;
     }
 
 }

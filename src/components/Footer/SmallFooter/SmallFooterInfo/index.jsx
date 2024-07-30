@@ -6,19 +6,19 @@ export default function SmallFooterInfo({ isFixed }) {
     const [clicked, setClicked] = useState(false);
 
     const footerLinks = [
-        { label: "اپلیکیشن‌ها", to: "/" },
-        { label: "فرصت‌های شغلی", to: "/" },
-        { label: "تبلیغات در نماوا", to: "/" },
-        { label: "خرید اشتراک", to: "/" },
-        { label: "کارت هدیه", to: "/" },
-        { label: "سوالات متداول", to: "/" },
-        { label: "تماس با ما", to: "/ContactUs" },
-        { label: "درباره نماوا", to: "/AboutUs" },
-        { label: "نماوا مگ", to: "/" },
-        { label: "قوانین", to: "/" },
-        { label: "شرایط مصرف اینترنت", to: "/" },
-        { label: "ارسال فیلمنامه", to: "/" },
-        { label: "دانلود‌ها", to: "/" },
+      { label: "اپلیکیشن‌ها", to: "/app" },
+      { label: "فرصت‌های شغلی", to: "/" },
+      { label: "تبلیغات در نماوا", to: "/" },
+      { label: "خرید اشتراک", to: "/" },
+      { label: "کارت هدیه", to: "/" },
+      { label: "سوالات متداول", to: "/FAQ" },
+      { label: "تماس با ما", to: "/ContactUs" },
+      { label: "درباره نماوا", to: "/AboutUs" },
+      { label: "نماوا مگ", to: "https://www.namava.ir/mag/" },
+      { label: "قوانین", to: "/termsandconditions" },
+      { label: "شرایط مصرف اینترنت", to: "/internet" },
+      { label: "ارسال فیلمنامه", to: "/" },
+      { label: "دانلود‌ها", to: "/" },
     ];
 
     const menu = (

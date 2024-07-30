@@ -1,0 +1,6 @@
+.internetHeroSection{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), linear-gradient(180deg, #1993ff 0%, #005fb4 100%);
+}
+.internetCard{
+    box-shadow: 0px 2px 14px rgba(0, 0, 0, 0.1);
+}

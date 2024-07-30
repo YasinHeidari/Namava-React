@@ -7,6 +7,7 @@ import ratingDecimal from "../../helpers/ratingdecimal";
 import SubScript from "../../images/subScript.svg";
 import IMDB from "../../images/IMDB.svg";
 import "./index.css"
+import ScrollToTop from "../../helpers/ScrollToTop";
 
 const apiKey = "4fba95dbf46cd77d415830c228c9ef01";
 
@@ -64,6 +65,7 @@ export default function Stars() {
     fetchStar();
     fetchMovies();
   }, [id]);
+
   
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
@@ -100,18 +102,19 @@ export default function Stars() {
 
   return (
     <div className="d-flex flex-column gap-8 container" style={{ paddingTop: "80px" }}>
-      <div className="d-flex flex-lg-row flex-column justify-lg-start justify-center align-center gap-lg-2 gap-4">
-        <div className="col-xl-2 col-lg-3 col-6 d-flex justify-center align-center">
+    <ScrollToTop/>
+      <div className="d-flex flex-lg-row flex-column justify-lg-start justify-center align-center gap-lg-2 gap-4 ">
+        <div className="col-xl-2 col-lg-3 col-6  d-flex justify-center align-center">
           <img
             src={`https://image.tmdb.org/t/p/w500${data?.profile_path}`}
-            className="col-lg-11 col-6 star-img border-radius-50 object-cover"
+            className="col-lg-11 col-md-6 col-8 col-xs-12 star-img border-radius-50 object-cover"
             alt={data?.name}
           />
         </div>
-        <div className="col-lg-10 d-flex flex-column gap-4 justify-start align-lg-start align-center">
+        <div className="col-lg-10 col-11 d-flex flex-column gap-4 justify-start align-lg-start align-center">
           <h2 className="font-md-24 white-color">بیوگرافی {data?.name}</h2>
           <p
-            className="white-color line-height-lg-42 text-lg-right text-center"
+            className="white-color line-height-28 text-lg-right text-center" style={{textWrap: 'wrap'}}
           >
             {data?.biography?.length > 0
               ? data?.biography
@@ -125,15 +128,15 @@ export default function Stars() {
         {moviesLoading ? (
           <SpinnerLoading />
         ) : (
-          <div className="starsMovieContainer  gap-lg-3 gap-3" style={{marginBottom:'2rem'}}>
+          <div className="starsMovieContainer  gap-md-3 gap-1" style={{marginBottom:'2rem'}}>
             {movies.map((movie) => (
               <Link
                 to={`/movie/${movie?.id}`}
                 key={movie?.id}
-                className="starSliderLinkContainer"
+                className="starSliderLinkContainer col-sm-12"
               >
-                <div className="starMovieSliderLink d-flex flex-column gap-1 position-relative">
-                  <div className="movieSliderItem w-100 h-100 position-relative z-0">
+                <div className="starMovieSliderLink col-12 d-flex flex-column gap-1 position-relative">
+                  <div className="movieSliderItem col-12 w-100 h-100 position-relative z-0">
                     <div className="starSliderLink">
                       <img
                         src={`https://image.tmdb.org/t/p/w200${movie?.poster_path}`}
