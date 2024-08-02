@@ -1,7 +1,37 @@
 .appHeroSection{
-    height: 400px;
-    padding-top: 78px;
+    height: auto;
+    padding: 78px 0;
     background-size: cover;
     background-image: url(https://static.namava.ir/Content/Upload/Images/7b8dd5ad-4c0b-46ae-9d58-8e39196f6a5d.png);
     background-position: center;
+}
+.installButton:hover{
+    background-color: #fff;
+}
+.installButton:hover p{
+    color: #000;
+}
+.installButton:hover svg path{
+   stroke: #000;
+}
+.redButton:focus svg  {
+fill: red;
+}
+.purpleButton{
+
+}
+.yellowButton{
+
+}
+.blueButton{
+
+}
+.greenButton{
+
+}
+@media only screen and (min-width:780px){
+    .appContainer{
+        width: 70%;
+        margin: 0 auto;
+    }
 }

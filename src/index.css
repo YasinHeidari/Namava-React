@@ -102,6 +102,9 @@ button{
 .contact-us-white-bgc{
     background-color: var(--contactUs-white);
 }
+.contactUs-form-title{
+    color: var(--contactUs-form-title)
+}
 .light-black{
     color: var(--light-black);
 }

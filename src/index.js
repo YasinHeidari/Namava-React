@@ -27,6 +27,7 @@ import FAQ from "./components/FAQ";
 import TermsAndConditions from "./components/Terms&Conditions";
 import Internet from "./components/Internet";
 import Applications from "./components/Applications";
+import Subscription from "./components/Subscription";
 
 const ValidatedRoute = ({ component: Component, validator, ...rest }) => {
   const { id } = useParams();
@@ -77,6 +78,7 @@ root.render(
         <Route path="/termsandconditions" element={<TermsAndConditions/>}/>
         <Route path="/internet" element={<Internet/>} />
         <Route path="/app" element={<Applications/>}/>
+        <Route path="/subscription" element={<Subscription/>}/>
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

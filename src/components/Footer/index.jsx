@@ -8,8 +8,8 @@ export default function Footer() {
 
     return (
         <div>
-        <BigFooter/>
-        <SmallFooter/>
-        </div>
+            <BigFooter/>
+            <SmallFooter/>
+        </div> 
     )
 }          

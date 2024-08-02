@@ -9,7 +9,7 @@ export default function SmallFooterInfo({ isFixed }) {
       { label: "اپلیکیشن‌ها", to: "/app" },
       { label: "فرصت‌های شغلی", to: "/" },
       { label: "تبلیغات در نماوا", to: "/" },
-      { label: "خرید اشتراک", to: "/" },
+      { label: "خرید اشتراک", to: "/subscription" },
       { label: "کارت هدیه", to: "/" },
       { label: "سوالات متداول", to: "/FAQ" },
       { label: "تماس با ما", to: "/ContactUs" },
